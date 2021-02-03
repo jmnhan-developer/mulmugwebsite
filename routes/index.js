@@ -6,6 +6,7 @@ const encBase64 = require('crypto-js/enc-base64');
 var mongoose = require('mongoose');
 
 const userModel = require('../models/user');
+const productModel = require('../models/product')
 
 
 /* GET home page. */
@@ -14,6 +15,8 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
+
+/* ROUTE SIGN UP */
 
 router.post('/sign-up/student', async function (req, res, next) {
 
@@ -130,6 +133,9 @@ router.post('/sign-up/parent', async function (req, res, next) {
   }
   res.json({ result, saveUser, error, token })
 })
+
+/* ROUTE SIGN IN */
+
 
 router.post('/sign-in/student', async function (req, res, next) {
 
