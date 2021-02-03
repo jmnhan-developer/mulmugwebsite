@@ -9,44 +9,45 @@ import { Link } from 'react-router-dom'
 
 function Homescreen() {
 
-
     return (
+        <Container style={{ display:'flex', flexDirection:'column', backgroundImage: 'url(./hpbackground.png)', height: '100vh', backgroundPosition:'center', justifyContent: 'space-between' }}>
 
-        <Container style={{ backgroundColor: '#1F8A9E', height:740 }}>
             <Row>
-                <Link to="/"><img src="./MULMUG_Logo_Secondaire(Blanc)_avec_sous_titre_transparent_RVB.png" width='20%' className="d-inline-block align-top" alt="logo" /></Link>
-            </Row>
-            <Row style={{ display:'flex', justifyContent:'center' }}>
-                <p style={stylep}>Mulmug, "the More You Learn, the More You Get", littéralement "plus tu apprends, plus tu gagnes", est la première plateforme gratuite d’apprentissage des matières scolaires qui récompense le travail et les efforts des élèves…</p>
+                <Link to="/">
+                    <img src="./logomulmug.png" width='30%' className="d-inline-block align-top" alt="logo" />
+                </Link>
             </Row>
 
-            <Row style={{display:'flex', flexDirection:'row', justifyContent:'center'}}>
-                <Col xs='12'>
-                    <Button style={stylehpbutton1}>
-                        <Link to="/StudentHomeScreen" style={{textDecorationLine:'none'}}>
-                            <h2 style={{ color: 'white'}}>Je suis ELEVE</h2>
-                            <p style={{ color: 'white' }}>En savoir plus...</p>
+            <Row style={{ display:'flex', justifyContent:'center'}}>
+                <p style={{ width:800, marginLeft: 50, marginRight: 50, fontSize: 25, color: 'white' }}>
+                    Mulmug, "the More You Learn, the More You Get", littéralement "plus tu apprends, plus tu gagnes", est la première plateforme gratuite d’apprentissage des matières scolaires qui récompense le travail et les efforts des élèves…
+                </p>
+            </Row>
+
+            <Row style={{ display: 'flex', justifyContent: 'center', marginBottom:50}}>
+                <Col xs={12} md={6} style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Link to="/StudentHomeScreen" style={stylehpbutton1}>
+                        <h4>Je suis ELEVE</h4>
+                        <p>En savoir plus...</p>
+                    </Link>
+                </Col>
+                <Col xs={12} md={6} style={{ display: 'flex', justifyContent: 'center' }}>
+                        <Link to="/ParentHomeScreen" style={stylehpbutton2}>
+                            <h4>Je suis PARENT</h4>
+                            <p>En savoir plus...</p>
                         </Link>
-                    </Button>
-                    <Button style={stylehpbutton2}>
-                        <Link to="/ParentHomeScreen" style={{textDecorationLine:'none'}}>
-                            <h2 style={{ color: 'white' }}>Je suis PARENT</h2>
-                            <p style={{ color: 'white' }}>En savoir plus...</p>
-                        </Link>
-                    </Button>
                 </Col>
             </Row>
-        </Container>
 
+        </Container >
 
     )
 }
 
-var stylehpbutton1 = { width:300, height:80, margin:'20px', backgroundColor: '#FFC300', color: "white", borderRadius: 10, outline:'none', border:'none', textDecorationLine: 'none'}
 
-var stylehpbutton2 = { width:300, height:80, margin:'20px', backgroundColor: '#00B2C3', color: "white", borderRadius: 10, outline:'none', border:'none', textDecorationLine: 'none'}
+var stylehpbutton1 = { width: 250, backgroundColor: '#FFC300', borderRadius: 10, outline: 'none', border: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', textDecorationLine: 'none', color: "white" }
 
-var stylep = { marginLeft:20, margingRight:20, width: 1000, marginTop: 150, marginBottom: 100, fontSize: 30, color: 'white' }
+var stylehpbutton2 = { width: 250, backgroundColor: '#00B2C3', borderRadius: 10, outline: 'none', border: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center',textDecorationLine: 'none', color: "white" }
 
 
 
