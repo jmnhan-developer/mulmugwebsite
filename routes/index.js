@@ -4,7 +4,6 @@ const uid2 = require("uid2");
 const SHA256 = require('crypto-js/sha256');
 const encBase64 = require('crypto-js/enc-base64');
 var mongoose = require('mongoose');
-
 const userModel = require('../models/user');
 const productModel = require('../models/product')
 
@@ -15,6 +14,10 @@ router.get('/', function(req, res, next) {
 });
 
 module.exports = router;
+
+
+
+
 
 /* ROUTE SIGN UP */
 
@@ -121,7 +124,7 @@ router.post('/sign-up/parent', async function (req, res, next) {
       
 
     })
-    console.log('Student', req.body.firstNameFromFront)
+    console.log('Parent', req.body.firstNameFromFront)
 
     saveUser = await newUser.save()
 
@@ -137,7 +140,7 @@ router.post('/sign-up/parent', async function (req, res, next) {
 /* ROUTE SIGN IN */
 
 
-router.post('/sign-in/student', async function (req, res, next) {
+router.post('/sign-in', async function (req, res, next) {
 
 
   var result = false
@@ -174,54 +177,9 @@ router.post('/sign-in/student', async function (req, res, next) {
     }
   }
 
-  console.log("SIGNIN SUCESS", user, result)
+  console.log("back", user, result)
 
   res.json({ result, user, error, token })
 
 
 })
-
-router.post('/sign-in/parent', async function (req, res, next) {
-
-
-  var result = false
-  var user = null
-  var error = []
-  var token = null
-
-  if (req.body.emailFromFront == ''
-    || req.body.passwordFromFront == ''
-  ) {
-    error.push('Empty Field')
-  }
-
-  if (error.length == 0) {
-    user = await userModel.findOne({
-      email: req.body.emailFromFront,
-    })
-
-    console.log("log-user", user)
-
-    if (user) {
-      const passwordEncrypt = SHA256(req.body.passwordFromFront + user.salt).toString(encBase64)
-
-      if (passwordEncrypt == user.password) {
-        result = true
-        token = user.token
-      } else {
-        result = false
-        error.push('Incorrect Password ')
-      }
-
-    } else {
-      error.push('Incorrect Email')
-    }
-  }
-
-  console.log("SIGNIN SUCESS", user, result)
-
-  res.json({ result, user, error, token })
-
-
-})
-

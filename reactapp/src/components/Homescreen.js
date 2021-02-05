@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 function Homescreen() {
 
     return (
-        <Container style={{ display:'flex', flexDirection:'column', backgroundImage: 'url(./hpbackground.png)', height: '100vh', backgroundPosition:'center', justifyContent: 'space-between' }}>
+        <Container style={{ display:'flex', flexDirection:'column', backgroundImage: 'url(./hpbackground.png)', height: '100vh', backgroundPosition:'center', justifyContent: 'space-between',  }}>
 
             <Row>
                 <Link to="/">
