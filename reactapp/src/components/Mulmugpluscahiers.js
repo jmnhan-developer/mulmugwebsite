@@ -8,11 +8,7 @@ import Footer from './footer.js'
 
 
 
-
-
-
-
-function MulmugPlusAbond() {
+function MulmugPlusCahiers() {
 
 
 
@@ -27,15 +23,15 @@ function MulmugPlusAbond() {
             <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: 50, marginBottom: 30 }}>
                 <h4 style={{ color: '#1F8A9E', textAlign: 'center' }}>Prêt à encourager votre enfants à apprendre en faisant des exercices !</h4>
             </Row>
-            <Row style={{height:50}} >
-                <Col xs={4} style={{ backgroundColor: '#1F8A9E', borderTopLeftRadius: 10, borderTopRightRadius: 10, display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems:'center' }}>
-                    <Link to="/Mulmugplusabond" style={{ display: 'flex', color: '#FFFFFF', textAlign: 'center'}}>Abondement en Points</Link>
-                </Col>
+            <Row style={{ height:50}} >
                 <Col xs={4} style={{ backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems:'center', border: '1px solid #1F8A9E' }}>
+                    <Link to="/Mulmugplusabond" style={{ display: 'flex', color: '#1F8A9E', textAlign: 'center' }}>Abondement en Points</Link>
+                </Col>
+                <Col xs={4} style={{ backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems:'center', border: '1px solid #1F8A9E'  }}>
                     <Link to="/Mulmugplusabonn" style={{ display: 'flex', color: '#1F8A9E', textAlign: 'center' }}>Abonnement</Link>
                 </Col>
-                <Col xs={4} style={{ backgroundColor: 'white', borderTopLeftRadius: 10, borderTopRightRadius: 10, display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems:'center', border: '1px solid #1F8A9E' }}>
-                    <Link to="/Mulmugpluscahiers" style={{ display: 'flex', color: '#1F8A9E', textAlign: 'center' }}>Cahiers de vacances</Link>
+                <Col xs={4} style={{ backgroundColor: '#1F8A9E', borderTopLeftRadius: 10, borderTopRightRadius: 10, display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems:'center', border: '1px solid #1F8A9E' }}>
+                    <Link to="/Mulmugpluscahiers" style={{ display: 'flex', color: '#FFFFFF', textAlign: 'center' }}>Cahiers de vacances</Link>
                 </Col>
             </Row>
             <Row style={{ display: 'flex', flexDirection: 'column' }}>
@@ -100,4 +96,4 @@ function MulmugPlusAbond() {
 }
 
 
-export default MulmugPlusAbond;
+export default MulmugPlusCahiers;
