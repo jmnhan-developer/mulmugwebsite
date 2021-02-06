@@ -66,7 +66,7 @@ export default function Login(props) {
                     onChange={(e) => setSignInPassword(e.target.value)} />
             </FormGroup>
             <Button onClick={() => handleSubmitSignIn()} block size="lg" type="submit" >
-                Login
+            Connexion            
             </Button>
             </Col>
         </div>
