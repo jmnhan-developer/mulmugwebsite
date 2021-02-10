@@ -7,6 +7,8 @@ import ParentHomeScreen from './components/ParentHomeScreen.js'
 import Mulmugplusabond from './components/Mulmugplusabond.js'
 import Mulmugplusabonn from './components/Mulmugplusabonn.js'
 import Mulmugpluscahiers from './components/Mulmugpluscahiers.js'
+import QuiSommesNous from './components/QuiSommesNous.js'
+import Signin from './components/Signinjmn.js'
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
           <Route component={Mulmugplusabond} path="/mulmugplusabond" exact />
           <Route component={Mulmugplusabonn} path="/mulmugplusabonn" exact />
           <Route component={Mulmugpluscahiers} path="/mulmugpluscahiers" exact />
+          <Route component={QuiSommesNous} path="/quisommesnous" exact />
+          <Route component={Signin} path="/signin" exact />
         </div>
       </Switch>
     </Router>

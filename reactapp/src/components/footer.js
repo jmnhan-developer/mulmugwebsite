@@ -22,21 +22,21 @@ function Footer() {
             <Row style={{ display: 'flex', flexDirection: 'row', background: "linear-gradient(#54C5B4, #1F8A9E)", color: 'white' }}>
                 <Col xs={12} md={3} style={{ display: 'flex', flexDirection: 'column', marginBottom: 10 }}>
                     <h7 style={{ marginBottom: 10 }}>A PROPOS DE MULMUG</h7>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={{ marginBottom: 1, fontSize: 13, color: 'white' }}>Qui sommes nous?</p></Link>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={{ marginBottom: 1, fontSize: 13, color: 'white' }}>Matières</p></Link>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={{ marginBottom: 1, fontSize: 13, color: 'white' }}>Points Mulmug</p></Link>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={{ marginBottom: 1, fontSize: 13, color: 'white' }}>Abondement en points</p></Link>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={{ marginBottom: 1, fontSize: 13, color: 'white' }}>Abonnement premium</p></Link>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={{ marginBottom: 1, fontSize: 13, color: 'white' }}>Cahiers de vacances</p></Link>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={{ marginBottom: 1, fontSize: 13, color: 'white' }}>Nos partenaires</p></Link>
+                    <Link to='/QuiSommesNous' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Qui sommes nous?</p></Link>
+                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Matières</p></Link>
+                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Points Mulmug</p></Link>
+                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Abondement en points</p></Link>
+                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Abonnement premium</p></Link>
+                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Cahiers de vacances</p></Link>
+                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Nos partenaires</p></Link>
                 </Col>
                 <Col xs={12} md={3} style={{ display: 'flex', flexDirection: 'column', marginBottom: 10 }}>
                     <h7 style={{ marginBottom: 10 }}>CONDITIONS</h7>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={{ marginBottom: 1, fontSize: 13, color: 'white' }}>Mentions légales</p></Link>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={{ marginBottom: 1, fontSize: 13, color: 'white' }}>Règle de confidentialité</p></Link>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={{ marginBottom: 1, fontSize: 13, color: 'white' }}>Sécurité</p></Link>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={{ marginBottom: 1, fontSize: 13, color: 'white' }}>CGU</p></Link>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={{ marginBottom: 1, fontSize: 13, color: 'white' }}>Plan du site</p></Link>
+                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Mentions légales</p></Link>
+                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Règle de confidentialité</p></Link>
+                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Sécurité</p></Link>
+                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>CGU</p></Link>
+                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Plan du site</p></Link>
                 </Col>
                 <Col xs={12} md={3} style={{ display: 'flex', flexDirection: 'column', marginBottom: 10 }}>
                     <h7 style={{ marginBottom: 10 }}>RESTONS EN CONTACT</h7>
@@ -81,4 +81,10 @@ function Footer() {
     )
 }
 
+
+var styleTextFooter = {
+    marginBottom: 1,
+    fontSize: 13,
+    color: 'white'
+}
 export default Footer;
