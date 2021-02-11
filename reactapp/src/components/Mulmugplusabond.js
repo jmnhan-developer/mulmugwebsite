@@ -1,8 +1,6 @@
 import React from 'react'
 import { Container, Row, Col, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
-
 import Header from './header.js'
 import Footer from './footer.js'
 

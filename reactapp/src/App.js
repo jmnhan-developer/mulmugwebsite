@@ -8,11 +8,15 @@ import Mulmugplusabond from './components/Mulmugplusabond.js'
 import Mulmugplusabonn from './components/Mulmugplusabonn.js'
 import Mulmugpluscahiers from './components/Mulmugpluscahiers.js'
 import QuiSommesNous from './components/QuiSommesNous.js'
-import Signin from './components/Signinjmn.js'
+import SignInScreen from './components/SignInScreen.js'
+import SignUpScreenStudent from './components/SignUpScreenStudent.js'
+import SignUpScreenParent from './components/SignUpScreenParent.js'
+import Login from './components/LoginScreen'
+import SignupStudent from './components/SignUpStudentScreen'
 
 function App() {
   return (
-
+    
     <Router>
       <Switch>
         <div style={{ width: "100%", justifyContent: "center" }}>
@@ -23,7 +27,12 @@ function App() {
           <Route component={Mulmugplusabonn} path="/mulmugplusabonn" exact />
           <Route component={Mulmugpluscahiers} path="/mulmugpluscahiers" exact />
           <Route component={QuiSommesNous} path="/quisommesnous" exact />
-          <Route component={Signin} path="/signin" exact />
+          <Route component={SignInScreen} path="/signinscreen" exact />
+          <Route component={SignUpScreenStudent} path="/signupscreenstudent" exact />
+          <Route component={SignUpScreenParent} path="/signupscreenparent" exact />
+          <Route component={Login} exact path="/login"/>
+          <Route component={SignupStudent} exact path="/test"/>
+
         </div>
       </Switch>
     </Router>
