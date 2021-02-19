@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Button, Col } from 'reactstrap';
+import { Container, Row, Button, Col, Input, FormGroup } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 
@@ -32,8 +32,8 @@ function Footer() {
                 </Col>
                 <Col xs={12} md={3} style={{ display: 'flex', flexDirection: 'column', marginBottom: 10 }}>
                     <h7 style={{ marginBottom: 10 }}>CONDITIONS</h7>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Mentions légales</p></Link>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Règle de confidentialité</p></Link>
+                    <Link to='/MentionsLegales' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Mentions légales</p></Link>
+                    <Link to='/ReglesDeConfidentialite' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Règle de confidentialité</p></Link>
                     <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Sécurité</p></Link>
                     <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>CGU</p></Link>
                     <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Plan du site</p></Link>
@@ -41,12 +41,12 @@ function Footer() {
                 <Col xs={12} md={3} style={{ display: 'flex', flexDirection: 'column', marginBottom: 10 }}>
                     <h7 style={{ marginBottom: 10 }}>RESTONS EN CONTACT</h7>
                     <p style={{ marginBottom: 1, fontSize: 13 }}>Newsletter</p>
-                    <Col style={{ diplay: 'flex', flexDirection: 'row', justifyContent: 'center', margin: 'none', paddingRight: 0, paddingLeft: 0 }}>
-                        <input style={{ marginBottom: 1, fontSize: 13, border: 'none', borderRadius: 5, backgroundColor: '#f8f9fa', height: 30, paddingLeft: 'none', paddingRight: 'none', width: '80%' }} placeholder="e-mail" />
-                        <Button style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 5, fontSize: 13, width: '20%' }}>OK</Button>
-                    </Col>
+                    <Row style={{ display: 'flex', flexDirection: 'row', margin: 'none', paddingRight: 15, paddingLeft: 15 }}>
+                        <Input style={{ width: '80%', marginBottom: 1, fontSize: 13, border: 'none', borderRadius: 50, backgroundColor: '#f8f9fa' }} type="email" name="email" id="exampleEmail" placeholder="adresse e-mail" />
+                        <Button style={{ width: '20%', backgroundColor: '#FDC41F', border: 'none', borderRadius: 50, fontSize: 13 }}>OK</Button>
+                    </Row>
                     <p style={{ marginBottom: 1, fontSize: 13 }}>Nous suivre</p>
-                    <Col style={{ display: 'flex', flexDirection: 'row', paddingLeft: 0, paddingRight: 0, justifyContent: 'center' }}>
+                    <Row style={{ display: 'flex', flexDirection: 'row', paddingLeft: 0, paddingRight: 0, justifyContent: 'center' }}>
                         <Col xs={4} style={{ display: 'flex', flexDirection: 'row' }}>
                             <img style={{ width: 40, height: 40 }} src="./rsfacebook.png" alt='iconfacebook' />
                         </Col>
@@ -56,7 +56,7 @@ function Footer() {
                         <Col xs={4} style={{ display: 'flex', flexDirection: 'row' }}>
                             <img style={{ width: 40, height: 40 }} src="./rstwitter.png" alt='icontwitter' />
                         </Col>
-                    </Col>
+                    </Row>
                 </Col>
                 <Col xs={12} md={3} style={{ display: 'flex', flexDirection: 'column', marginBottom: 10 }}>
                     <h7 style={{ marginBottom: 10 }}>CONTACTER MULMUG</h7>

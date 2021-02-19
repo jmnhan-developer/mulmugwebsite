@@ -73,15 +73,18 @@ function SignInscreen() {
                         <h5>Connecte-toi ici</h5>
                     </Row>
                     <Row style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 5 }}>
-                        <FormGroup style={{ width: '100%' }}>
+                        <FormGroup style={{ width: '100%'}}>
                             <Label for="Email">E-mail</Label>
-                            <Input type="email"
+                            <Input
+                                style={{borderRadius:50}}
+                                type="email"
                                 value={signInEmail}
                                 onChange={(e) => setSignInEmail(e.target.value)} />
                         </FormGroup>
                         <FormGroup style={{ width: '100%' }}>
                             <Label for="Password">Password</Label>
                             <Input
+                                style={{borderRadius:50}}
                                 type="password"
                                 value={signInPassword}
                                 onChange={(e) => setSignInPassword(e.target.value)} />

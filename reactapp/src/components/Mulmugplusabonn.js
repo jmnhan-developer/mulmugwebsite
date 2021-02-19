@@ -7,7 +7,6 @@ import Header from './header.js'
 import Footer from './footer.js'
 
 
-
 function MulmugPlusAbonn() {
 
 
@@ -65,8 +64,6 @@ function MulmugPlusAbonn() {
                 <p>EXPLICATIONS</p>
                 <p>Sélectionnez l’abondement que vous souhaitez:</p>
             </Row>
-
-
 
 
             {/* RESULTAT DE LA MAP */}

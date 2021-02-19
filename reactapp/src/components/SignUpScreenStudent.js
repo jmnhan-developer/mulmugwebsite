@@ -9,10 +9,6 @@ import Footer from './footer.js'
 
 function SignUpScreenStudent() {
 
-    const [popoverOpen, setPopoverOpen] = useState(false);
-    const toggle = () => setPopoverOpen(!popoverOpen);
-
-
     return (
 
         <Container>
@@ -25,7 +21,7 @@ function SignUpScreenStudent() {
             </Row>
 
             <Row form style={{ display: 'flex', justifyContent: 'center', marginBottom: 40 }}>
-                <Col xs={12} md={8}>
+                <Col xs={12} md={8} style={{width:700}}>
                     <FormGroup>
                         <p style={{ color: '#1F8A9E', fontWeight: 'bold' }}>MON PROFIL</p>
                     </FormGroup>
@@ -61,7 +57,7 @@ function SignUpScreenStudent() {
             </Row>
 
             <Row form style={{ display: 'flex', justifyContent: 'center' }}>
-                <Col xs={12} md={8}>
+                <Col xs={12} md={8} style={{width:700}}>
                     <FormGroup>
                         <p style={{ color: '#1F8A9E', fontWeight: 'bold' }}>MES PARENTS</p>
                     </FormGroup>
@@ -111,7 +107,6 @@ var styleInput = {
 
 var styleInputClasse = {
     display: 'flex',
-    width: 615,
     border: 'none',
     borderRadius: 50,
     backgroundColor: '#ECF0F1',

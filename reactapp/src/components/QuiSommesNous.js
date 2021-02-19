@@ -23,7 +23,6 @@ function QuiSommesNous() {
 
             {/* QUI SOMMES NOUS? */}
 
-
             <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: 50, marginBottom: 30, paddingLeft: 15, paddingRight: 15 }}>
                 <h4 style={styleTitre}>Qui sommes nous?</h4>
                 <p style={{ color: '#1F8A9E', textAlign: 'center', marginBottom: 10 }}>Créé en 2020, Mulmug est la première plateforme qui encourage, motive et récompense les élèves pour leur travail et leurs efforts. L'application propose gratuitement des exercices mathématiques par classe, par chapitre, par notion d'acquisition et par niveau de difficulté de 1 à 5. L'élève commencera toujours par des exercices simples (Niveau 1 et 2), afin de mémoriser les règles, de développer sa confiance en lui et le plaisir de la réussite puis passera sur des exercices de plus en plus subtils (Niveau 3, 4 et 5) pour le préparer aux situations et énoncés différents des contrôles et examens.</p>

@@ -9,7 +9,7 @@ import Footer from './footer.js'
 
 
 
-function StudentHomeScreen() {
+function HomeScreenStudent () {
 
 
     return (
@@ -92,8 +92,8 @@ function StudentHomeScreen() {
             </Row>
             <Row style={{ backgroundImage: 'url(./backgroundwishlist.png)', backgroundPosition: 'center', alignItems: 'center' }}>
                 <Col xs={12} style={{ display: 'flex', flexDirection: 'column' }}>
-                    <p style={{ color: '#1F8A9E', display: 'flex', justifyContent: 'center' }}>Pour te motiver, fixe-toi des objectifs, tes propres objectifs et souhaits concrets en créant ta wishlist*. Ce peut être une paire de baskets, un équipement sportif, un streetwear, un billet de concert, une carte de cinéma ou tout simplement un livre, une BD... toutes les petites ou grandes envies que tu aimerais t'offrir en travaillant sur MULMUG.Tu peux aussi décider d'offrir tes points à des organismes qui luttent pour des causes qui te tiennent à cœur...</p>
-                    <p style={{ color: '#1F8A9E', display: 'flex', justifyContent: 'center' }}>Tes parent verront tous tes objectifs sur l'écran Wishlist* de l'application MULMUG sur leur smartphone. Commence à faire les exercices et montre tes efforts, ils accepteront peut-être d’abonder en points et ainsi tu pourras accéder à l’un de tes souhaits plus rapidement.</p>
+                    <p style={{ color: '#1F8A9E', display: 'flex', justifyContent: 'center' }}>Pour te motiver, fixe-toi des objectifs, tes propres objectifs et souhaits  concrets  motivants pour toi en créant ta wishlist*. Ce peut être une paire de baskets, un équipement sportif, des streetwears, un billet de concert, une carte de cinéma ou toute simplement un livre, une BD... toutes les petites ou grandes envies que tu aimerais te financer en travaillant sur MULMUG.Tu peux aussi décider d'offrir tes points à des organismes qui luttent pour des causes qui te tiennent à cœur...</p>
+                    <p style={{ color: '#1F8A9E', display: 'flex', justifyContent: 'center' }}>Tu peux voir ses objectifs sur l'écran Wishlist* de l'application Mulmug sur ton smartphone et abonder en point pour l'encourager à faire plus d'exercices. Cela lui permettra d’atteindre l'un de ses objectifs plus rapidement.</p>
                     <p style={{ fontSize: 10, color: '#1F8A9E', display: 'flex', justifyContent: 'flex-end' }}>* liste de souhaits.</p>
                 </Col>
             </Row>
@@ -105,7 +105,7 @@ function StudentHomeScreen() {
             {/* LES POINTS */}
 
             <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: 50, marginBottom: 30 }}>
-                <h4 style={{ color: '#1F8A9E', textAlign: 'center' }}>Jusqu'à 12 600 points gagnés par chapitre complété*!</h4>
+                <h4 style={{ color: '#1F8A9E', textAlign: 'center' }}>Jusqu'à 12 600 points gagnés par chapitre complété !</h4>
             </Row>
             <Row style={{ display: 'flex', flexDirection: 'row' }}>
                 <Col xs={12} md={6} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
@@ -133,10 +133,10 @@ function StudentHomeScreen() {
             </Row>
             <Row style={{ display: 'flex', flexDirection: 'row' }}>
                 <Col xs={12} md={6} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-                    <p style={{ color: '#1F8A9E', display: 'flex', justifyContent: 'center' }}>Si tu es assidu et si tu montres ton travail et tes efforts, tes parents voudront peut-être te donner des points supplémentaires en abondant. Cela te permettra de gagner 20 fois plus de points à chaque exercice correctement fait et à chaque passage de niveau. Ainsi tu pourrais toucher du doigt l’un de tes souhaits plus rapidement.</p>
+                    <p style={{ color: '#1F8A9E', display: 'flex', justifyContent: 'center' }}>Si tu es assidu et si tu montres ton travail et tes efforts, tes parents voudront peut-être te donner des points supplémentaires en abondant. Cela te permettra de gagner 20 FOIS PLUS de points à chaque exercice correctement fait et à chaque passage de niveau. Ainsi tu pourrais toucher du doigt l’un de tes souhaits plus rapidement.</p>
                 </Col>
                 <Col xs={12} md={6} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <p style={{ color: '#1F8A9E', fontWeight: 'bold', display: 'flex', justifyContent: 'center' }}>Abondement des Parents!</p>
+                    <p style={{ color: '#1F8A9E', fontWeight: 'bold', display: 'flex', justifyContent: 'center' }}>Abondement des Parents !</p>
                     <img width="70%" src="./ptAbondParent.png" alt='ptAbondParent' />
                 </Col>
             </Row>
@@ -158,7 +158,6 @@ function StudentHomeScreen() {
                             <CardTitle tag="h6" style={{ color: '#1F8A9E' }}>Cahier d'Automne</CardTitle>
                             <CardSubtitle tag="h7" className="mb-2 text-muted"></CardSubtitle>
                             <CardText style={{ color: '#1F8A9E', fontSize: 13 }}>100% des exercices sur les chapitres étudiés depuis la rentrée de Septembre.</CardText>
-                            <Button>Button</Button>
                         </CardBody>
                     </Card>
                 </Col>
@@ -169,7 +168,6 @@ function StudentHomeScreen() {
                             <CardTitle tag="h6" style={{ color: '#1F8A9E' }}>Cahier de Noël</CardTitle>
                             <CardSubtitle tag="h7" className="mb-2 text-muted"></CardSubtitle>
                             <CardText style={{ color: '#1F8A9E', fontSize: 13 }}>20% des exercices sur les chapitres étudiés jusqu'aux vacances de la Toussaint et 80% des exercices sur les chapitres étudiés depuis les vacances de la Toussaint jusqu'aux vacances de Noël.</CardText>
-                            <Button>Button</Button>
                         </CardBody>
                     </Card>
                 </Col>
@@ -180,7 +178,6 @@ function StudentHomeScreen() {
                             <CardTitle tag="h6" style={{ color: '#1F8A9E' }}>Cahier d'Hiver</CardTitle>
                             <CardSubtitle tag="h7" className="mb-2 text-muted"></CardSubtitle>
                             <CardText style={{ color: '#1F8A9E', fontSize: 13 }}>40% des exercices sur les chapitres étudiés jusqu'aux vacances de Noël et 60% des exercices sur les chapitres étudiés depuis les vacances de Noël jusqu'aux vacances d'hiver.</CardText>
-                            <Button>Button</Button>
                         </CardBody>
                     </Card>
                 </Col>
@@ -193,7 +190,6 @@ function StudentHomeScreen() {
                             <CardTitle tag="h6" style={{ color: '#1F8A9E' }}>Cahier de Printemps</CardTitle>
                             <CardSubtitle tag="h7" className="mb-2 text-muted"></CardSubtitle>
                             <CardText style={{ color: '#1F8A9E', fontSize: 13 }}>60% des exercices sur les chapitres étudiés jusqu'aux vacances de d'hiver et 40% des exercices sur les chapitres étudiés depuis les vacances d'hiver jusqu'aux vacances de Pâques.</CardText>
-                            <Button>Button</Button>
                         </CardBody>
                     </Card>
                 </Col>
@@ -204,7 +200,6 @@ function StudentHomeScreen() {
                             <CardTitle tag="h6" style={{ color: '#1F8A9E' }}>Cahier d'Été</CardTitle>
                             <CardSubtitle tag="h7" className="mb-2 text-muted"></CardSubtitle>
                             <CardText style={{ color: '#1F8A9E', fontSize: 13 }}>Une révision complète sur tous les chapitres étudiés durant l'année scolaire.</CardText>
-                            <Button style={{ display: 'flex', alignItems: 'flex-end' }}>Button</Button>
                         </CardBody>
                     </Card>
                 </Col>
@@ -304,4 +299,4 @@ function StudentHomeScreen() {
 
 
 
-export default StudentHomeScreen;
+export default HomeScreenStudent;
