@@ -56,9 +56,9 @@ function MulmugPlusAbond() {
                     <Link to="/Mulmugpluscahiers" style={styleTextOnglet}>Cahiers de vacances</Link>
                 </Col>
             </Row>
-            <Row style={{ display: 'flex', flexDirection: 'column', paddingLeft:15, paddingRight:15 }}>
-                <p>EXPLICATIONS</p>
-                <p>Sélectionnez l’abondement que vous souhaitez:</p>
+            <Row style={{ display: 'flex', flexDirection: 'column', paddingLeft:15, paddingRight:15, marginTop:30 }}>
+                <h5 style={{ color: '#1F8A9E', textAlign: 'center', marginTop:30, marginBottom:30  }}>Vous voulez l'encourager et le récompensez pour sont travail et ses efforts avec vos propres points? Sélectionnez et souscrivez à l'un des Abondements, Mulmug lui attribuera vos points à chaque exercice correctement fait et à chaque passage de niveau.</h5>
+                <p style={{ color: '#1F8A9E', textAlign: 'center'  }}>Sélectionnez l’abondement que vous souhaitez:</p>
             </Row>
 
 

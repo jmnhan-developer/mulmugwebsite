@@ -13,8 +13,8 @@ function MulmugPlusAbonn() {
     {/* TABLEAU D'OBJETS POUR LA MAP */ }
 
     var abonnementData = [
-        { name: "abonnement mensuel", formule: "FORFAIT", pub: "SANS PUB", enga: "sans engagement", price: "9,99€ / mois sans engagement" },
-        { name: "abonnement annuel", formule: "FORFAIT", pub: "SANS PUB", enga: "avec engagement", price: "7,99€ / mois avec un engagement sur 12 mois" },
+        { name: "Abonnnement mensuel", formule: "FORFAIT", pub: "SANS PUB", enga: "sans engagement", price: "9,99€ / mois sans engagement" },
+        { name: "Abonnement annuel", formule: "FORFAIT", pub: "SANS PUB", enga: "avec engagement", price: "7,99€ / mois avec un engagement sur 12 mois" },
     ];
 
     {/* LA MAP */ }
@@ -60,9 +60,9 @@ function MulmugPlusAbonn() {
                     <Link to="/Mulmugpluscahiers" style={styleTextOnglet}>Cahiers de vacances</Link>
                 </Col>
             </Row>
-            <Row style={{ display: 'flex', flexDirection: 'column', paddingLeft:15, paddingRight:15 }}>
-                <p>EXPLICATIONS</p>
-                <p>Sélectionnez l’abondement que vous souhaitez:</p>
+            <Row style={{ display: 'flex', flexDirection: 'column', paddingLeft:15, paddingRight:15, marginTop:30 }}>
+                <h5 style={{ color: '#1F8A9E', textAlign: 'center', marginTop:30, marginBottom:30  }}>L'Abonnement sans pub permet d'éliminer les publicité sur l'Application Mulmug. Votre enfant pourra travailler sans être dérangé et se concentrer.</h5>
+                <p style={{ color: '#1F8A9E', textAlign: 'center'  }}>Sélectionnez l’Abonnement que vous souhaitez:</p>
             </Row>
 
 

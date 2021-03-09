@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
-import { Container, Row, Button, Col, FormGroup, Input, Popover, PopoverHeader, PopoverBody } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Container, Row, Button, Col, FormGroup, Input } from 'reactstrap';
 
 
 import Header from './header.js'
@@ -114,15 +113,5 @@ var styleInputClasse = {
     color: 'grey'
 }
 
-var styleButtonSelectClasse = {
-    width: 100,
-    border: 'none',
-    borderRadius: 50,
-    backgroundColor: '#ECF0F1',
-    textAlign: 'center',
-    color: 'grey',
-    margin: 5
-
-}
 
 export default SignUpScreenStudent;

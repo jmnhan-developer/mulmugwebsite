@@ -1,21 +1,20 @@
 import React, { useState } from 'react'
-import { Container, Row, Button, Col, Input, FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { Link, Redirect } from 'react-router-dom';
-
-
+import { Container, Row, Button, Col, Input, FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 import Header from './header.js'
 import Footer from './footer.js'
 
 
-function SignInscreen() {
+function SignInscreen(props) {
 
-    const [signInEmail, setSignInEmail] = useState('')
-    const [signInPassword, setSignInPassword] = useState('')
+    const [userEmail, setUserEmail] = useState('')
+    const [userPassword, setUserPassword] = useState('')
     const [userExists, setUserExists] = useState(false)
     const [redirect, setRedirect] = useState(false)
     const [roleState, setRoleState] = useState('')
-    const [listErrorsSignIn, setErrorsSignIn] = useState([])
-     // CREATION DE LA MODAL
+    const [listErrorsSignin, setErrorsSignin] = useState([])
+    // CREATION DE LA MODAL
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
 
@@ -23,10 +22,10 @@ function SignInscreen() {
     var handleSubmitSignIn = async () => {
 
         console.log('TEST FETCH')
-        const data = await fetch('/sign-in', {
+        const data = await fetch('/usersignin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: `emailFromFront=${signInEmail}&passwordFromFront=${signInPassword}`
+            body: `userEmailFromFront=${userEmail}&userPasswordFromFront=${userPassword}`
         })
 
 
@@ -36,26 +35,22 @@ function SignInscreen() {
         console.log('TEST ROUTE SIGN-IN')
 
 
-        if (body.result == true) {
-            // props.addToken(body.token)
+        if (body.result === true) {
             setUserExists(true)
-            setRoleState(body.user.role)
+            props.addToken(body.token)
+            // setRoleState(body.user.role)
         } else {
-            setErrorsSignIn(body.error)
+            setErrorsSignin(body.error)
         }
     }
 
-    if (roleState == 'Student') {
-        return <Redirect to='/studenthomescreen' />
-    } else if (roleState == 'Parent') {
-        return <Redirect to='/parenthomescreen' />
+    if (userExists) {
+        return <Redirect to='/' />
     }
 
-    var tabErrorsSignin = listErrorsSignIn.map((error, i) => {
-        return (<p>{error}</p>)
+    var tabErrorsSignin = listErrorsSignin.map((error, i) => {
+        return (<p style={{color: 'red'}}>{error}</p>)
     })
-
-    
 
     return (
 
@@ -67,28 +62,29 @@ function SignInscreen() {
             {/* BLOC SIGN-IN */}
 
             <Row style={{ marginTop: 30, paddingLeft: 15, paddingRight: 15, color: 'white', justifyContent: 'center', }}>
-                <Col xs={12} md={5} style={{ backgroundColor: '#1F8A9E', borderRadius: 10, margin: 5, marginBottom:40 }}>
+                <Col xs={12} md={5} style={{ backgroundColor: '#1F8A9E', borderRadius: 10, margin: 5, marginBottom: 40 }}>
                     <Row style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 5 }}>
                         <p style={{ margin: 0 }}>Tu as déjà un compte Mulmug?</p>
                         <h5>Connecte-toi ici</h5>
                     </Row>
                     <Row style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 5 }}>
-                        <FormGroup style={{ width: '100%'}}>
+                        <FormGroup style={{ width: '100%' }}>
                             <Label for="Email">E-mail</Label>
                             <Input
-                                style={{borderRadius:50}}
+                                style={{ borderRadius: 50 }}
                                 type="email"
-                                value={signInEmail}
-                                onChange={(e) => setSignInEmail(e.target.value)} />
+                                value={userEmail}
+                                onChange={(e) => setUserEmail(e.target.value)} />
                         </FormGroup>
                         <FormGroup style={{ width: '100%' }}>
                             <Label for="Password">Password</Label>
                             <Input
-                                style={{borderRadius:50}}
+                                style={{ borderRadius: 50 }}
                                 type="password"
-                                value={signInPassword}
-                                onChange={(e) => setSignInPassword(e.target.value)} />
+                                value={userPassword}
+                                onChange={(e) => setUserPassword(e.target.value)} />
                         </FormGroup>
+                        {tabErrorsSignin}
                     </Row>
                     <Row style={{ display: 'flex', justifyContent: 'center', marginBottom: 40 }}>
                         <Button onClick={() => handleSubmitSignIn()} style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }}>ME CONNECTER</Button>
@@ -116,9 +112,9 @@ function SignInscreen() {
                             <ModalBody>
                                 Dis-nous si tu es ÉLÈVE et tu souhaites créer un compte pour faire des exercice et gagner des points ou si tu es PARENT et tu veux créer un compte pour ton enfant...
                             </ModalBody>
-                            <ModalFooter style={{display:'flex', flexDirection:'row', justifyContent:'center'}}>
-                                <Link to="./SignUpScreenStudent"><Button onClick={toggle} style={{width:150, height:50, backgroundColor:'#FFC300', border:'none', borderRadius:10, fontSize:25, fontWeight:'bold'}}>ÉLÈVE</Button></Link>
-                                <Link to="./SignUpScreenParent"><Button onClick={toggle} style={{width:150, height:50, backgroundColor:'#00B2C3', border:'none', borderRadius:10, fontSize:25, fontWeight:'bold'}}>PARENT</Button></Link>
+                            <ModalFooter style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+                                <Link to="./SignUpScreenStudent"><Button onClick={toggle} style={{ width: 150, height: 50, backgroundColor: '#FFC300', border: 'none', borderRadius: 10, fontSize: 25, fontWeight: 'bold' }}>ÉLÈVE</Button></Link>
+                                <Link to="./SignUpScreenParent"><Button onClick={toggle} style={{ width: 150, height: 50, backgroundColor: '#00B2C3', border: 'none', borderRadius: 10, fontSize: 25, fontWeight: 'bold' }}>PARENT</Button></Link>
                             </ModalFooter>
                         </Modal>
                     </Row>
@@ -135,4 +131,16 @@ function SignInscreen() {
     )
 };
 
-export default SignInscreen;
+
+function mapDispatchToProps(dispatch) {
+    return {
+        addToken: function (token) {
+            dispatch({ type: 'addToken', token: token })
+        }
+    }
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(SignInscreen)

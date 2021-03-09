@@ -1,6 +1,6 @@
 import React from 'react'
-import { Container, Row, Button, Col, Card, CardImg, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Container, Row, Col} from 'reactstrap';
+
 
 
 import Header from './header.js'

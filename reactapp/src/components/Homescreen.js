@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Button, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
 
@@ -49,10 +49,6 @@ function Homescreen() {
     )
 }
 
-var styleButton = {
-
-
-}
 
 export default Homescreen;
 

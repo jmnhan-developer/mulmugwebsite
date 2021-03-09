@@ -12,11 +12,11 @@ function MulmugPlusCahiers() {
     {/* TABLEAU D'OBJETS POUR LA MAP */ }
 
     var cahierVacData = [
-        { name: "cahier automne", url: "./cahierAutomne.png", holiday: "TOUSSAINTS", matiere: "Mathématiques", price: "4.99€" },
-        { name: "cahier automne", url: "./cahierNoel.png", holiday: "NOËL", matiere: "Mathématiques", price: "5.99€" },
-        { name: "cahier automne", url: "./cahierHiver.png", holiday: "HIVER", matiere: "Mathématiques", price: "6.99€" },
-        { name: "cahier automne", url: "./cahierPrintemps.png", holiday: "PÂQUES", matiere: "Mathématiques", price: "7.99€" },
-        { name: "cahier automne", url: "./cahierEte.png", holiday: "ÉTÉ", matiere: "Mathématiques", price: "8.99€" },
+        { name: "Cahier de Vacances - Toussaint", url: "./cahierAutomne.png", holiday: "TOUSSAINTS", matiere: "Mathématiques", price: "4.99€" },
+        { name: "Cahier de Vacances - Noël", url: "./cahierNoel.png", holiday: "NOËL", matiere: "Mathématiques", price: "5.99€" },
+        { name: "Cahier de Vacances - Hiver", url: "./cahierHiver.png", holiday: "HIVER", matiere: "Mathématiques", price: "6.99€" },
+        { name: "Cahier de Vacances - Pâques", url: "./cahierPrintemps.png", holiday: "PÂQUES", matiere: "Mathématiques", price: "7.99€" },
+        { name: "Cahier de Vacances - Été", url: "./cahierEte.png", holiday: "ÉTÉ", matiere: "Mathématiques", price: "8.99€" },
     ];
 
     {/* LA MAP */ }
@@ -68,9 +68,9 @@ function MulmugPlusCahiers() {
                     <Link to="/Mulmugpluscahiers" style={styleTextOngletSelected}>Cahiers de vacances</Link>
                 </Col>
             </Row>
-            <Row style={{ display: 'flex', flexDirection: 'column', paddingLeft:15, paddingRight:15 }}>
-                <p>EXPLICATIONS</p>
-                <p>Sélectionnez l’abondement que vous souhaitez:</p>
+            <Row style={{ display: 'flex', flexDirection: 'column', paddingLeft:15, paddingRight:15, marginTop:30 }}>
+                <h5 style={{ color: '#1F8A9E', textAlign: 'center', marginTop:30, marginBottom:30  }}>Pour que votre enfant revise pendant ses vacances et continuer de cumuler des points, vous pouvez souscrire un cahier de vacances. Mulmug lui proposera 5 exercices de manière aléatoire à faire par jour sur les chapitres déjà vus en classe.</h5>
+                <p style={{ color: '#1F8A9E', textAlign: 'center'  }}>Sélectionnez le Cahier de Vacances que vous souhaitez:</p>
             </Row>
 
             

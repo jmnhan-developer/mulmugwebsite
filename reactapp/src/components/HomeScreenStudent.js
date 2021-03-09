@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Row, Button, Col, Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText, } from 'reactstrap';
-import { Link } from 'react-router-dom';
 
 
 import Header from './header.js';
@@ -136,7 +135,7 @@ function HomeScreenStudent () {
                     <p style={{ color: '#1F8A9E', display: 'flex', justifyContent: 'center' }}>Si tu es assidu et si tu montres ton travail et tes efforts, tes parents voudront peut-être te donner des points supplémentaires en abondant. Cela te permettra de gagner 20 FOIS PLUS de points à chaque exercice correctement fait et à chaque passage de niveau. Ainsi tu pourrais toucher du doigt l’un de tes souhaits plus rapidement.</p>
                 </Col>
                 <Col xs={12} md={6} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <p style={{ color: '#1F8A9E', fontWeight: 'bold', display: 'flex', justifyContent: 'center' }}>Abondement des Parents !</p>
+                    <p style={{ color: '#1F8A9E', display: 'flex', justifyContent: 'center' }}>Abondement des Parents !</p>
                     <img width="70%" src="./ptAbondParent.png" alt='ptAbondParent' />
                 </Col>
             </Row>
@@ -286,7 +285,7 @@ function HomeScreenStudent () {
                     </Card>
                 </Col>
             </Row>
-            <Row style={{ display: 'flex', justifyContent: 'center' }}>
+            <Row style={{ display: 'flex', justifyContent: 'center', marginBottom:30 }}>
                 <Button style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }}>Voir l'ensemble des avis</Button>
             </Row>
 

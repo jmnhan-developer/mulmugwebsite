@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Button, Col, Input, FormGroup } from 'reactstrap';
+import { Container, Row, Button, Col, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 
@@ -12,10 +12,7 @@ function Footer() {
 
 
     return (
-        <Container>
-            <Row style={{ display: 'flex', justifyContent: 'center' }} >
-                <hr style={{ width: '80%', marginTop: 50, marginBottom: 10 }} />
-            </Row>
+        <Container style={{marginTop:40}}>
 
             {/* LE FOOTER */}
 
@@ -34,9 +31,9 @@ function Footer() {
                     <h7 style={{ marginBottom: 10 }}>CONDITIONS</h7>
                     <Link to='/MentionsLegales' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Mentions légales</p></Link>
                     <Link to='/ReglesDeConfidentialite' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Règle de confidentialité</p></Link>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Sécurité</p></Link>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>CGU</p></Link>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Plan du site</p></Link>
+                    {/* <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Sécurité</p></Link> */}
+                    <Link to='/CgvCgu' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>CGV - CGU</p></Link>
+                    {/* <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Plan du site</p></Link> */}
                 </Col>
                 <Col xs={12} md={3} style={{ display: 'flex', flexDirection: 'column', marginBottom: 10 }}>
                     <h7 style={{ marginBottom: 10 }}>RESTONS EN CONTACT</h7>

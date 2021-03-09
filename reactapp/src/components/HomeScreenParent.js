@@ -110,7 +110,7 @@ function HomeScreenParent() {
 
             <Row style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Col xs={12}>
-                    <p style={{ color: '#1F8A9E', display: 'flex', justifyContent: 'center' }}>Vous pouvez l'encourager dans ses efforts en le récompensant avec vos propres points grâce à l'abondement. Ainsi il recevra 20 FOIS PLUS de points à cahque exercice correctement fait et 20 FOIS PLUS de points BONUS à chaque niveau complété.</p>
+                    <p style={{ color: '#1F8A9E', display: 'flex', justifyContent: 'center' }}>Vous pouvez l'encourager dans ses efforts en le récompensant avec vos propres points grâce à l'abondement. Ainsi il recevra 20 FOIS PLUS de points à chaque exercice correctement fait et 20 FOIS PLUS de points BONUS à chaque niveau complété.</p>
                 </Col>
             </Row>
 
@@ -284,7 +284,7 @@ function HomeScreenParent() {
                     </Card>
                 </Col>
             </Row>
-            <Row style={{ display: 'flex', justifyContent: 'center' }}>
+            <Row style={{ display: 'flex', justifyContent: 'center', marginBottom:30 }}>
                 <Button style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }}>Voir l'ensemble des avis</Button>
             </Row>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Button, Col } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 
@@ -28,7 +28,4 @@ function Header() {
 }
 
 
-var styleRow = {
-
-}
 export default Header;

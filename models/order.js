@@ -5,8 +5,8 @@ var orderProductsSchema = mongoose.Schema({
     url: String,
     price: Number,
     quantity: Number,
-    productId : { type: mongoose.Schema.Types.ObjectId, ref: 'products' },
-   });
+    productId: { type: mongoose.Schema.Types.ObjectId, ref: 'products' },
+});
 
 var ordersSchema = mongoose.Schema({
     dateCommande: Date,
@@ -14,7 +14,7 @@ var ordersSchema = mongoose.Schema({
     montantProduits: Number,
     CommandeValide: Boolean,
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
-    products:[orderProductsSchema]
+    products: [orderProductsSchema]
 })
 
 module.exports = mongoose.model('orders', ordersSchema)
