@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
 
@@ -10,13 +10,14 @@ import { Link } from 'react-router-dom'
 function Homescreen() {
 
     return (
-        <Container style={{ display: 'flex', flexDirection: 'column', backgroundImage: 'url(./hpbackground.png)', height: '100vh', backgroundPosition: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', backgroundImage: 'url(./hpbackground.png)', height: '100vh', backgroundPosition: 'center', paddingLeft: 15, paddingRight: 15 }}>
 
-            <Row style={{ marginBottom: 150 }}>
-                <Link to="/">
-                    <img style={{ paddingLeft: 0 }} src="./logomulmugwhite.png" width='30%' className="d-inline-block align-top" alt="logo" />
-                </Link>
-            </Row>
+            <Row style={{ display: 'flex', flexDirection: 'row', marginBottom: 150 }}>
+                <Col xs={10}>
+                    <Link to="/"><img style={{ paddingLeft: 0 }} src="./logomulmugwhite.png" width='30%' className="d-inline-block align-top" alt="logo" /></Link>
+                </Col>
+                <Link to="/signinadmin"><Button color="link" style={{ textDecorationLine: 'none', color: '#FFFFFF', border: 'none' }}>Administrateur</Button></Link>
+            </Row >
 
             <Row style={{ display: 'flex', justifyContent: 'center', marginBottom: 100 }}>
 
@@ -44,7 +45,7 @@ function Homescreen() {
 
 
 
-        </Container >
+        </div >
 
     )
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Button, Col, Input } from 'reactstrap';
+import { Row, Button, Col, Input } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 
@@ -12,11 +12,11 @@ function Footer() {
 
 
     return (
-        <Container style={{marginTop:40}}>
+        <div style={{background: "linear-gradient(#54C5B4, #1F8A9E)", color: 'white', marginTop:40}}>
 
             {/* LE FOOTER */}
 
-            <Row style={{ display: 'flex', flexDirection: 'row', background: "linear-gradient(#54C5B4, #1F8A9E)", color: 'white' }}>
+            <Row style={{marginLeft:10, marginRight:10}}>
                 <Col xs={12} md={3} style={{ display: 'flex', flexDirection: 'column', marginBottom: 10 }}>
                     <h7 style={{ marginBottom: 10 }}>A PROPOS DE MULMUG</h7>
                     <Link to='/QuiSommesNous' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Qui sommes nous?</p></Link>
@@ -67,11 +67,11 @@ function Footer() {
             </Row>
             <Row>
                 <Col xs={12} style={{ display: 'flex', justifyContent: 'center' }}>
-                    <p style={{ color: '#1F8A9E', fontSize: 12 }}>© Copyright 2021 MULMUG - All Rights Reserved</p>
+                    <p style={{ color: '#FFFFFF', fontSize: 12 }}>© Copyright 2021 MULMUG - All Rights Reserved</p>
                 </Col>
             </Row>
 
-        </Container>
+        </div>
 
 
 

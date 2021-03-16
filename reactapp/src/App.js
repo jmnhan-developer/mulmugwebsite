@@ -5,7 +5,7 @@ import Homescreen from './components/Homescreen.js';
 import HomeScreenStudent from './components/HomeScreenStudent.js'
 import HomeScreenParent from './components/HomeScreenParent.js'
 import Mulmugplusabond from './components/Mulmugplusabond.js'
-import Mulmugplusabonn from './components/Mulmugplusabonn.js'
+import MulmugPlusForfaitSansPub from './components/MulmugPlusForfaitSansPub.js'
 import Mulmugpluscahiers from './components/Mulmugpluscahiers.js'
 import QuiSommesNous from './components/QuiSommesNous.js'
 import SignInScreen from './components/SignInScreen.js'
@@ -14,6 +14,11 @@ import SignUpScreenParent from './components/SignUpScreenParent.js'
 import MentionsLegales from './components/MentionsLegales.js'
 import ReglesDeConfidentialite from './components/ReglesDeConfidentialite.js'
 import CgvCgu from './components/CgvCgu.js'
+import HomePageConnectedParent from './components/HomePageConnectedParent.js'
+import MonPanier from './components/MonPanier.js'
+import SuperAdminScreen from './components/SuperAdminScreen.js'
+import SignInAdmin from './components/SignInAdmin.js'
+import HomeAdminScreen from './components/HomeAdminScreen'
 import { Provider } from 'react-redux'
 import { createStore, combineReducers } from 'redux'
 import token from './reducers/token'
@@ -30,7 +35,7 @@ function App() {
             <Route component={HomeScreenStudent} path="/homescreenstudent" exact />
             <Route component={HomeScreenParent} path="/homescreenparent" exact />
             <Route component={Mulmugplusabond} path="/mulmugplusabond" exact />
-            <Route component={Mulmugplusabonn} path="/mulmugplusabonn" exact />
+            <Route component={MulmugPlusForfaitSansPub} path="/mulmugplusforfaitsanspub" exact />
             <Route component={Mulmugpluscahiers} path="/mulmugpluscahiers" exact />
             <Route component={QuiSommesNous} path="/quisommesnous" exact />
             <Route component={SignInScreen} path="/signinscreen" exact />
@@ -39,6 +44,11 @@ function App() {
             <Route component={MentionsLegales} path="/mentionslegales" exact />
             <Route component={CgvCgu} path="/cgvcgu" exact />
             <Route component={ReglesDeConfidentialite} path="/reglesdeconfidentialite" exact />
+            <Route component={HomePageConnectedParent} path="/homepageconnectedparent" exact />
+            <Route component={MonPanier} path="/monpanier" exact />
+            <Route component={SignInAdmin} path="/signinadmin" exact />
+            <Route component={SuperAdminScreen} path="/superadminscreen" exact />
+            <Route component={HomeAdminScreen} path="/homeadminscreen" exact />
 
 
           </div>

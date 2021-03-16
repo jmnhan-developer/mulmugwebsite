@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Row, Button, Col, FormGroup, Input } from 'reactstrap';
+import { Row, Button, Col, FormGroup, Input } from 'reactstrap';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import Header from './header.js'
@@ -166,93 +166,95 @@ function SignUpScreenParent(props) {
         } else {
             setErrorsSignup(body.error)
         }
-        
+
     }
 
     if (userExists) {
-        return <Redirect to='/' />
+        return <Redirect to='/homepageconnectedparent' />
     }
 
     var tabErrorsSignup = listErrorsSignup.map((error, i) => {
-        return (<p style={{color:'red'}}>{error}</p>)
+        return (<p style={{ color: 'red' }}>{error}</p>)
     })
 
     return (
 
-        <Container>
-            <Row>
-                <Header />
-            </Row>
+        <div>
 
-            <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: 50, marginBottom: 30, paddingLeft: 15, paddingRight: 15 }}>
-                <h4 style={{ color: '#1F8A9E', textAlign: 'center' }}>Pour inscrire mon enfant..</h4>
-            </Row>
+            <Header />
 
-            <Row form style={{ display: 'flex', justifyContent: 'center', marginBottom: 40 }}>
-                <Col xs={12} md={8} style={{ width: 700 }}>
-                    <FormGroup>
-                        <p style={{ color: '#1F8A9E', fontWeight: 'bold' }}>MON PROFIL</p>
-                    </FormGroup>
-                    <FormGroup>
-                        <Button onClick={() => handleClickMadame()} style={styleButtonMadame} >MADAME</Button>
-                        <Button onClick={() => handleClickMonsieur()} style={styleButtonMonsieur} >MONSIEUR</Button>
-                    </FormGroup>
-                    <FormGroup>
-                        <Input type="firstName" name="firstName" id="userFirstName" placeholder="Mon prénom" style={styleInput} value={userFirstName} onChange={(e) => setUserFirstName(e.target.value)} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Input type="name" name="name" id="userName" placeholder="Mon nom" style={styleInput} value={userLastName} onChange={(e) => setUserLastName(e.target.value)} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Input type="email" name="email" id="userEmail" placeholder="Mon adresse e-mail" style={styleInput} value={userEmail} onChange={(e) => setUserEmail(e.target.value)} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Input type="password" name="password" id="userPassword" placeholder="Mon mot de passe" style={styleInput} value={userPassword} onChange={(e) => setUserPassword(e.target.value)} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Input type="password" name="password" id="userConfirmPassword" placeholder="Confirmer mon mot de passe" style={styleInput} />
-                    </FormGroup>
-                </Col>
-            </Row>
+            <div style={{paddingLeft:15, paddingRight:15}}>
 
-            <Row form style={{ display: 'flex', justifyContent: 'center' }}>
-                <Col xs={12} md={8} style={{ width: 700 }}>
-                    <FormGroup>
-                        <p style={{ color: '#1F8A9E', fontWeight: 'bold' }}>MON ENFANT</p>
-                    </FormGroup>
-                    <FormGroup>
-                        <Button onClick={() => handleClickGirl()} style={styleButtonGirl}>FILLE</Button>
-                        <Button onClick={() => handleClickBoy()} style={styleButtonBoy}>GARÇON</Button>
-                    </FormGroup>
-                    <FormGroup>
-                        <Input type="firstName" name="firstName" id="studentFirstName" placeholder="Son prénom" style={styleInput} value={studentFirstName} onChange={(e) => setStudentFirstName(e.target.value)} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Input type="name" name="name" id="studentName" placeholder="Son nom" style={styleInput} value={studentLastName} onChange={(e) => setStudentLastName(e.target.value)} />
-                    </FormGroup>
-                    <FormGroup>
-                        <Input type="select" name="select" id="exampleSelect" placeholder="Sa classe" style={styleInputClasse} value={studentGrade} onChange={(e) => setStudentGrade(e.target.value)} >
-                            <option>Sa classe</option>
-                            <option>6ème</option>
-                            <option>5ème</option>
-                            <option>4ème</option>
-                            <option>3ème</option>
-                        </Input>
-                    </FormGroup>
-                    <FormGroup>
-                        <Input type="email" name="email" id="studentEmail" placeholder="Son adresse e-mail" style={styleInput} value={studentEmail} onChange={(e) => setStudentEmail(e.target.value)} />
-                    </FormGroup>
-                </Col>
-                {tabErrorsSignup}
-            </Row>
+                <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: 50, marginBottom: 30, paddingLeft: 15, paddingRight: 15 }}>
+                    <h4 style={{ color: '#1F8A9E', textAlign: 'center' }}>Pour inscrire mon enfant..</h4>
+                </Row>
 
-            <Row style={{ display: 'flex', justifyContent: 'center', marginTop: 40, marginBottom: 40 }}>
-                <Button style={{ width: 300, backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }} onClick={() => handleSubmitUserSignup()}>VALIDER</Button>
-            </Row>
+                <Row form style={{ display: 'flex', justifyContent: 'center', marginBottom: 40 }}>
+                    <Col xs={12} md={8} style={{ width: 700 }}>
+                        <FormGroup>
+                            <p style={{ color: '#1F8A9E', fontWeight: 'bold' }}>MON PROFIL</p>
+                        </FormGroup>
+                        <FormGroup>
+                            <Button onClick={() => handleClickMadame()} style={styleButtonMadame} >MADAME</Button>
+                            <Button onClick={() => handleClickMonsieur()} style={styleButtonMonsieur} >MONSIEUR</Button>
+                        </FormGroup>
+                        <FormGroup>
+                            <Input type="firstName" name="firstName" id="userFirstName" placeholder="Mon prénom" style={styleInput} value={userFirstName} onChange={(e) => setUserFirstName(e.target.value)} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Input type="name" name="name" id="userName" placeholder="Mon nom" style={styleInput} value={userLastName} onChange={(e) => setUserLastName(e.target.value)} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Input type="email" name="email" id="userEmail" placeholder="Mon adresse e-mail" style={styleInput} value={userEmail} onChange={(e) => setUserEmail(e.target.value)} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Input type="password" name="password" id="userPassword" placeholder="Mon mot de passe" style={styleInput} value={userPassword} onChange={(e) => setUserPassword(e.target.value)} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Input type="password" name="password" id="userConfirmPassword" placeholder="Confirmer mon mot de passe" style={styleInput} />
+                        </FormGroup>
+                    </Col>
+                </Row>
+
+                <Row form style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Col xs={12} md={8} style={{ width: 700 }}>
+                        <FormGroup>
+                            <p style={{ color: '#1F8A9E', fontWeight: 'bold' }}>MON ENFANT</p>
+                        </FormGroup>
+                        <FormGroup>
+                            <Button onClick={() => handleClickGirl()} style={styleButtonGirl}>FILLE</Button>
+                            <Button onClick={() => handleClickBoy()} style={styleButtonBoy}>GARÇON</Button>
+                        </FormGroup>
+                        <FormGroup>
+                            <Input type="firstName" name="firstName" id="studentFirstName" placeholder="Son prénom" style={styleInput} value={studentFirstName} onChange={(e) => setStudentFirstName(e.target.value)} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Input type="name" name="name" id="studentName" placeholder="Son nom" style={styleInput} value={studentLastName} onChange={(e) => setStudentLastName(e.target.value)} />
+                        </FormGroup>
+                        <FormGroup>
+                            <Input type="select" name="select" id="exampleSelect" placeholder="Sa classe" style={styleInputClasse} value={studentGrade} onChange={(e) => setStudentGrade(e.target.value)} >
+                                <option>Sa classe</option>
+                                <option>6ème</option>
+                                <option>5ème</option>
+                                <option>4ème</option>
+                                <option>3ème</option>
+                            </Input>
+                        </FormGroup>
+                        <FormGroup>
+                            <Input type="email" name="email" id="studentEmail" placeholder="Son adresse e-mail" style={styleInput} value={studentEmail} onChange={(e) => setStudentEmail(e.target.value)} />
+                        </FormGroup>
+                    </Col>
+                    {tabErrorsSignup}
+                </Row>
+
+                <Row style={{ display: 'flex', justifyContent: 'center', marginTop: 40, marginBottom: 40 }}>
+                    <Button style={{ width: 300, backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }} onClick={() => handleSubmitUserSignup()}>VALIDER</Button>
+                </Row>
+            </div>
 
             <Footer />
 
-        </Container>
+        </div>
     )
 };
 

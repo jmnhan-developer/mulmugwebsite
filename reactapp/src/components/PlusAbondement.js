@@ -1,12 +1,10 @@
 import React from 'react'
 import { Row, Col, Button } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import Header from './header.js'
-import Footer from './footer.js'
 
 
 
-function MulmugPlusAbond() {
+function PlusAbondement() {
 
 
     {/* TABLEAU D'OBJETS POUR LA MAP */ }
@@ -29,53 +27,40 @@ function MulmugPlusAbond() {
             </Row>
             <Row style={{ display: 'flex', flexDirection: 'column', marginBottom: 10, alignItems: 'center', justifyContent: 'center' }}>
                 <p style={{ color: '#1F8A9E' }}>{abond.price}</p>
+                <Button style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }}>HOP ! DANS MON PANIER !</Button>
             </Row>
         </Col>
     });
 
     return (
 
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', paddingLeft: 15, paddingRight: 15, alignItems:'center'}}>
 
-            <Header />
+            <Row style={{ display: 'flex', flexDirection: 'column', marginTop: 20, marginBottom: 20, textAlign:'center' }}>
+                <h6 style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>ABONDEMENT</h6>
+                <p style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>Encouragez (Prénom de l'élève) à travailler en la récompensant avec vos propres points !</p>
+            </Row>
 
-            <div style={{ marginLeft: 20, marginRight: 20 }}>
+            <Col xs={11} style={{ display: 'flex', flexDirection: 'column', marginTop: 20, marginBottom: 20, background:'linear-gradient(#54C5B4, #1F8A9E)', borderRadius:10 }}>
+                <h6 style={{ display: 'flex', justifyContent: 'center', color: '#FFFFFF', marginTop:20 }}>MES ABONDEMENTS DE L'ANNÉE</h6>
+                <Col xs={12} style={{display:'flex', flexDirection:'row', backgroundColor:'#FFFFFF', borderTopLeftRadius:10, borderTopRightRadius:10, padding:0}}>
+                    <p style={{display:'flex', width:'50%', justifyContent:'center', margin:0, borderRight: '1px solid #1F8A9E', color:'#1F8A9E'}}>Disponibles</p>
+                    <p style={{display:'flex', width:'50%', justifyContent:'center', margin:0, borderLeft: '1px solid #1F8A9E', color:'#1F8A9E'}}>Gagnés par (Prénom de l'élève)</p>
+                </Col>
+                <Col xs={12} style={{display:'flex', flexDirection:'row', backgroundColor:'#FDC41F', borderBottomLeftRadius:10, borderBottomRightRadius:10, padding:0, marginBottom:20}}>
+                    <p style={{display:'flex', width:'50%', justifyContent:'center', margin:0, borderRight: '1px solid #1F8A9E', color:'#FFFFFF'}}>693 points</p>
+                    <p style={{display:'flex', width:'50%', justifyContent:'center', margin:0, borderLeft: '1px solid #1F8A9E', color:'#FFFFFF'}}>307 points</p>
+                </Col>
+            </Col>
 
-                <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: 50, marginBottom: 30, paddingLeft: 15, paddingRight: 15 }}>
-                    <h4 style={{ color: '#1F8A9E', textAlign: 'center' }}>Prêt à encourager votre enfant à apprendre en faisant des exercices !</h4>
-                </Row>
-
-                {/* LES ONGLETS */}
-                <Row style={{ height: 50, paddingLeft: 15, paddingRight: 15 }} >
-                    <Col xs={4} style={styleOngletSelected}>
-                        <Link to="/Mulmugplusabond" style={styleTextOngletSelected}>Abondement en Points</Link>
-                    </Col>
-                    <Col xs={4} style={styleOnglet}>
-                        <Link to="/MulmugPlusForfaitSansPub" style={styleTextOnglet}>Forfait sans pub</Link>
-                    </Col>
-                    <Col xs={4} style={styleOnglet}>
-                        <Link to="/Mulmugpluscahiers" style={styleTextOnglet}>Cahiers de vacances</Link>
-                    </Col>
-                </Row>
-                <Row style={{ display: 'flex', flexDirection: 'column', paddingLeft: 15, paddingRight: 15, marginTop: 30 }}>
-                    <h5 style={{ color: '#1F8A9E', textAlign: 'center', marginTop: 30, marginBottom: 30 }}>Vous voulez l'encourager et le récompensez pour sont travail et ses efforts avec vos propres points? Sélectionnez et souscrivez à l'un des Abondements, Mulmug lui attribuera vos points à chaque exercice correctement fait et à chaque passage de niveau.</h5>
-                    <p style={{ color: '#1F8A9E', textAlign: 'center' }}>Sélectionnez l’abondement que vous souhaitez:</p>
-                </Row>
-
-
-                {/* RESULTAT DE LA MAP */}
-                <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom: 50, paddingLeft: 15, paddingRight: 15 }}>
-                    {abondementCard}
-                </Row>
-
-                <Row style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }}>VALIDER MA SÉLECTION</Button>
-                </Row>
-            </div>
-
-            <Footer />
+            {/* RESULTAT DE LA MAP */}
+            <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop:20, marginBottom: 50 }}>
+                {abondementCard}
+            </Row>
 
         </div>
+
+
 
     )
 }
@@ -124,4 +109,4 @@ var styleTextOnglet = {
     textAlign: 'center'
 };
 
-export default MulmugPlusAbond;
+export default PlusAbondement;

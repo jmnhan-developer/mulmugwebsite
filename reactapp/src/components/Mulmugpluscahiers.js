@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Row, Button, Col } from 'reactstrap';
+import { Row, Button, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Header from './header.js'
 import Footer from './footer.js'
@@ -21,25 +21,25 @@ function MulmugPlusCahiers() {
 
     {/* LA MAP */ }
 
-    var cahierVacCard = cahierVacData.map(function (cahier, i ) {
+    var cahierVacCard = cahierVacData.map(function (cahier, i) {
         return <Col xs={10} md={3} style={styleCahier}>
-            <Row style={{ display: 'flex', flexDirection: 'row', justifyContent:'center', borderTopLeftRadius: 19, borderTopRightRadius: 19, background: "linear-gradient( #8DAADC, #665EFF)", marginBottom:20 }}>
-                <Col xs={4} style={{display:'flex'}}>
+            <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderTopLeftRadius: 19, borderTopRightRadius: 19, background: "linear-gradient( #8DAADC, #665EFF)", marginBottom: 20 }}>
+                <Col xs={4} style={{ display: 'flex' }}>
                     <img width='100%' src={cahier.url} />
                 </Col>
                 <Col xs={8}>
-                    <p style={{display:'flex', textAlign:'center', color:'#FFFFFF', marginBottom:0}}>CAHIER DE VACANCES</p>
+                    <p style={{ display: 'flex', textAlign: 'center', color: '#FFFFFF', marginBottom: 0 }}>CAHIER DE VACANCES</p>
                 </Col>
             </Row>
             <Row style={{ display: 'flex', flexDirection: 'row', borderBottomLeftRadius: 10, borderBottomRightRadius: 10 }}>
                 <Col xs={12}>
-                    <h6 style={{textAlign:'center', color: '#1F8A9E',}}>{cahier.holiday}</h6>
+                    <h6 style={{ textAlign: 'center', color: '#1F8A9E', }}>{cahier.holiday}</h6>
                 </Col>
                 <Col xs={12}>
-                <p style={{textAlign:'center', color: '#1F8A9E',}}>{cahier.matiere}</p>
+                    <p style={{ textAlign: 'center', color: '#1F8A9E', }}>{cahier.matiere}</p>
                 </Col>
                 <Col xs={12}>
-                <p style={{textAlign:'center', color: '#FDC41F',}}>{cahier.price}</p>
+                    <p style={{ textAlign: 'center', color: '#1F8A9E', }}>{cahier.price}</p>
                 </Col>
             </Row>
         </Col>
@@ -47,47 +47,49 @@ function MulmugPlusCahiers() {
 
     return (
 
-        <Container>
-            <Row>
-                <Header />
-            </Row>
+        <div>
 
-            <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: 50, marginBottom: 30, paddingLeft:15, paddingRight:15 }}>
-                <h4 style={{ color: '#1F8A9E', textAlign: 'center' }}>Prêt à encourager votre enfant à apprendre en faisant des exercices !</h4>
-            </Row>
+            <Header />
 
-            {/* LES ONGLETS */}
-            <Row style={{ height: 50, paddingLeft:15, paddingRight:15 }} >
-                <Col xs={4} style={styleOnglet}>
-                    <Link to="/Mulmugplusabond" style={styleTextOnglet}>Abondement en Points</Link>
-                </Col>
-                <Col xs={4} style={styleOnglet}>
-                    <Link to="/Mulmugplusabonn" style={styleTextOnglet}>Abonnement</Link>
-                </Col>
-                <Col xs={4} style={styleOngletSelected}>
-                    <Link to="/Mulmugpluscahiers" style={styleTextOngletSelected}>Cahiers de vacances</Link>
-                </Col>
-            </Row>
-            <Row style={{ display: 'flex', flexDirection: 'column', paddingLeft:15, paddingRight:15, marginTop:30 }}>
-                <h5 style={{ color: '#1F8A9E', textAlign: 'center', marginTop:30, marginBottom:30  }}>Pour que votre enfant revise pendant ses vacances et continuer de cumuler des points, vous pouvez souscrire un cahier de vacances. Mulmug lui proposera 5 exercices de manière aléatoire à faire par jour sur les chapitres déjà vus en classe.</h5>
-                <p style={{ color: '#1F8A9E', textAlign: 'center'  }}>Sélectionnez le Cahier de Vacances que vous souhaitez:</p>
-            </Row>
+            <div style={{ marginLeft: 20, marginRight: 20 }}>
 
-            
+                <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: 50, marginBottom: 30, paddingLeft: 15, paddingRight: 15 }}>
+                    <h4 style={{ color: '#1F8A9E', textAlign: 'center' }}>Prêt à encourager votre enfant à apprendre en faisant des exercices !</h4>
+                </Row>
+
+                {/* LES ONGLETS */}
+                <Row style={{ height: 50, paddingLeft: 15, paddingRight: 15 }} >
+                    <Col xs={4} style={styleOnglet}>
+                        <Link to="/Mulmugplusabond" style={styleTextOnglet}>Abondement en Points</Link>
+                    </Col>
+                    <Col xs={4} style={styleOnglet}>
+                        <Link to="/MulmugPlusForfaitSansPub" style={styleTextOnglet}>Forfait sans pub</Link>
+                    </Col>
+                    <Col xs={4} style={styleOngletSelected}>
+                        <Link to="/Mulmugpluscahiers" style={styleTextOngletSelected}>Cahiers de vacances</Link>
+                    </Col>
+                </Row>
+                <Row style={{ display: 'flex', flexDirection: 'column', paddingLeft: 15, paddingRight: 15, marginTop: 30 }}>
+                    <h5 style={{ color: '#1F8A9E', textAlign: 'center', marginTop: 30, marginBottom: 30 }}>Pour que votre enfant revise pendant ses vacances et continuer de cumuler des points, vous pouvez souscrire un cahier de vacances. Mulmug lui proposera de manière aléatoire 5 exercices à faire par jour sur les chapitres déjà vus en classe.</h5>
+                    <p style={{ color: '#1F8A9E', textAlign: 'center' }}>Sélectionnez le Cahier de Vacances que vous souhaitez:</p>
+                </Row>
 
 
-            {/* RESULTAT DE LA MAP */}
-            <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom:50, paddingLeft:15, paddingRight:15 }}>
-                {cahierVacCard}
-            </Row>
 
-            <Row style={{ display: 'flex', justifyContent: 'center' }}>
-                <Button style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }}>VALIDER MA SÉLECTION</Button>
-            </Row>
+
+                {/* RESULTAT DE LA MAP */}
+                <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom: 50, paddingLeft: 15, paddingRight: 15 }}>
+                    {cahierVacCard}
+                </Row>
+
+                <Row style={{ display: 'flex', justifyContent: 'center' }}>
+                    <Button style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }}>VALIDER MA SÉLECTION</Button>
+                </Row>
+            </div>
 
             <Footer />
 
-        </Container>
+        </div>
 
     )
 }
