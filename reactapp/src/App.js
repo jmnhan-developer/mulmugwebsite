@@ -22,7 +22,8 @@ import HomeAdminScreen from './components/HomeAdminScreen'
 import { Provider } from 'react-redux'
 import { createStore, combineReducers } from 'redux'
 import token from './reducers/token'
-const store = createStore(combineReducers({ token }))
+import product from './reducers/product'
+const store = createStore(combineReducers({ token, product }))
 
 function App() {
 
@@ -30,28 +31,25 @@ function App() {
     <Provider store={store}>
       <Router>
         <Switch>
-          <div style={{ width: "100%", justifyContent: "center" }}>
-            <Route component={Homescreen} path="/" exact />
-            <Route component={HomeScreenStudent} path="/homescreenstudent" exact />
-            <Route component={HomeScreenParent} path="/homescreenparent" exact />
-            <Route component={Mulmugplusabond} path="/mulmugplusabond" exact />
-            <Route component={MulmugPlusForfaitSansPub} path="/mulmugplusforfaitsanspub" exact />
-            <Route component={Mulmugpluscahiers} path="/mulmugpluscahiers" exact />
-            <Route component={QuiSommesNous} path="/quisommesnous" exact />
-            <Route component={SignInScreen} path="/signinscreen" exact />
-            <Route component={SignUpScreenStudent} path="/signupscreenstudent" exact />
-            <Route component={SignUpScreenParent} path="/signupscreenparent" exact />
-            <Route component={MentionsLegales} path="/mentionslegales" exact />
-            <Route component={CgvCgu} path="/cgvcgu" exact />
-            <Route component={ReglesDeConfidentialite} path="/reglesdeconfidentialite" exact />
-            <Route component={HomePageConnectedParent} path="/homepageconnectedparent" exact />
-            <Route component={MonPanier} path="/monpanier" exact />
-            <Route component={SignInAdmin} path="/signinadmin" exact />
-            <Route component={SuperAdminScreen} path="/superadminscreen" exact />
-            <Route component={HomeAdminScreen} path="/homeadminscreen" exact />
+          <Route component={Homescreen} path="/" exact />
+          <Route component={HomeScreenStudent} path="/homescreenstudent" exact />
+          <Route component={HomeScreenParent} path="/homescreenparent" exact />
+          <Route component={Mulmugplusabond} path="/mulmugplusabond" exact />
+          <Route component={MulmugPlusForfaitSansPub} path="/mulmugplusforfaitsanspub" exact />
+          <Route component={Mulmugpluscahiers} path="/mulmugpluscahiers" exact />
+          <Route component={QuiSommesNous} path="/quisommesnous" exact />
+          <Route component={SignInScreen} path="/signinscreen" exact />
+          <Route component={SignUpScreenStudent} path="/signupscreenstudent" exact />
+          <Route component={SignUpScreenParent} path="/signupscreenparent" exact />
+          <Route component={MentionsLegales} path="/mentionslegales" exact />
+          <Route component={CgvCgu} path="/cgvcgu" exact />
+          <Route component={ReglesDeConfidentialite} path="/reglesdeconfidentialite" exact />
+          <Route component={HomePageConnectedParent} path="/homepageconnectedparent" exact />
+          <Route component={MonPanier} path="/monpanier" exact />
+          <Route component={SignInAdmin} path="/signinadmin" exact />
+          <Route component={SuperAdminScreen} path="/superadminscreen" exact />
+          <Route component={HomeAdminScreen} path="/homeadminscreen" exact />
 
-
-          </div>
         </Switch>
       </Router>
     </Provider>

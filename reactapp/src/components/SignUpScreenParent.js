@@ -6,7 +6,7 @@ import Header from './header.js'
 import Footer from './footer.js'
 
 
-function SignUpScreenParent(props) {
+function SignUpScreenParent({onSubmitToken}) {
 
     const [userGender, setUserGender] = useState('')
     const [userFirstName, setUserFirstName] = useState('')
@@ -64,6 +64,7 @@ function SignUpScreenParent(props) {
 
     var handleClickMadame = () => {
         setSelectedMadame(!selectedMadame)
+        setUserGender("Madame")
     };
     if (selectedMadame === true) {
         styleButtonMadame = {
@@ -75,11 +76,11 @@ function SignUpScreenParent(props) {
             boxShadow: '3px 3px 3px #D5DBDB',
             color: '#FFFFFF'
         }
-
     }
 
     var handleClickMonsieur = () => {
         setSelectedMonsieur(!selectedMonsieur)
+        setUserGender("Monsieur")
     }
     if (selectedMonsieur === true) {
         styleButtonMonsieur = {
@@ -117,6 +118,7 @@ function SignUpScreenParent(props) {
 
     var handleClickGirl = () => {
         setSelectedGirl(!selectedGirl)
+        setStudentGender("Girl")
     }
     if (selectedGirl === true) {
         styleButtonGirl = {
@@ -132,6 +134,7 @@ function SignUpScreenParent(props) {
 
     var handleClickBoy = () => {
         setSelectedBoy(!selectedBoy)
+        setStudentGender("Boy")
     }
     if (selectedBoy === true) {
         styleButtonBoy = {
@@ -160,9 +163,9 @@ function SignUpScreenParent(props) {
 
         const body = await data.json()
 
-        if (body.result == true) {
+        if (body.result === true) {
             setUserExists(true)
-            props.addToken(body.token)
+            onSubmitToken(body.token)
         } else {
             setErrorsSignup(body.error)
         }
@@ -277,8 +280,8 @@ var styleInputClasse = {
 
 function mapDispatchToProps(dispatch) {
     return {
-        addToken: function (token) {
-            dispatch({ type: 'addToken', token: token })
+        onSubmitToken: function (token) {
+            dispatch({ type: 'addTokenFromSignUp', token: token })
         }
     }
 }

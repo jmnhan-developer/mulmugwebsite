@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
+
 
 
 
@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 function PlusBonsdAchatAutorises(props) {
 
 
-    {/* TABLEAU D'OBJETS POUR LA MAP */ }
+    /* TABLEAU D'OBJETS POUR LA MAP */
 
     var bonsdachatautorisesData = [
         { category: "ENSEIGNES CULTURELLES", stores: "Amazon, Fnac, Cultura...", url: "./icon_enseignes_culturelles.png" },
@@ -28,13 +28,13 @@ function PlusBonsdAchatAutorises(props) {
         { category: "DONS", stores: "WWF, Surfrider, SPA ...", url: "./icon_don.png" }
     ];
 
-    {/* LA MAP */ }
+    /* LA MAP */
 
     var bonsdachatautorisesCard = bonsdachatautorisesData.map(function (bondachat, i) {
-        return <Col xs={12} md={3} style={styleCard}>
+        return <Col key={i} xs={12} md={3} style={styleCard}>
             <div style={{ display: 'flex', flexDirection: 'row', paddingTop: 20, paddingBottom: 10 }}>
                 <Col xs={2} >
-                    <img width='200%' src={bondachat.url} />
+                    <img alt="" width='200%' src={bondachat.url} />
                 </Col>
                 <Col xs={10} style={{ display: 'flex', justifyItems: 'center' }}>
                     <p style={{ color: '#1F8A9E', fontSize: 13, fontWeight: 'bold', marginBottom: 0 }}>{bondachat.category}</p>
@@ -74,37 +74,6 @@ var styleCard = {
     margin: 4,
     boxShadow: '4px 4px 4px #D5DBDB',
 };
-var styleOnglet = {
-    backgroundColor: 'white',
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    border: '1px solid #1F8A9E'
-};
 
-var styleOngletSelected = {
-    backgroundColor: '#1F8A9E',
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-};
-
-var styleTextOngletSelected = {
-    display: 'flex',
-    color: '#FFFFFF',
-    textAlign: 'center'
-};
-
-var styleTextOnglet = {
-    display: 'flex',
-    color: '#1F8A9E',
-    textAlign: 'center'
-};
 
 export default PlusBonsdAchatAutorises;

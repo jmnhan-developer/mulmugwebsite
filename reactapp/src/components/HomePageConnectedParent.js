@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { Row, Col} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Header from './header.js'
 import Footer from './footer.js'
+import {connect} from 'react-redux'
 import PlusBonsdAchatAutorises from './PlusBonsdAchatAutorises.js'
 import PlusAbondement from './PlusAbondement.js'
 import PlusPlusForfaitSansPub from './PlusForfaitSansPub.js'
@@ -11,8 +12,30 @@ import PlusCahiersVacances from './PlusCahiersVacances.js'
 
 
 
-function HomePageConnectedParent() {
+function HomePageConnectedParent(props) {
 
+    console.log ("Token from HomePage?", props.token)
+
+
+    const [userInfo, setUserInfo] = useState ([])
+    const [userFirstName, setUserFirstName] = useState ('')
+    const [userLastName, setUserLastName] = useState ('')
+    const [userEmail, setUserEmail] = useState('')
+
+    useEffect (() => {
+
+        const findUser = async() => {
+            const data = await fetch(`/loadinguserinfo?token=${props.token}`)
+            const body = await data.json()
+            if(body){
+                setUserInfo(body)
+                setUserFirstName(body.userFirstName)
+                setUserLastName(body.userLastName)
+                setUserEmail(body.userEmail)
+            }
+        }
+        findUser()  
+    }, []);
 
 
     return (
@@ -23,8 +46,7 @@ function HomePageConnectedParent() {
             <div style={{ marginLeft: 5, marginRight: 5 }}>
 
                 <Row style={{ display: 'flex', justifyContent: 'center', marginTop: 50, marginBottom: 30, paddingLeft: 15, paddingRight: 15 }}>
-                    <h4 style={{ color: '#1F8A9E', textAlign: 'center' }}>Bonjour XXXXX ! Bienvenue sur votre espace personnel !</h4>
-                    
+                    <h4 style={{ color: '#1F8A9E', textAlign: 'center' }}>Bonjour {userFirstName} ! Bienvenue sur votre espace personnel !</h4>
                 </Row>
                 <Row style={{display:'flex', justifyContent:'center'}}>
                 <h6 style={{ color: '#1F8A9E', fontWeight:'bold',textAlign: 'center' }}>PILOTAGE</h6>
@@ -58,17 +80,7 @@ function HomePageConnectedParent() {
 
     )
 };
-var styleAbond = {
-    display: 'flex',
-    flexDirection: 'column',
-    marginBottom: 10,
-    border: '1px solid #D5DBDB',
-    borderRadius: 20,
-    alignItems: 'center',
-    marginLeft: 5,
-    marginRight: 5,
-    boxShadow: '3px 3px 3px #D5DBDB',
-};
+
 var styleOnglet = {
     backgroundColor: '#F2F3F4',
     borderTopLeftRadius: 10,
@@ -104,4 +116,13 @@ var styleTextOnglet = {
     textAlign: 'center',
     fontSize:14
 };
-export default HomePageConnectedParent
+
+
+function mapStateToProps (state) {
+    return {token: state.token}
+}
+
+export default connect(
+    mapStateToProps,
+    null
+) (HomePageConnectedParent);

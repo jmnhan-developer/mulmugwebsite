@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Row, Button, Col, FormGroup, Input } from 'reactstrap';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import Header from './header.js'
 import Footer from './footer.js'
@@ -46,7 +45,7 @@ function SuperAdminScreen(props) {
 
         const body = await data.json()
 
-        if (body.result == true) {
+        if (body.result === true) {
             setAdminExists(true)
             props.addToken(body.token)
         } else {
@@ -79,7 +78,7 @@ function SuperAdminScreen(props) {
 
         const body = await data.json()
 
-        if (body.result == true) {
+        if (body.result === true) {
             setSuperAdminExists(true)
             props.addToken(body.token)
         } else {
@@ -147,22 +146,22 @@ function SuperAdminScreen(props) {
                             <p style={{ color: '#1F8A9E', fontWeight: 'bold' }}>CRÉER UN COMPTE SUPER ADMIN</p>
                         </FormGroup>
                         <FormGroup>
-                            <Input type="firstName" name="superfirstName" id="adminFirstName" placeholder="Prénom" style={styleInput} value={superAdminFirstName} onChange={(e) => setSuperAdminFirstName(e.target.value)} />
+                            <Input type="firstName" name="superfirstName" id="superadminFirstName" placeholder="Prénom" style={styleInput} value={superAdminFirstName} onChange={(e) => setSuperAdminFirstName(e.target.value)} />
                         </FormGroup>
                         <FormGroup>
-                            <Input type="name" name="supername" id="adminName" placeholder="Nom" style={styleInput} value={superAdminLastName} onChange={(e) => setSuperAdminLastName(e.target.value)} />
+                            <Input type="name" name="supername" id="superadminName" placeholder="Nom" style={styleInput} value={superAdminLastName} onChange={(e) => setSuperAdminLastName(e.target.value)} />
                         </FormGroup>
                         <FormGroup>
-                            <Input type="name" name="superposition" id="adminPosition" placeholder="Fonction" style={styleInput} value={superAdminPosition} onChange={(e) => setSuperAdminPosition(e.target.value)} />
+                            <Input type="name" name="superposition" id="superadminPosition" placeholder="Fonction" style={styleInput} value={superAdminPosition} onChange={(e) => setSuperAdminPosition(e.target.value)} />
                         </FormGroup>
                         <FormGroup>
-                            <Input type="email" name="superemail" id="adminEmail" placeholder="Adresse e-mail" style={styleInput} value={superAdminEmail} onChange={(e) => setSuperAdminEmail(e.target.value)} />
+                            <Input type="email" name="superemail" id="superadminEmail" placeholder="Adresse e-mail" style={styleInput} value={superAdminEmail} onChange={(e) => setSuperAdminEmail(e.target.value)} />
                         </FormGroup>
                         <FormGroup>
-                            <Input type="password" name="superpassword" id="adminPassword" placeholder="Mot de passe" style={styleInput} value={superAdminPassword} onChange={(e) => setSuperAdminPassword(e.target.value)} />
+                            <Input type="password" name="superpassword" id="superadminPassword" placeholder="Mot de passe" style={styleInput} value={superAdminPassword} onChange={(e) => setSuperAdminPassword(e.target.value)} />
                         </FormGroup>
                         <FormGroup>
-                            <Input type="select" name="superrole" id="adminRole" placeholder="Rôle" style={styleInputClasse} value={superAdminRole} onChange={(e) => setSuperAdminRole(e.target.value)} >
+                            <Input type="select" name="superrole" id="superadminRole" placeholder="Rôle" style={styleInputClasse} value={superAdminRole} onChange={(e) => setSuperAdminRole(e.target.value)} >
                                 <option>Rôle</option>
                                 <option>Admin</option>
                                 <option>Super Admin</option>

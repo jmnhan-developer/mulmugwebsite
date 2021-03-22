@@ -9,7 +9,7 @@ import Footer from './footer.js'
 function MulmugPlusAbond() {
 
 
-    {/* TABLEAU D'OBJETS POUR LA MAP */ }
+    /* TABLEAU D'OBJETS POUR LA MAP */
 
     var abondementData = [
         { desc: "Abondement de 10 000 points", nbpoints: "10 000", point: "POINTS", price: "12.00€" },
@@ -19,7 +19,7 @@ function MulmugPlusAbond() {
         { desc: "Abondement de 50 000 points", nbpoints: "50 000", point: "POINTS", price: "55.00€" },
     ];
 
-    {/* LA MAP */ }
+    /* LA MAP */
 
     var abondementCard = abondementData.map(function (abond, i) {
         return <Col xs={10} md={3} style={styleAbond}>

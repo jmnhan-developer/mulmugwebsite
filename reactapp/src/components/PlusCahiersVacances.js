@@ -1,29 +1,31 @@
-import React from 'react'
-import { Row, Col, Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import React, {useState, useEffect} from 'react'
+import { Row, Col, Button } from 'reactstrap'
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 
 
-function PlusCahiersVacances() {
+function PlusCahiersVacances({token, onSubmitproduct}) {
 
+    const [productList, setProductList] = useState([])
+    const [goToBasket, setGoToBasket] = useState(false)
 
-    {/* TABLEAU D'OBJETS POUR LA MAP */ }
+    useEffect(() => {
+        const findProducts = async () => {
+            const data = await fetch('/loadingcahierdata')
+            const body = await data.json()
+            setProductList(body.products)
+        }
+        findProducts()
+    }, [])
 
-    var cahierVacData = [
-        { name: "Cahier de Vacances - Toussaint", url: "./cahierAutomne.png", holiday: "TOUSSAINTS", matiere: "Mathématiques", price: "4.99€" },
-        { name: "Cahier de Vacances - Noël", url: "./cahierNoel.png", holiday: "NOËL", matiere: "Mathématiques", price: "5.99€" },
-        { name: "Cahier de Vacances - Hiver", url: "./cahierHiver.png", holiday: "HIVER", matiere: "Mathématiques", price: "6.99€" },
-        { name: "Cahier de Vacances - Pâques", url: "./cahierPrintemps.png", holiday: "PÂQUES", matiere: "Mathématiques", price: "7.99€" },
-        { name: "Cahier de Vacances - Été", url: "./cahierEte.png", holiday: "ÉTÉ", matiere: "Mathématiques", price: "8.99€" },
-    ];
+    /* LA MAP */
 
-    {/* LA MAP */ }
-
-    var cahierVacCard = cahierVacData.map(function (cahier, i) {
-        return <Col xs={10} md={3} style={styleCahier}>
+    var cahierVacCard = productList.map((e, i) => {
+        return <Col key={i} xs={10} md={3} style={styleCahier}>
             <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderTopLeftRadius: 19, borderTopRightRadius: 19, background: "linear-gradient( #8DAADC, #665EFF)", marginBottom: 20 }}>
                 <Col xs={4} style={{ display: 'flex' }}>
-                    <img width='100%' src={cahier.url} />
+                    <img alt="" width='100%' src="./cahierEte.png" />
                 </Col>
                 <Col xs={8}>
                     <p style={{ display: 'flex', textAlign: 'center', color: '#FFFFFF', marginBottom: 0 }}>CAHIER DE VACANCES</p>
@@ -31,18 +33,22 @@ function PlusCahiersVacances() {
             </Row>
             <Row style={{ display: 'flex', flexDirection: 'row', borderBottomLeftRadius: 10, borderBottomRightRadius: 10, justifyContent:'center', paddingBottom:10 }}>
                 <Col xs={12}>
-                    <h6 style={{ textAlign: 'center', color: '#1F8A9E', }}>{cahier.holiday}</h6>
+                    <h6 style={{ textAlign: 'center', color: '#1F8A9E', }}>{e.period}</h6>
                 </Col>
                 <Col xs={12}>
-                    <p style={{ textAlign: 'center', color: '#1F8A9E', }}>{cahier.matiere}</p>
+                    <p style={{ textAlign: 'center', color: '#1F8A9E', }}>{e.discipline}</p>
                 </Col>
                 <Col xs={12}>
-                    <p style={{ textAlign: 'center', color: '#1F8A9E', }}>{cahier.price}</p>
+                    <p style={{ textAlign: 'center', color: '#1F8A9E', }}>{e.priceTTC}€</p>
                 </Col>
-                <Button style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50,  }}>HOP ! DANS MON PANIER !</Button>
+                <Button onClick={() => { setGoToBasket(true); onSubmitproduct(e) }} style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50,  }}>HOP ! DANS MON PANIER !</Button>
             </Row>
         </Col>
     });
+
+    if(goToBasket === true) {
+        return <Redirect to='/monpanier' />
+    }
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', paddingLeft: 15, paddingRight: 15, alignItems: 'center' }}>
@@ -71,4 +77,20 @@ var styleCahier = {
     marginRight: 5,
     boxShadow: '3px 3px 3px #D5DBDB'
 };
-export default PlusCahiersVacances;
+
+function mapStateToProps (state) {
+    return {token: state.token}
+}
+function mapDispatchToProps (dispatch) {
+    return {
+        onSubmitproduct: function (product) {
+            dispatch ({type:'selectedCahier', product: product})
+
+        }
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+) (PlusCahiersVacances);

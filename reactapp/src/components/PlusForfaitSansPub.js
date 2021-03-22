@@ -1,60 +1,74 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Col, Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 
 
 
-function PlusPlusForfaitSansPub(props) {
+
+function PlusForfaitSansPub({token, onSubmitproduct}) {
 
 
-    {/* TABLEAU D'OBJETS POUR LA MAP */ }
+    const [productList, setProductList] = useState([])
+    const [goToBasket, setGoToBasket] = useState(false)
 
-    var forfaitSansPubData = [
-        { desc: "Forfait sans pub mensuel sans engagement", name: "Abonnnement mensuel", formule: "FORFAIT", pub: "SANS PUB", enga: "sans engagement", price: "9,99€ / mois sans engagement" },
-        { desc: "Forfait sans pub avec un engaement sur 12 mois", name: "Abonnement annuel", formule: "FORFAIT", pub: "SANS PUB", enga: "avec engagement", price: "7,99€ / mois avec un engagement sur 12 mois" },
-    ];
+    useEffect(() => {
+        const findProducts = async () => {
+            const data = await fetch('/loadingforfaitdata')
+            const body = await data.json()
+            setProductList(body.products)
+        }
+        findProducts()
+    }, [])
 
-    {/* LA MAP */ }
 
-    var forfaitSansPubCard = forfaitSansPubData.map(function (forfait, i) {
-        return <Col xs={10} md={3} style={styleAbonn}>
+    /* LA MAP */
+
+    var forfaitSansPubCard = productList.map((e, i) => {
+        return <Col key={i} xs={10} md={3} style={styleAbonn}>
             <Row style={styleAbonnFirstRow}>
                 <Col xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 5 }}>
-                    <h5 style={{ display: 'flex', textAlign: 'center', color: '#FFFFFF', marginBottom: 0, }}>{forfait.formule}</h5>
-                    <h3 style={{ display: 'flex', textAlign: 'center', color: '#FFFFFF', marginBottom: 0 }}>{forfait.pub}</h3>
-                    <p style={{ display: 'flex', textAlign: 'center', color: '#343a40', marginBottom: 0 }}>{forfait.enga}</p>
+                    <p hidden style={{ display: 'flex', textAlign: 'center', color: '#343a40', marginBottom: 0 }}>{e.commercialName}</p>
+                    <h5 style={{ display: 'flex', textAlign: 'center', color: '#FFFFFF', marginBottom: 0, }}>FORFAIT</h5>
+                    <h3 style={{ display: 'flex', textAlign: 'center', color: '#FFFFFF', marginBottom: 0 }}>SANS PUB</h3>
+                    <p style={{ display: 'flex', textAlign: 'center', color: '#FFFFFF', marginBottom: 0 }}>{e.commitment}</p>
                 </Col>
             </Row>
             <Row style={styleAbonnSecondRow}>
-                <Col xs={12}>
-                    <p style={{ textAlign: 'center', color: '#1F8A9E', marginBottom: 0, height:40 }}>{forfait.price}</p>
+                <Col xs={12} style={{display:'flex', flexDirection:'column', justifyContent:'center'}}>
+                    <p style={{ textAlign: 'center', color: '#1F8A9E', marginBottom: 0 }}>{e.priceTTC}€ / mois </p>
+                    <p style={{ textAlign: 'center', color: '#1F8A9E', marginBottom: 0 }}>{e.commitment}</p>
                 </Col>
-                <Button style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50,  }}>HOP ! DANS MON PANIER !</Button>
+                <Button onClick={() => { setGoToBasket(true); onSubmitproduct(e) }} style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50, }}>HOP ! DANS MON PANIER !</Button>
             </Row>
         </Col>
     });
 
+    if(goToBasket === true) {
+        return <Redirect to='/monpanier' />
+    }
+
     return (
 
-        <div style={{ display: 'flex', flexDirection: 'column', paddingLeft: 15, paddingRight: 15, alignItems:'center'}}>
+        <div style={{ display: 'flex', flexDirection: 'column', paddingLeft: 15, paddingRight: 15, alignItems: 'center' }}>
 
-        <Row style={{ display: 'flex', flexDirection: 'column', marginTop: 20, marginBottom: 20, textAlign:'center' }}>
-            <h6 style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>SOUSCRIRE À UN FORFAIT</h6>
-            <p style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>Pour supprimer les pubs, vous pouvez souscrire à un forfait sans pub.</p>
-        </Row>
+            <Row style={{ display: 'flex', flexDirection: 'column', marginTop: 20, marginBottom: 20, textAlign: 'center' }}>
+                <h6 style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>SOUSCRIRE À UN FORFAIT</h6>
+                <p style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>Pour supprimer les pubs, vous pouvez souscrire à un forfait sans pub.</p>
+            </Row>
 
-        <Col xs={11} style={{ display: 'flex', flexDirection: 'column', marginTop: 30, marginBottom: 30, background:'linear-gradient(#54C5B4, #1F8A9E)', borderRadius:10 }}>
-            <h6 style={{ display: 'flex', justifyContent: 'center', color: '#FFFFFF', marginTop:10, marginBottom:10 }}>SON FORFAIT</h6>
-            <p style={{ display: 'flex', justifyContent: 'center', color: '#FFFFFF', marginTop:10, marginBottom:10 }}>Aucun forfait n'a été souscrit pour le moment.</p>
-        </Col>
+            <Col xs={11} style={{ display: 'flex', flexDirection: 'column', marginTop: 30, marginBottom: 30, background: 'linear-gradient(#54C5B4, #1F8A9E)', borderRadius: 10 }}>
+                <h6 style={{ display: 'flex', justifyContent: 'center', color: '#FFFFFF', marginTop: 10, marginBottom: 10 }}>SON FORFAIT</h6>
+                <p style={{ display: 'flex', justifyContent: 'center', color: '#FFFFFF', marginTop: 10, marginBottom: 10 }}>Aucun forfait n'a été souscrit pour le moment.</p>
+            </Col>
 
-        {/* RESULTAT DE LA MAP */}
-        <Row style={{ width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop:20, marginBottom: 50 }}>
-            {forfaitSansPubCard}
-        </Row>
+            {/* RESULTAT DE LA MAP */}
+            <Row style={{ width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: 20, marginBottom: 50 }}>
+                {forfaitSansPubCard}
+            </Row>
 
-    </div>
+        </div>
 
     )
 }
@@ -90,53 +104,27 @@ var styleAbonnSecondRow = {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
     borderBottomLeftRadius: 19,
     borderBottomRightRadius: 19,
     marginBottom: 0,
     width: '100%',
     height: 100,
 }
-var styleCard = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyItems: 'center',
-    border: '#1F8A9E',
-    borderRadius: 20,
-    margin: 4,
-    boxShadow: '4px 4px 4px #D5DBDB',
-};
-var styleOnglet = {
-    backgroundColor: 'white',
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    border: '1px solid #1F8A9E'
-};
 
-var styleOngletSelected = {
-    backgroundColor: '#1F8A9E',
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-};
+function mapStateToProps (state) {
+    return {token: state.token}
+}
+function mapDispatchToProps (dispatch) {
+    return {
+        onSubmitproduct: function (product) {
+            dispatch ({type:'selectedForfaitSansPub', product: product})
 
-var styleTextOngletSelected = {
-    display: 'flex',
-    color: '#FFFFFF',
-    textAlign: 'center'
-};
+        }
+    }
+}
 
-var styleTextOnglet = {
-    display: 'flex',
-    color: '#1F8A9E',
-    textAlign: 'center'
-};
-
-export default PlusPlusForfaitSansPub;
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+) (PlusForfaitSansPub);

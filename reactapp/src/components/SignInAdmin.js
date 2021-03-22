@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Row, Button, Col, Input, FormGroup, Label, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
-import { Link, Redirect } from 'react-router-dom'
+import { Row, Button, Col, Input, FormGroup } from 'reactstrap'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Header from './header.js'
 import Footer from './footer.js'
@@ -17,8 +17,6 @@ function SignInAdmin(props) {
     const [superAdminExists, setSuperAdminExists] = useState(false)
 
 
-    const [redirect, setRedirect] = useState(false)
-    const [roleState, setRoleState] = useState('')
     const [listErrorsSignin, setErrorsSignin] = useState([])
 
 

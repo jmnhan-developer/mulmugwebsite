@@ -6,18 +6,16 @@ import Header from './header.js'
 import Footer from './footer.js'
 
 
-function SignInscreen(props) {
+function SignInscreen({onSubmitToken}) {
 
     const [userEmail, setUserEmail] = useState('')
     const [userPassword, setUserPassword] = useState('')
     const [userExists, setUserExists] = useState(false)
-    const [redirect, setRedirect] = useState(false)
-    const [roleState, setRoleState] = useState('')
     const [listErrorsSignin, setErrorsSignin] = useState([])
+    
     // CREATION DE LA MODAL
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);
-
 
     var handleSubmitSignIn = async () => {
 
@@ -28,17 +26,13 @@ function SignInscreen(props) {
             body: `userEmailFromFront=${userEmail}&userPasswordFromFront=${userPassword}`
         })
 
-
         const body = await data.json()
-        console.log(body)
-
-        console.log('TEST ROUTE SIGN-IN')
 
 
         if (body.result === true) {
+            onSubmitToken(body.token)
+            console.log("Token from SignIn", body.token)
             setUserExists(true)
-            props.addToken(body.token)
-            // setRoleState(body.user.role)
         } else {
             setErrorsSignin(body.error)
         }
@@ -134,8 +128,8 @@ function SignInscreen(props) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        addToken: function (token) {
-            dispatch({ type: 'addToken', token: token })
+        onSubmitToken: function (token) {
+            dispatch({ type: 'addTokenFromSignIn', token: token })
         }
     }
 }

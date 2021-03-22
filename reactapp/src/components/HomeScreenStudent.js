@@ -261,7 +261,7 @@ function HomeScreenStudent() {
                             <CardImg top src="./MemojiGwenola.png" alt="Card image cap" style={{ width: '50%' }} />
                             <CardBody>
                                 <CardTitle tag="h6" style={{ color: '#1F8A9E' }}>Judith</CardTitle>
-                                <CardSubtitle tag="h10" className="mb-2 text-muted">Élève de 6ème</CardSubtitle>
+                                <CardSubtitle tag="h6" className="mb-2 text-muted">Élève de 6ème</CardSubtitle>
                                 <CardText style={{ color: '#1F8A9E', fontSize: 13 }}>"C'est top! j'ai compris les fractions progressivement en faisant des exercices!"</CardText>
                             </CardBody>
                         </Card>

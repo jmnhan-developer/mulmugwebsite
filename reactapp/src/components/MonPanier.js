@@ -1,11 +1,15 @@
-import React from 'react';
-import {Row, Col, Table} from 'reactstrap';
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from 'react';
+import { Row, Col, Table } from 'reactstrap';
+import { Link, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux';
 import Header from './header.js'
 import Footer from './footer.js'
 
 
-function MonPanier(props) {
+const MonPanier = (props) => {
+
+    console.log("Est ce que ça envoie bien dans mon panier", props.product)
+
 
     return (
         <div>
@@ -17,9 +21,10 @@ function MonPanier(props) {
                     <h5 style={{ color: '#1F8A9E', textAlign: 'center' }}>Mon panier & Paiement</h5>
                 </Row>
                 <Row>
-                    <Col xs={12} md={6} style={{marginBottom:30}}>
+                    <Col xs={12} md={6} style={{ marginBottom: 30 }}>
                         <h6 style={{ color: '#1F8A9E', textAlign: 'center' }}>Mes commandes</h6>
                         <div style={{ border: '1px solid grey', borderRadius: 10 }}>
+
                             <Table borderless>
                                 <thead>
                                     <tr style={{ color: '#1F8A9E' }}>
@@ -32,11 +37,11 @@ function MonPanier(props) {
                                 <tbody>
                                     <tr>
                                         <th scope="row">1</th>
-                                        <td>Forfait sans pub avec engagement / 12 mois</td>
-                                        <td>89€</td>
+                                        <td>{props.product.commercialName}</td>
+                                        <td>{props.product.priceTTC}€</td>
                                         <td>Supp</td>
                                     </tr>
-                                    <tr style={{fontWeight:'bold'}}>
+                                    <tr style={{ fontWeight: 'bold' }}>
                                         <th></th>
                                         <td>Total à payer</td>
                                         <td>89€</td>
@@ -45,13 +50,13 @@ function MonPanier(props) {
                                 </tbody>
                             </Table>
                         </div>
+                        <Link to="/homepageconnectedparent"><p style={{ marginTop: 10, marginBottom: 10 }}>Ajouter une autre commande</p></Link>
                     </Col>
                     <Col xs={12} md={6}>
-                        <h6 style={{ color: '#1F8A9E', textAlign: 'center' }}>Paiment</h6>
+                        <h6 style={{ color: '#1F8A9E', textAlign: 'center' }}>Paiement</h6>
                         <div style={{ border: '1px solid grey', borderRadius: 10 }}>
 
-                            <p style={{padding:5}}>ihmihmihm</p>
-
+                            <p style={{ padding: 5 }}>STRIPE TO IMPLEMENT</p>
 
                         </div>
 
@@ -69,12 +74,12 @@ function MonPanier(props) {
     )
 }
 
+function mapStateToProps(state) {
+    return { token: state.token, product: state.product }
+}
 
-var stylehpbutton1 = { width: 250, backgroundColor: '#FFC300', borderRadius: 10, outline: 'none', border: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', textDecorationLine: 'none', color: "white" }
-
-var stylehpbutton2 = { width: 250, backgroundColor: '#00B2C3', borderRadius: 10, outline: 'none', border: 'none', display: 'flex', flexDirection: 'column', alignItems: 'center', textDecorationLine: 'none', color: "white" }
-
-
-
-export default MonPanier;
+export default connect(
+    mapStateToProps,
+    null
+)(MonPanier)
 

@@ -10,14 +10,14 @@ import Footer from './footer.js'
 function MulmugPlusForfaitSansPub() {
 
 
-    {/* TABLEAU D'OBJETS POUR LA MAP */ }
+    /* TABLEAU D'OBJETS POUR LA MAP */
 
     var forfaitSansPubData = [
         { desc: "Forfait sans pub mensuel sans engagement", name: "Abonnnement mensuel", formule: "FORFAIT", pub: "SANS PUB", enga: "sans engagement", price: "9,99€ / mois sans engagement" },
         { desc: "Forfait sans pub avec un engaement sur 12 mois", name: "Abonnement annuel", formule: "FORFAIT", pub: "SANS PUB", enga: "avec engagement", price: "7,99€ / mois avec un engagement sur 12 mois" },
     ];
 
-    {/* LA MAP */ }
+    /* LA MAP */
 
     var forfaitSansPubCard = forfaitSansPubData.map(function (abonn, i) {
         return <Col xs={12} md={3} style={styleAbonn}>

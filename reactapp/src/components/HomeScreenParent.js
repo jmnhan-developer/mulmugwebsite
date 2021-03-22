@@ -151,7 +151,7 @@ function HomeScreenParent() {
                             <CardImg top src="./cahierAutomne.png" alt="Card image cap" style={{ width: '30%' }} />
                             <CardBody>
                                 <CardTitle tag="h6" style={{ color: '#1F8A9E' }}>Cahier d'Automne</CardTitle>
-                                <CardSubtitle tag="h7" className="mb-2 text-muted"></CardSubtitle>
+                                <CardSubtitle tag="h6" className="mb-2 text-muted"></CardSubtitle>
                                 <CardText style={{ color: '#1F8A9E', fontSize: 13 }}>100% des exercices sur les chapitres étudiés depuis la rentrée de Septembre.</CardText>
                             </CardBody>
                         </Card>
@@ -161,7 +161,7 @@ function HomeScreenParent() {
                             <CardImg top src="./cahierNoel.png" alt="Card image cap" style={{ width: '30%' }} />
                             <CardBody>
                                 <CardTitle tag="h6" style={{ color: '#1F8A9E' }}>Cahier de Noël</CardTitle>
-                                <CardSubtitle tag="h7" className="mb-2 text-muted"></CardSubtitle>
+                                <CardSubtitle tag="h6" className="mb-2 text-muted"></CardSubtitle>
                                 <CardText style={{ color: '#1F8A9E', fontSize: 13 }}>20% des exercices sur les chapitres étudiés jusqu'aux vacances de la Toussaint et 80% des exercices sur les chapitres étudiés depuis les vacances de la Toussaint jusqu'aux vacances de Noël.</CardText>
                             </CardBody>
                         </Card>
@@ -171,7 +171,7 @@ function HomeScreenParent() {
                             <CardImg top src="./cahierHiver.png" alt="Card image cap" style={{ width: '30%' }} />
                             <CardBody>
                                 <CardTitle tag="h6" style={{ color: '#1F8A9E' }}>Cahier d'Hiver</CardTitle>
-                                <CardSubtitle tag="h7" className="mb-2 text-muted"></CardSubtitle>
+                                <CardSubtitle tag="h6" className="mb-2 text-muted"></CardSubtitle>
                                 <CardText style={{ color: '#1F8A9E', fontSize: 13 }}>40% des exercices sur les chapitres étudiés jusqu'aux vacances de Noël et 60% des exercices sur les chapitres étudiés depuis les vacances de Noël jusqu'aux vacances d'hiver.</CardText>
                             </CardBody>
                         </Card>
@@ -183,7 +183,7 @@ function HomeScreenParent() {
                             <CardImg top src="./cahierPrintemps.png" alt="Card image cap" style={{ width: '30%' }} />
                             <CardBody>
                                 <CardTitle tag="h6" style={{ color: '#1F8A9E' }}>Cahier de Printemps</CardTitle>
-                                <CardSubtitle tag="h7" className="mb-2 text-muted"></CardSubtitle>
+                                <CardSubtitle tag="h6" className="mb-2 text-muted"></CardSubtitle>
                                 <CardText style={{ color: '#1F8A9E', fontSize: 13 }}>60% des exercices sur les chapitres étudiés jusqu'aux vacances de d'hiver et 40% des exercices sur les chapitres étudiés depuis les vacances d'hiver jusqu'aux vacances de Pâques.</CardText>
                             </CardBody>
                         </Card>
@@ -193,7 +193,7 @@ function HomeScreenParent() {
                             <CardImg top src="./cahierEte.png" alt="Card image cap" style={{ width: '30%' }} />
                             <CardBody>
                                 <CardTitle tag="h6" style={{ color: '#1F8A9E' }}>Cahier d'Été</CardTitle>
-                                <CardSubtitle tag="h7" className="mb-2 text-muted"></CardSubtitle>
+                                <CardSubtitle tag="h6" className="mb-2 text-muted"></CardSubtitle>
                                 <CardText style={{ color: '#1F8A9E', fontSize: 13 }}>Une révision complète sur tous les chapitres étudiés durant l'année scolaire.</CardText>
                             </CardBody>
                         </Card>
@@ -259,7 +259,7 @@ function HomeScreenParent() {
                             <CardImg top src="./MemojiGwenola.png" alt="Card image cap" style={{ width: '50%' }} />
                             <CardBody>
                                 <CardTitle tag="h6" style={{ color: '#1F8A9E' }}>Judith</CardTitle>
-                                <CardSubtitle tag="h10" className="mb-2 text-muted">Élève de 6ème</CardSubtitle>
+                                <CardSubtitle tag="h6" className="mb-2 text-muted">Élève de 6ème</CardSubtitle>
                                 <CardText style={{ color: '#1F8A9E', fontSize: 13 }}>"C'est top! j'ai compris les fractions progressivement en faisant des exercices."</CardText>
                             </CardBody>
                         </Card>
@@ -269,7 +269,7 @@ function HomeScreenParent() {
                             <CardImg top src="./MemojiGeraldine.png" alt="Card image cap" style={{ width: '50%' }} />
                             <CardBody>
                                 <CardTitle tag="h6" style={{ color: '#1F8A9E' }}>Géraldine</CardTitle>
-                                <CardSubtitle tag="h7" className="mb-2 text-muted">Maman d'une élève de 6ème</CardSubtitle>
+                                <CardSubtitle tag="h6" className="mb-2 text-muted">Maman d'une élève de 6ème</CardSubtitle>
                                 <CardText style={{ color: '#1F8A9E', fontSize: 13 }}>"Ma fille est passée de 10 à 13 de moyenne en mathématiques grâce à l'application Mulmug, je recommande !"</CardText>
                             </CardBody>
                         </Card>
@@ -279,7 +279,7 @@ function HomeScreenParent() {
                             <CardImg top src="./MemojiJMN.png" alt="Card image cap" style={{ width: '50%' }} />
                             <CardBody>
                                 <CardTitle tag="h6" style={{ color: '#1F8A9E' }}>JMN</CardTitle>
-                                <CardSubtitle tag="h7" className="mb-2 text-muted">Parent d'un élève de 6ème</CardSubtitle>
+                                <CardSubtitle tag="h6" className="mb-2 text-muted">Parent d'un élève de 6ème</CardSubtitle>
                                 <CardText style={{ color: '#1F8A9E', fontSize: 13 }}>"Mulmug, une application géniale qui motive vraiment mon fils à travailler !"</CardText>
                             </CardBody>
                         </Card>

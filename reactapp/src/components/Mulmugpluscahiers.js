@@ -9,7 +9,7 @@ import Footer from './footer.js'
 function MulmugPlusCahiers() {
 
 
-    {/* TABLEAU D'OBJETS POUR LA MAP */ }
+    /* TABLEAU D'OBJETS POUR LA MAP */
 
     var cahierVacData = [
         { name: "Cahier de Vacances - Toussaint", url: "./cahierAutomne.png", holiday: "TOUSSAINTS", matiere: "Mathématiques", price: "4.99€" },
@@ -19,13 +19,13 @@ function MulmugPlusCahiers() {
         { name: "Cahier de Vacances - Été", url: "./cahierEte.png", holiday: "ÉTÉ", matiere: "Mathématiques", price: "8.99€" },
     ];
 
-    {/* LA MAP */ }
+    /* LA MAP */
 
     var cahierVacCard = cahierVacData.map(function (cahier, i) {
         return <Col xs={10} md={3} style={styleCahier}>
             <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderTopLeftRadius: 19, borderTopRightRadius: 19, background: "linear-gradient( #8DAADC, #665EFF)", marginBottom: 20 }}>
                 <Col xs={4} style={{ display: 'flex' }}>
-                    <img width='100%' src={cahier.url} />
+                    <img alt="" width='100%' src={cahier.url} />
                 </Col>
                 <Col xs={8}>
                     <p style={{ display: 'flex', textAlign: 'center', color: '#FFFFFF', marginBottom: 0 }}>CAHIER DE VACANCES</p>

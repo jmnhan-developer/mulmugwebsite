@@ -6,8 +6,8 @@ const encBase64 = require('crypto-js/enc-base64');
 var mongoose = require('mongoose');
 const userModel = require('../models/user');
 const productModel = require('../models/product')
-const adminModel =require('../models/admin')
-const superAdminModel =require('../models/superadmin')
+const adminModel = require('../models/admin')
+const superAdminModel = require('../models/superadmin')
 
 
 /* GET home page. */
@@ -168,12 +168,12 @@ router.post('/admincreation', async function (req, res, next) {
 
     var salt = uid2(32)
     var admin = new adminModel({
-      adminFirstName:req.body.adminFirstNameFromFront,
-      adminLastName:req.body.adminLastNameFromFront,
-      adminPosition:req.body.adminPositionFromFront,
-      adminEmail:req.body.adminEmailFromFront,
+      adminFirstName: req.body.adminFirstNameFromFront,
+      adminLastName: req.body.adminLastNameFromFront,
+      adminPosition: req.body.adminPositionFromFront,
+      adminEmail: req.body.adminEmailFromFront,
       adminPassword: SHA256(req.body.adminPasswordFromFront + salt).toString(encBase64),
-      adminRole:req.body.adminRoleFromFront,
+      adminRole: req.body.adminRoleFromFront,
       token: uid2(32),
       salt: salt
 
@@ -270,12 +270,12 @@ router.post('/superadmincreation', async function (req, res, next) {
 
     var salt = uid2(32)
     var superAdmin = new superAdminModel({
-      superAdminFirstName:req.body.superAdminFirstNameFromFront,
-      superAdminLastName:req.body.superAdminLastNameFromFront,
-      superAdminPosition:req.body.superAdminPositionFromFront,
-      superAdminEmail:req.body.superAdminEmailFromFront,
+      superAdminFirstName: req.body.superAdminFirstNameFromFront,
+      superAdminLastName: req.body.superAdminLastNameFromFront,
+      superAdminPosition: req.body.superAdminPositionFromFront,
+      superAdminEmail: req.body.superAdminEmailFromFront,
       superAdminPassword: SHA256(req.body.superAdminPasswordFromFront + salt).toString(encBase64),
-      superAdminRole:req.body.superAdminRoleFromFront,
+      superAdminRole: req.body.superAdminRoleFromFront,
       token: uid2(32),
       salt: salt
 
@@ -334,3 +334,95 @@ router.post('/superadminsignin', async function (req, res, next) {
   res.json({ result, superAdmin, error, token })
 
 })
+
+/* ROUTE POUR LA CRÉATION D'UN PRODUIT OU UNE OFFRE */
+router.post('/productcreation', async function (req, res, next) {
+
+  console.log('PASSING', req.body);
+
+  var error = []
+  var result = false
+  var saveProduct = null
+
+
+  if (req.body.categoryFromFront == ''
+    || req.body.commercialNameFromFront == ''
+    || req.body.priceHTFromFront == ''
+    || req.body.rateTVAFromFront == ''
+    || req.body.priceTTCFromFront == ''
+
+  ) {
+    error.push('Un ou des champs obligatoires sont vides. Veuillez svp les renseigner.')
+  }
+
+  if (error.length === 0) {
+
+    console.log('NO ERROR');
+
+    var product = new productModel({
+
+      category: req.body.categoryFromFront,
+      commercialName: req.body.commercialNameFromFront,
+      commitment: req.body.commitmentFromFront,
+      nbrPoints: req.body.nbrPointsFromFront,
+      period: req.body.periodFromFront,
+      discipline: req.body.disciplineFromFront,
+      grade: req.body.gradeFromFront,
+      priceHT: req.body.priceHTFromFront,
+      rateTVA: req.body.rateTVAFromFront,
+      priceTTC: req.body.priceTTCFromFront,
+      durationDays: req.body.durationDaysFromFront,
+      beginingDate: req.body.beginingDateFromFront,
+      endDate: req.body.endDateFromFront
+
+    })
+
+
+    saveProduct = await product.save()
+
+
+    if (saveProduct) {
+      result = true
+    }
+  }
+  res.json({ result, saveProduct, error })
+})
+
+
+
+/* RECUPERER LES DONNEES DE PRODUITS ABONDEMENT */
+router.get('/loadingabonddata', async function (req, res, next) {
+  console.log('je suis sur la bonne route')
+
+  let products = await productModel.find({category:'Abondement en points'})
+    res.json({ products });
+  
+});
+
+
+/* RECUPERER LES DONNEES DE PRODUITS FORFAIT SANS PUB */
+router.get('/loadingforfaitdata', async function (req, res, next) {
+  console.log('je suis sur la bonne route')
+
+  let products = await productModel.find({category:'Forfait sans Pub'})
+    res.json({ products });
+  
+});
+
+/* RECUPERER LES DONNEES DE PRODUITS CAHIERS DE VACANCES */
+router.get('/loadingcahierdata', async function (req, res, next) {
+  console.log('je suis sur la bonne route')
+
+  let products = await productModel.find({category:'Cahier de Vacances'})
+    res.json({ products });
+  
+});
+
+/* RECUPERER LES DONNEES DE L'UTILISATEUR */
+router.get('/loadinguserinfo', async function(req, res, next) {
+  console.log('-------------test req.query',req.query);
+  let data = await userModel.findOne({token:req.query.token})
+
+  console.log("--------On a quoi dans data?", data)
+  res.json(data);
+});
