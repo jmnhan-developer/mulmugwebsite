@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Row, Col, Table } from 'reactstrap';
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import Header from './header.js'
 import Footer from './footer.js'
 
 
 const MonPanier = (props) => {
-
-    console.log("Est ce que ça envoie bien dans mon panier", props.product)
 
 
     return (
@@ -24,7 +22,7 @@ const MonPanier = (props) => {
                     <Col xs={12} md={6} style={{ marginBottom: 30 }}>
                         <h6 style={{ color: '#1F8A9E', textAlign: 'center' }}>Mes commandes</h6>
                         <div style={{ border: '1px solid grey', borderRadius: 10 }}>
-
+                            
                             <Table borderless>
                                 <thead>
                                     <tr style={{ color: '#1F8A9E' }}>
@@ -44,7 +42,7 @@ const MonPanier = (props) => {
                                     <tr style={{ fontWeight: 'bold' }}>
                                         <th></th>
                                         <td>Total à payer</td>
-                                        <td>89€</td>
+                                        <td>{props.product.priceTTC}€</td>
                                         <td></td>
                                     </tr>
                                 </tbody>
@@ -66,9 +64,7 @@ const MonPanier = (props) => {
             </div>
 
             <Footer />
-
-
-
+            
         </div>
 
     )

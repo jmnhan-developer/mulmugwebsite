@@ -5,12 +5,35 @@ import { connect } from 'react-redux';
 
 
 
-function PlusAbondement({token, onSubmitproduct}) {
+
+function PlusAbondement(props) {
 
 
     const [productList, setProductList] = useState([])
     const [goToBasket, setGoToBasket] = useState(false)
 
+    const [userInfo, setUserInfo] = useState([])
+    const [userFirstName, setUserFirstName] = useState('')
+    const [userLastName, setUserLastName] = useState('')
+    const [userEmail, setUserEmail] = useState('')
+    const [studentFirstName, setStudentFirstName] = useState('')
+
+
+    useEffect(() => {
+        const findUser = async () => {
+            const data = await fetch(`/loadinguserinfo?token=${props.token}`)
+            const body = await data.json()
+            if (body) {
+                setUserInfo(body)
+                setUserFirstName(body.userFirstName)
+                setUserLastName(body.userLastName)
+                setUserEmail(body.userEmail)
+                setStudentFirstName(body.student[(0)].studentFirstName)
+                console.log("******Dans Abondement******", body.student[(0)].studentFirstName)
+            }
+        }
+        findUser()
+    }, [])
 
     useEffect(() => {
         const findProducts = async () => {
@@ -30,13 +53,13 @@ function PlusAbondement({token, onSubmitproduct}) {
             </Row>
             <Row style={{ display: 'flex', flexDirection: 'column', marginBottom: 10, alignItems: 'center', justifyContent: 'center' }}>
                 <p style={{ color: '#1F8A9E' }}>{e.priceTTC}€</p>
-                <Button onClick={() => { setGoToBasket(true); onSubmitproduct(e) }} style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }}>HOP ! DANS MON PANIER !</Button>
+                <Button onClick={() => { setGoToBasket(true); props.onSubmitproduct(e) }} style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }}>HOP ! DANS MON PANIER !</Button>
             </Row>
         </Col>
     });
 
 
-    if(goToBasket === true) {
+    if (goToBasket === true) {
         return <Redirect to='/monpanier' />
     }
 
@@ -45,15 +68,15 @@ function PlusAbondement({token, onSubmitproduct}) {
         <div style={{ display: 'flex', flexDirection: 'column', paddingLeft: 15, paddingRight: 15, alignItems: 'center' }}>
 
             <Row style={{ display: 'flex', flexDirection: 'column', marginTop: 20, marginBottom: 20, textAlign: 'center' }}>
-                <h6 style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>ABONDEMENT</h6>
-                <p style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>Encouragez (Prénom de l'élève) à travailler en la récompensant avec vos propres points !</p>
+                <h5 style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>ABONDEMENT</h5>
+                <p style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>Encouragez {studentFirstName} à travailler en le récompensant avec vos propres points !</p>
             </Row>
 
             <Col xs={11} style={{ display: 'flex', flexDirection: 'column', marginTop: 20, marginBottom: 20, background: 'linear-gradient(#54C5B4, #1F8A9E)', borderRadius: 10 }}>
                 <h6 style={{ display: 'flex', justifyContent: 'center', color: '#FFFFFF', marginTop: 20 }}>MES ABONDEMENTS DE L'ANNÉE</h6>
                 <Col xs={12} style={{ display: 'flex', flexDirection: 'row', backgroundColor: '#FFFFFF', borderTopLeftRadius: 10, borderTopRightRadius: 10, padding: 0 }}>
                     <p style={{ display: 'flex', width: '50%', justifyContent: 'center', margin: 0, borderRight: '1px solid #1F8A9E', color: '#1F8A9E' }}>Disponibles</p>
-                    <p style={{ display: 'flex', width: '50%', justifyContent: 'center', margin: 0, borderLeft: '1px solid #1F8A9E', color: '#1F8A9E' }}>Gagnés par (Prénom de l'élève)</p>
+                    <p style={{ display: 'flex', width: '50%', justifyContent: 'center', margin: 0, borderLeft: '1px solid #1F8A9E', color: '#1F8A9E' }}>Gagnés par {studentFirstName }</p>
                 </Col>
                 <Col xs={12} style={{ display: 'flex', flexDirection: 'row', backgroundColor: '#FDC41F', borderBottomLeftRadius: 10, borderBottomRightRadius: 10, padding: 0, marginBottom: 20 }}>
                     <p style={{ display: 'flex', width: '50%', justifyContent: 'center', margin: 0, borderRight: '1px solid #1F8A9E', color: '#FFFFFF' }}>693 points</p>
@@ -85,13 +108,13 @@ var styleAbond = {
     boxShadow: '3px 3px 3px #D5DBDB',
 };
 
-function mapStateToProps (state) {
-    return {token: state.token}
+function mapStateToProps(state) {
+    return { token: state.token }
 }
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
         onSubmitproduct: function (product) {
-            dispatch ({type:'selectedAbondement', product: product})
+            dispatch({ type: 'selectedAbondement', product: product })
 
         }
     }
@@ -100,4 +123,4 @@ function mapDispatchToProps (dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-) (PlusAbondement);
+)(PlusAbondement);

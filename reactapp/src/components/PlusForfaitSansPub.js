@@ -7,11 +7,34 @@ import { connect } from 'react-redux'
 
 
 
-function PlusForfaitSansPub({token, onSubmitproduct}) {
+function PlusForfaitSansPub(props) {
 
 
     const [productList, setProductList] = useState([])
     const [goToBasket, setGoToBasket] = useState(false)
+
+    const [userInfo, setUserInfo] = useState([])
+    const [userFirstName, setUserFirstName] = useState('')
+    const [userLastName, setUserLastName] = useState('')
+    const [userEmail, setUserEmail] = useState('')
+    const [studentFirstName, setStudentFirstName] = useState('')
+
+
+    useEffect(() => {
+        const findUser = async () => {
+            const data = await fetch(`/loadinguserinfo?token=${props.token}`)
+            const body = await data.json()
+            if (body) {
+                setUserInfo(body)
+                setUserFirstName(body.userFirstName)
+                setUserLastName(body.userLastName)
+                setUserEmail(body.userEmail)
+                setStudentFirstName(body.student[(0)].studentFirstName)
+                console.log("******Dans Abondement******", body.student[(0)].studentFirstName)
+            }
+        }
+        findUser()
+    }, [])
 
     useEffect(() => {
         const findProducts = async () => {
@@ -40,7 +63,7 @@ function PlusForfaitSansPub({token, onSubmitproduct}) {
                     <p style={{ textAlign: 'center', color: '#1F8A9E', marginBottom: 0 }}>{e.priceTTC}€ / mois </p>
                     <p style={{ textAlign: 'center', color: '#1F8A9E', marginBottom: 0 }}>{e.commitment}</p>
                 </Col>
-                <Button onClick={() => { setGoToBasket(true); onSubmitproduct(e) }} style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50, }}>HOP ! DANS MON PANIER !</Button>
+                <Button onClick={() => { setGoToBasket(true); props.onSubmitproduct(e) }} style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50, }}>HOP ! DANS MON PANIER !</Button>
             </Row>
         </Col>
     });
@@ -54,8 +77,8 @@ function PlusForfaitSansPub({token, onSubmitproduct}) {
         <div style={{ display: 'flex', flexDirection: 'column', paddingLeft: 15, paddingRight: 15, alignItems: 'center' }}>
 
             <Row style={{ display: 'flex', flexDirection: 'column', marginTop: 20, marginBottom: 20, textAlign: 'center' }}>
-                <h6 style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>SOUSCRIRE À UN FORFAIT</h6>
-                <p style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>Pour supprimer les pubs, vous pouvez souscrire à un forfait sans pub.</p>
+                <h5 style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>SOUSCRIRE À UN FORFAIT</h5>
+                <p style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>Pour supprimer les pubs et permettre à {studentFirstName} de travailler sans être dérangé, vous pouvez souscrire à un forfait sans pub.</p>
             </Row>
 
             <Col xs={11} style={{ display: 'flex', flexDirection: 'column', marginTop: 30, marginBottom: 30, background: 'linear-gradient(#54C5B4, #1F8A9E)', borderRadius: 10 }}>
@@ -119,7 +142,6 @@ function mapDispatchToProps (dispatch) {
     return {
         onSubmitproduct: function (product) {
             dispatch ({type:'selectedForfaitSansPub', product: product})
-
         }
     }
 }

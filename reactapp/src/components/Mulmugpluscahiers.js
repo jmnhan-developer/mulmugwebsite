@@ -1,12 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Row, Button, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux'
 import Header from './header.js'
 import Footer from './footer.js'
 
 
 
-function MulmugPlusCahiers() {
+function MulmugPlusCahiers(props) {
 
 
     /* TABLEAU D'OBJETS POUR LA MAP */
@@ -22,7 +23,7 @@ function MulmugPlusCahiers() {
     /* LA MAP */
 
     var cahierVacCard = cahierVacData.map(function (cahier, i) {
-        return <Col xs={10} md={3} style={styleCahier}>
+        return <Col key={i} xs={10} md={3} style={styleCahier}>
             <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderTopLeftRadius: 19, borderTopRightRadius: 19, background: "linear-gradient( #8DAADC, #665EFF)", marginBottom: 20 }}>
                 <Col xs={4} style={{ display: 'flex' }}>
                     <img alt="" width='100%' src={cahier.url} />
@@ -44,6 +45,18 @@ function MulmugPlusCahiers() {
             </Row>
         </Col>
     });
+
+    /* REDIRECTION SI TOKEN */
+    const [goToPage, setGoToPage] = useState(false)
+
+    if (goToPage === true) {
+
+        if (props.token) {
+            return <Redirect to='/homepageconnectedparent' />
+        } else {
+            return <Redirect to='/signinscreen' />
+        };
+    };
 
     return (
 
@@ -83,7 +96,7 @@ function MulmugPlusCahiers() {
                 </Row>
 
                 <Row style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }}>VALIDER MA SÉLECTION</Button>
+                    <Button onClick={() => { setGoToPage(true) }} style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }}>JE VEUX ACHETER UN CAHIER</Button>
                 </Row>
             </div>
 
@@ -138,4 +151,10 @@ var styleTextOnglet = {
     textAlign: 'center'
 }
 
-export default MulmugPlusCahiers;
+function mapStateToProps(state) {
+    return { token: state.token }
+};
+export default connect(
+    mapStateToProps,
+    null
+)(MulmugPlusCahiers);

@@ -1,7 +1,5 @@
 import React from 'react'
 import { Row, Button, Col, FormGroup, Input } from 'reactstrap';
-
-
 import Header from './header.js'
 import Footer from './footer.js'
 

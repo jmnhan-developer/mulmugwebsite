@@ -38,8 +38,6 @@ function SignUpScreenParent({onSubmitToken}) {
 
 
 
-
-
     // CHANGEMENT DE COULEUR DU BUTTON MADAME ET MONSIEUR LORSQU'IL EST SÉLECTIONNÉ
 
     var styleButtonMadame = {
@@ -118,7 +116,7 @@ function SignUpScreenParent({onSubmitToken}) {
 
     var handleClickGirl = () => {
         setSelectedGirl(!selectedGirl)
-        setStudentGender("Girl")
+        setStudentGender("Fille")
     }
     if (selectedGirl === true) {
         styleButtonGirl = {
@@ -134,8 +132,8 @@ function SignUpScreenParent({onSubmitToken}) {
 
     var handleClickBoy = () => {
         setSelectedBoy(!selectedBoy)
-        setStudentGender("Boy")
-    }
+        setStudentGender("Garçon")
+    }   
     if (selectedBoy === true) {
         styleButtonBoy = {
             marginRight: 10,
@@ -164,8 +162,8 @@ function SignUpScreenParent({onSubmitToken}) {
         const body = await data.json()
 
         if (body.result === true) {
-            setUserExists(true)
             onSubmitToken(body.token)
+            setUserExists(true)
         } else {
             setErrorsSignup(body.error)
         }
@@ -285,7 +283,6 @@ function mapDispatchToProps(dispatch) {
         }
     }
 }
-
 
 export default connect(
     null,

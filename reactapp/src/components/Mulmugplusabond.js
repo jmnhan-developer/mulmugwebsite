@@ -1,12 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Row, Col, Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux'
 import Header from './header.js'
 import Footer from './footer.js'
 
 
 
-function MulmugPlusAbond() {
+function MulmugPlusAbond(props) {
 
 
     /* TABLEAU D'OBJETS POUR LA MAP */
@@ -22,7 +23,7 @@ function MulmugPlusAbond() {
     /* LA MAP */
 
     var abondementCard = abondementData.map(function (abond, i) {
-        return <Col xs={10} md={3} style={styleAbond}>
+        return <Col key={i} xs={10} md={3} style={styleAbond}>
             <Row style={{ display: 'flex', flexDirection: 'column', marginBottom: 30, backgroundImage: 'url(./yellowstar1.png', width: 160, height: 160, alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
                 <p style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: 30, marginBottom: 1 }}>{abond.nbpoints}</p>
                 <p style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: 30, marginBottom: 1 }}>{abond.point}</p>
@@ -32,6 +33,22 @@ function MulmugPlusAbond() {
             </Row>
         </Col>
     });
+
+    /* REDIRECTION SI TOKEN */
+    const [goToPage, setGoToPage] = useState(false)
+
+    if (goToPage === true) {
+        console.log("inside gotopage")
+        if (props.token) {
+            console.log("gohomepage")
+            return <Redirect to='/homepageconnectedparent' />
+        } else {
+            console.log("gosignin")
+            return <Redirect to='/signinscreen' />
+
+        };
+    };
+
 
     return (
 
@@ -69,7 +86,7 @@ function MulmugPlusAbond() {
                 </Row>
 
                 <Row style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }}>VALIDER MA SÉLECTION</Button>
+                    <Button onClick={() => { setGoToPage(true) }} style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }}>JE VEUX ABONDER</Button>
                 </Row>
             </div>
 
@@ -124,4 +141,10 @@ var styleTextOnglet = {
     textAlign: 'center'
 };
 
-export default MulmugPlusAbond;
+function mapStateToProps(state) {
+    return { token: state.token }
+};
+export default connect(
+    mapStateToProps,
+    null
+)(MulmugPlusAbond);

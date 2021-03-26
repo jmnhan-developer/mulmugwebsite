@@ -1,13 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Row, Button, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
-
-
+import { Link, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux'
 import Header from './header.js'
 import Footer from './footer.js'
 
 
-function MulmugPlusForfaitSansPub() {
+function MulmugPlusForfaitSansPub(props) {
 
 
     /* TABLEAU D'OBJETS POUR LA MAP */
@@ -20,7 +19,7 @@ function MulmugPlusForfaitSansPub() {
     /* LA MAP */
 
     var forfaitSansPubCard = forfaitSansPubData.map(function (abonn, i) {
-        return <Col xs={12} md={3} style={styleAbonn}>
+        return <Col key={i} xs={12} md={3} style={styleAbonn}>
             <Row style={styleAbonnFirstRow}>
                 <Col xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 5 }}>
                     <h5 style={{ display: 'flex', textAlign: 'center', color: '#FFFFFF', marginBottom: 0, }}>{abonn.formule}</h5>
@@ -35,6 +34,18 @@ function MulmugPlusForfaitSansPub() {
             </Row>
         </Col>
     });
+
+    /* REDIRECTION SI TOKEN */
+    const [goToPage, setGoToPage] = useState(false)
+
+    if (goToPage === true) {
+
+        if (props.token) {
+            return <Redirect to='/homepageconnectedparent' />
+        } else {
+            return <Redirect to='/signinscreen' />
+        };
+    };
 
 
     return (
@@ -73,7 +84,7 @@ function MulmugPlusForfaitSansPub() {
                 </Row>
 
                 <Row style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }}>VALIDER MA SÉLECTION</Button>
+                    <Button onClick={() => { setGoToPage(true) }} style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }}>JE VEUX SOUSCRIRE À UN FORFAIT</Button>
                 </Row>
             </div>
 
@@ -156,4 +167,10 @@ var styleTextOnglet = {
     textAlign: 'center'
 }
 
-export default MulmugPlusForfaitSansPub;
+function mapStateToProps(state) {
+    return { token: state.token }
+};
+export default connect(
+    mapStateToProps,
+    null
+)(MulmugPlusForfaitSansPub);

@@ -1,8 +1,5 @@
 import React from 'react'
 import { Row, Col, Card, CardImg, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
-
-
-
 import Header from './header.js'
 import Footer from './footer.js'
 

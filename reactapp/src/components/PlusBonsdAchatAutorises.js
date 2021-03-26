@@ -1,11 +1,54 @@
-import React from 'react'
-import { Row, Col } from 'reactstrap';
+import React, {useState, useEffect} from 'react'
+import { Row, Col, FormGroup, CustomInput } from 'reactstrap'
+import { connect } from 'react-redux'
 
 
 
 
 
 function PlusBonsdAchatAutorises(props) {
+
+    const [autorised, setAutorised] = useState (false)
+
+
+    const [culturDep, setCulturDep] = useState (false)
+    const [sportEquipment, setSportEquipment] = useState (false)
+    const [playStores, setPlayStores] = useState (false)
+    const [cinemas, setCinemas] = useState (false)
+    const [shows, setShows] = useState (false)
+    const [hightTech, setHightTech] = useState (false)
+    const [music, setMusic] = useState (false)
+    const [sportswears, setSportswears] = useState (false)
+    const [accesLuggages, setAccesLuggages] = useState (false)
+    const [fashion, setFashion] = useState (false)
+    const [shoes, setShoes] = useState (false)
+    const [foodStores, setFoodStores] = useState (false)
+    const [snack, setSnack] = useState (false)
+    const [beauty, setBeauty] = useState (false)
+    const [gift, setGift] = useState (false)
+
+    const [userInfo, setUserInfo] = useState([])
+    const [userFirstName, setUserFirstName] = useState('')
+    const [userLastName, setUserLastName] = useState('')
+    const [userEmail, setUserEmail] = useState('')
+    const [studentFirstName, setStudentFirstName] = useState('')
+
+
+    useEffect(() => {
+        const findUser = async () => {
+            const data = await fetch(`/loadinguserinfo?token=${props.token}`)
+            const body = await data.json()
+            if (body) {
+                setUserInfo(body)
+                setUserFirstName(body.userFirstName)
+                setUserLastName(body.userLastName)
+                setUserEmail(body.userEmail)
+                setStudentFirstName(body.student[(0)].studentFirstName)
+                console.log("******Dans Abondement******", body.student[(0)].studentFirstName)
+            }
+        }
+        findUser()
+    }, [])
 
 
     /* TABLEAU D'OBJETS POUR LA MAP */
@@ -28,6 +71,30 @@ function PlusBonsdAchatAutorises(props) {
         { category: "DONS", stores: "WWF, Surfrider, SPA ...", url: "./icon_don.png" }
     ];
 
+    var handleClickAutorised = () => {
+        setAutorised (! autorised)
+
+        if (autorised === true) {
+            setCulturDep (true)
+            setSportEquipment (true)
+            setPlayStores (true)
+            setCinemas (true)
+            setShows (true)
+            setHightTech (true)
+            setMusic (true)
+            setSportswears (true)
+            setAccesLuggages (true)
+            setFashion (true)
+            setShoes (true)
+            setFoodStores (true)
+            setSnack (true)
+            setBeauty (true)
+            setGift (true)
+        }
+        
+
+    }
+
     /* LA MAP */
 
     var bonsdachatautorisesCard = bonsdachatautorisesData.map(function (bondachat, i) {
@@ -40,19 +107,27 @@ function PlusBonsdAchatAutorises(props) {
                     <p style={{ color: '#1F8A9E', fontSize: 13, fontWeight: 'bold', marginBottom: 0 }}>{bondachat.category}</p>
                 </Col>
             </div>
-            <div>
+            <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
                 <p style={{ color: '#1F8A9E', fontSize: 12, marginBottom: 10 }}>{bondachat.stores}</p>
+                <FormGroup>
+                    <div>
+                        <CustomInput type="switch" id="exampleCustomSwitch" name="customSwitch" label="" />
+                    </div>
+                </FormGroup>
             </div>
         </Col>
     });
+
+
+
 
     return (
 
         <div>
 
             <Row style={{ display: 'flex', flexDirection: 'column', alignContent: 'center', marginTop: 20, marginBottom: 20, paddingLeft: 15, paddingRight: 15 }}>
-                <h6 style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>CATEGORIES AUTORISÉES</h6>
-                <p style={{ display: 'flex', justifyContent: 'center', textAlign: 'center', color: '#1F8A9E' }}>(Prénom de l'élève) ne pourra demander de bons d'achat que dans les catégories que vous avez autorisées</p>
+                <h5 style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>CATEGORIES AUTORISÉES</h5>
+                <p style={{ display: 'flex', justifyContent: 'center', textAlign: 'center', color: '#1F8A9E' }}>{studentFirstName} ne pourra demander de bons d'achat que dans les catégories que vous avez autorisées.</p>
             </Row>
 
             {/* RESULTAT DE LA MAP */}
@@ -75,5 +150,11 @@ var styleCard = {
     boxShadow: '4px 4px 4px #D5DBDB',
 };
 
+function mapStateToProps (state) {
+    return {token: state.token}
+}
 
-export default PlusBonsdAchatAutorises;
+export default connect(
+    mapStateToProps,
+    null
+) (PlusBonsdAchatAutorises);

@@ -5,10 +5,33 @@ import { connect } from 'react-redux'
 
 
 
-function PlusCahiersVacances({token, onSubmitproduct}) {
+function PlusCahiersVacances(props) {
 
     const [productList, setProductList] = useState([])
     const [goToBasket, setGoToBasket] = useState(false)
+
+    const [userInfo, setUserInfo] = useState([])
+    const [userFirstName, setUserFirstName] = useState('')
+    const [userLastName, setUserLastName] = useState('')
+    const [userEmail, setUserEmail] = useState('')
+    const [studentFirstName, setStudentFirstName] = useState('')
+
+
+    useEffect(() => {
+        const findUser = async () => {
+            const data = await fetch(`/loadinguserinfo?token=${props.token}`)
+            const body = await data.json()
+            if (body) {
+                setUserInfo(body)
+                setUserFirstName(body.userFirstName)
+                setUserLastName(body.userLastName)
+                setUserEmail(body.userEmail)
+                setStudentFirstName(body.student[(0)].studentFirstName)
+                console.log("******Dans Abondement******", body.student[(0)].studentFirstName)
+            }
+        }
+        findUser()
+    }, [])
 
     useEffect(() => {
         const findProducts = async () => {
@@ -41,7 +64,7 @@ function PlusCahiersVacances({token, onSubmitproduct}) {
                 <Col xs={12}>
                     <p style={{ textAlign: 'center', color: '#1F8A9E', }}>{e.priceTTC}€</p>
                 </Col>
-                <Button onClick={() => { setGoToBasket(true); onSubmitproduct(e) }} style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50,  }}>HOP ! DANS MON PANIER !</Button>
+                <Button onClick={() => { setGoToBasket(true); props.onSubmitproduct(e) }} style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50,  }}>HOP ! DANS MON PANIER !</Button>
             </Row>
         </Col>
     });
@@ -53,8 +76,8 @@ function PlusCahiersVacances({token, onSubmitproduct}) {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', paddingLeft: 15, paddingRight: 15, alignItems: 'center' }}>
             <Row style={{ display: 'flex', flexDirection: 'column', marginTop: 20, marginBottom: 20, textAlign: 'center' }}>
-                <h6 style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>CAHIERS DE VACANCES</h6>
-                <p style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>Sélectionnez le cahier de vacances que vous souhaitez:</p>
+                <h5 style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>CAHIERS DE VACANCES</h5>
+                <p style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>Sélectionnez le cahier de vacances que vous souhaitez afin que {studentFirstName} puisse continuer à travailler pendant ses vacances...</p>
             </Row>
             <Row style={{ width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: 20, marginBottom: 50 }}>
                 {cahierVacCard}
@@ -85,7 +108,6 @@ function mapDispatchToProps (dispatch) {
     return {
         onSubmitproduct: function (product) {
             dispatch ({type:'selectedCahier', product: product})
-
         }
     }
 }

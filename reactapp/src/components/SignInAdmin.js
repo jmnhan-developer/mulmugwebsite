@@ -20,9 +20,6 @@ function SignInAdmin(props) {
     const [listErrorsSignin, setErrorsSignin] = useState([])
 
 
-
-
-
     // SIGN IN ADMIN
     var handleSubmitAdminSignIn = async () => {
 
@@ -36,13 +33,9 @@ function SignInAdmin(props) {
         const body = await data.json()
         console.log(body)
 
-        console.log('TEST ROUTE SIGN-IN')
-
-
         if (body.result === true) {
-            setAdminExists(true)
             props.addToken(body.token)
-            // setRoleState(body.user.role)
+            setAdminExists(true)
         } else {
             setErrorsSignin(body.error)
         }
@@ -57,7 +50,7 @@ function SignInAdmin(props) {
     })
 
 
-    // ACCEDER A L'ÉCRAN SUPER ADMIN
+    // SIGN IN SUPER ADMIN
     var handleSubmitSuperAdminSignIn = async () => {
 
         console.log('TEST FETCH')
@@ -67,17 +60,11 @@ function SignInAdmin(props) {
             body: `superAdminEmailFromFront=${superAdminEmail}&superAdminPasswordFromFront=${superAdminPassword}`
         })
 
-
         const body = await data.json()
-        console.log(body)
-
-        console.log('TEST ROUTE SIGN-IN')
-
 
         if (body.result === true) {
-            setSuperAdminExists(true)
             props.addToken(body.token)
-            // setRoleState(body.user.role)
+            setSuperAdminExists(true)
         } else {
             setErrorsSignin(body.error)
         }
@@ -171,19 +158,7 @@ function SignInAdmin(props) {
                             <Button onClick={() => handleSubmitSuperAdminSignIn()} style={{ width: 150, backgroundColor: '#FDC41F', border: 'none', borderRadius: 50, marginTop: 5, marginBottom: 5 }}>TE CONNECTER</Button>
                         </Row>
                     </Col>
-                    <Row>
 
-                        <Col style={{ margin: 5, marginBottom: 40, color: '#1F8A9E' }}>
-                            <Row style={{ display: 'flex', flexDirection: 'column', textAlign: 'center', alignItems: 'center', padding: 5, marginBottom: 10 }}>
-                                <h5>FRESH NEWS</h5>
-                            </Row>
-
-                            <Row style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', padding: 5, marginTop: 20 }}>
-                                <p style={{ margin: 0 }}> - Pour souhaiter la bienvenue à Louise, notre nouvelle Social Manageuse, rdv à l'accueil pour un petite déj le 10 Septembre 2021.</p>
-                                <p style={{ margin: 0 }}> - Pour les vacances de la Toussaint, l'application MULMUG prend des allures d'Halloween!</p>
-                            </Row>
-                        </Col>
-                    </Row>
                 </Row>
             </div>
 
@@ -197,7 +172,8 @@ function SignInAdmin(props) {
 function mapDispatchToProps(dispatch) {
     return {
         addToken: function (token) {
-            dispatch({ type: 'addToken', token: token })
+            dispatch({ type: 'addTokenFromSignInAdmin', token: token })
+            dispatch({type: 'addTokenFromSignInSuperAdmin', token: token})
         }
     }
 }

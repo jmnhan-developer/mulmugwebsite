@@ -1,7 +1,5 @@
 import React from 'react'
 import { Row, Col } from 'reactstrap';
-
-
 import Header from './header.js'
 import Footer from './footer.js'
 

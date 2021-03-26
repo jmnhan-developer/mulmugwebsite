@@ -3,9 +3,14 @@ export default function (token = "", action) {
         return action.token
     }
     if (action.type === 'addTokenFromSignIn') {
-        console.log("Token from reducer", action.token)
         return action.token
-    } else {
+    }
+    if (action.type === 'addTokenFromSignInAdmin') {
+        return action.token
+    } 
+    if (action.type === 'addTokenFromSignInSuperAdmin') {
+        return action.token
+    }else {
         return token
     }
 }

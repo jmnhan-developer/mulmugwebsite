@@ -18,6 +18,7 @@ router.get('/', function (req, res, next) {
 module.exports = router;
 
 
+
 /* ROUTE USER SIGN UP */
 router.post('/usersignup', async function (req, res, next) {
 
@@ -193,7 +194,7 @@ router.post('/admincreation', async function (req, res, next) {
 
 
 
-/* ROUTE ADMIN SIGN IN */
+/* ROUTE SIGN IN ADMIN */
 router.post('/adminsignin', async function (req, res, next) {
   var result = false
   var admin = null
@@ -228,12 +229,14 @@ router.post('/adminsignin', async function (req, res, next) {
       error.push('Incorrect Email')
     }
   }
+  console.log("****Token from Sign in admin****", token)
 
   console.log("back", admin, result)
 
   res.json({ result, admin, error, token })
 
 })
+
 
 
 /* ROUTE POUR LA CRÉATION DE SUPER ADMIN */
@@ -293,7 +296,9 @@ router.post('/superadmincreation', async function (req, res, next) {
   res.json({ result, saveSuperAdmin, error, token })
 })
 
-/* ROUTE SUPER ADMIN SIGN IN */
+
+
+/* ROUTE SIGN IN SUPER ADMIN */
 router.post('/superadminsignin', async function (req, res, next) {
   var result = false
   var superAdmin = null
@@ -329,11 +334,15 @@ router.post('/superadminsignin', async function (req, res, next) {
     }
   }
 
+  console.log("****Token from Sign in super admin****", token)
+
   console.log("back", superAdmin, result)
 
   res.json({ result, superAdmin, error, token })
 
 })
+
+
 
 /* ROUTE POUR LA CRÉATION D'UN PRODUIT OU UNE OFFRE */
 router.post('/productcreation', async function (req, res, next) {
@@ -377,9 +386,7 @@ router.post('/productcreation', async function (req, res, next) {
 
     })
 
-
     saveProduct = await product.save()
-
 
     if (saveProduct) {
       result = true
@@ -400,6 +407,7 @@ router.get('/loadingabonddata', async function (req, res, next) {
 });
 
 
+
 /* RECUPERER LES DONNEES DE PRODUITS FORFAIT SANS PUB */
 router.get('/loadingforfaitdata', async function (req, res, next) {
   console.log('je suis sur la bonne route')
@@ -408,6 +416,8 @@ router.get('/loadingforfaitdata', async function (req, res, next) {
     res.json({ products });
   
 });
+
+
 
 /* RECUPERER LES DONNEES DE PRODUITS CAHIERS DE VACANCES */
 router.get('/loadingcahierdata', async function (req, res, next) {
@@ -418,11 +428,28 @@ router.get('/loadingcahierdata', async function (req, res, next) {
   
 });
 
+
+
 /* RECUPERER LES DONNEES DE L'UTILISATEUR */
 router.get('/loadinguserinfo', async function(req, res, next) {
   console.log('-------------test req.query',req.query);
   let data = await userModel.findOne({token:req.query.token})
 
   console.log("--------On a quoi dans data?", data)
+
   res.json(data);
+
+});
+
+
+
+/* RECUPERER LES DONNEES DE L'ADMIN */
+router.get('/loadingadmininfo', async function(req, res, next) {
+  console.log('-------------test req.query',req.query);
+  let data = await adminModel.findOne({token:req.query.token})
+
+  console.log("--------On a quoi dans data?", data)
+
+  res.json(data);
+
 });

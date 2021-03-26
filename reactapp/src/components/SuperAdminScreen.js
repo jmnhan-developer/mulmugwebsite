@@ -1,14 +1,10 @@
 import React, { useState } from 'react'
 import { Row, Button, Col, FormGroup, Input } from 'reactstrap';
-import { connect } from 'react-redux'
 import Header from './header.js'
 import Footer from './footer.js'
 
 
-
-
-function SuperAdminScreen(props) {
-
+function SuperAdminScreen() {
 
     const [adminFirstName, setAdminFirstName] = useState('')
     const [adminLastName, setAdminLastName] = useState('')
@@ -30,10 +26,9 @@ function SuperAdminScreen(props) {
     const [superAdminExists, setSuperAdminExists] = useState(false)
 
 
-    // CRÉATION D'UN COMPTE ADMIN
+    //ROUTE POUR LA CRÉATION D'UN COMPTE ADMIN
 
     var handleSubmitAdminCreation = async () => {
-        console.log("HELLO WORLD")
 
         const data = await fetch('/admincreation', {
             method: 'POST',
@@ -41,32 +36,27 @@ function SuperAdminScreen(props) {
             body: `adminFirstNameFromFront=${adminFirstName}&adminLastNameFromFront=${adminLastName}&adminPositionFromFront=${adminPosition}&adminEmailFromFront=${adminEmail}&adminPasswordFromFront=${adminPassword}&adminRoleFromFront=${adminRole}`
         })
 
-        console.log(data.body + "HELLO WORLD")
-
         const body = await data.json()
 
         if (body.result === true) {
             setAdminExists(true)
-            props.addToken(body.token)
+            // props.addToken(body.token)
         } else {
             setErrorsSignup(body.error)
         }
-
     }
 
     if (adminExists) {
         return (<p style={{ fontSize: 20, color: '#FDC41F' }}>Un admin a bien été créé!</p>)
-        // return <Redirect to='/homepageconnectedparent' />
     }
 
     var tabErrorsSignup = listErrorsSignup.map((error, i) => {
         return (<p style={{ color: 'red' }}>{error}</p>)
     })
 
-    // CRÉATION D'UN COMPTE SUPER ADMIN
+    // ROUTE POUR LA CRÉATION D'UN COMPTE SUPER ADMIN
 
     var handleSubmitSuperAdminCreation = async () => {
-        console.log("HELLO WORLD")
 
         const data = await fetch('/superadmincreation', {
             method: 'POST',
@@ -74,13 +64,11 @@ function SuperAdminScreen(props) {
             body: `superAdminFirstNameFromFront=${superAdminFirstName}&superAdminLastNameFromFront=${superAdminLastName}&superAdminPositionFromFront=${superAdminPosition}&superAdminEmailFromFront=${superAdminEmail}&superAdminPasswordFromFront=${superAdminPassword}&superAdminRoleFromFront=${superAdminRole}`
         })
 
-        console.log(data.body + "HELLO WORLD")
-
         const body = await data.json()
 
         if (body.result === true) {
+            // props.addToken(body.token)
             setSuperAdminExists(true)
-            props.addToken(body.token)
         } else {
             setErrorsSignup(body.error)
         }
@@ -89,7 +77,6 @@ function SuperAdminScreen(props) {
 
     if (superAdminExists) {
         return (<p style={{ fontSize: 20, color: '#FDC41F' }}>Un admin a bien été créé!</p>)
-        // return <Redirect to='/homepageconnectedparent' />
     }
 
     var tabErrorsSignup = listErrorsSignup.map((error, i) => {
@@ -103,7 +90,7 @@ function SuperAdminScreen(props) {
             <Header />
 
             <div>
-                {/* CREATION ADMIN */}
+                {/* BLOC CREATION ADMIN */}
 
                 <Row form style={{ display: 'flex', justifyContent: 'center', paddingLeft: 15, paddingRight: 15 }}>
                     <Col xs={12} md={6} style={{ width: 500 }}>
@@ -139,7 +126,7 @@ function SuperAdminScreen(props) {
                     </Col>
 
 
-                    {/* CRÉATION SUPER ADMIN */}
+                    {/* BLOC CRÉATION SUPER ADMIN */}
 
                     <Col xs={12} md={6} style={{ width: 500 }}>
                         <FormGroup>
@@ -202,16 +189,17 @@ var styleInputClasse = {
     color: 'grey'
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        addToken: function (token) {
-            dispatch({ type: 'addToken', token: token })
-        }
-    }
-}
+// function mapDispatchToProps(dispatch) {
+//     return {
+//         addToken: function (token) {
+//             dispatch({ type: 'addToken', token: token })
+//         }
+//     }
+// }
 
 
-export default connect(
-    null,
-    mapDispatchToProps
-)(SuperAdminScreen)
+// export default connect(
+//     null,
+//     mapDispatchToProps
+// )(SuperAdminScreen)
+export default SuperAdminScreen

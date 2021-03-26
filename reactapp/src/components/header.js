@@ -5,10 +5,6 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 
-
-
-
-
 function Header(props) {
 
     // CREATION DU DROPDOWN

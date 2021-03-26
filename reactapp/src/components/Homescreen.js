@@ -4,10 +4,8 @@ import { Link } from 'react-router-dom'
 
 
 
-
-
-
 function Homescreen() {
+
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', backgroundImage: 'url(./hpbackground.png)', height: '100vh', backgroundPosition: 'center', paddingLeft: 15, paddingRight: 15 }}>
@@ -50,6 +48,6 @@ function Homescreen() {
     )
 }
 
+export default Homescreen
 
-export default Homescreen;
 

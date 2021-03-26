@@ -1,8 +1,6 @@
 import React from 'react';
 import { Row, Button, Col, Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText, } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
-
 import Header from './header.js';
 import Footer from './footer.js'
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Button, Col, FormGroup, Input } from 'reactstrap';
 import { connect } from 'react-redux'
 import Header from './header.js'
@@ -6,7 +6,7 @@ import Footer from './footer.js'
 
 
 
-function HomeAdminScreen() {
+function HomeAdminScreen(props) {
 
     const [category, setCategory] = useState('')
     const [commercialName, setCommercialName] = useState('')
@@ -14,7 +14,7 @@ function HomeAdminScreen() {
     const [nbrPoints, setNbrPoints] = useState('')
     const [period, setPeriod] = useState('')
     const [discipline, setDiscipline] = useState('')
-    const [grade, setGrade]  = useState('')
+    const [grade, setGrade] = useState('')
     const [priceHT, setPriceHT] = useState('')
     const [rateTVA, setRateTVA] = useState('')
     const [priceTTC, setPriceTTC] = useState('')
@@ -26,10 +26,33 @@ function HomeAdminScreen() {
     const [listErrorsSignup, setErrorsSignup] = useState([])
 
 
-    // CRÉATION D'UN COMPTE ADMIN
+    const [adminInfo, setAdminInfo] = useState([])
+    const [adminFirstName, setAdminFirstName] = useState('')
+    const [adminLastName, setAdminLastName] = useState('')
+    const [adminEmail, setAdminEmail] = useState('')
 
+    // RÉCUPÉRATION DES DONNÉES ADMIN
+    useEffect(() => {
+
+        const findUser = async () => {
+            const data = await fetch(`/loadingadmininfo?token=${props.token}`)
+            const body = await data.json()
+            console.log("body dans le front", body)
+
+            if (body) {
+                setAdminInfo(body)
+                setAdminFirstName(body.adminFirstName)
+                setAdminLastName(body.adminLastName)
+                setAdminEmail(body.adminEmail)
+            }
+        }
+        findUser()
+    }, []);
+
+
+    // ENVOI DES DONNÉES PRODUITS EN CRÉATION DANS LE BACK
     var handleSubmitProductCreation = async () => {
-        
+
         const data = await fetch('/productcreation', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -45,12 +68,10 @@ function HomeAdminScreen() {
         } else {
             setErrorsSignup(body.error)
         }
-
     }
 
     if (productExists) {
         return (<p style={{ fontSize: 20, color: '#FDC41F' }}>Un produit a bien été créé!</p>)
-        // return <Redirect to='/homepageconnectedparent' />
     }
 
     var tabErrorsSignup = listErrorsSignup.map((error, i) => {
@@ -67,7 +88,8 @@ function HomeAdminScreen() {
             <div>
                 {/* CREATION D'UN PRODUIT */}
 
-                <Row form style={{ display: 'flex', justifyContent: 'center', paddingLeft: 15, paddingRight: 15 }}>
+                <Row form style={{ display: 'flex', justifyContent: 'center', paddingLeft: 15, paddingRight: 15, paddingTop:50 }}>
+                    <h5 style={{ color: '#1F8A9E', fontWeight: 'bold', marginBottom:20 }} >Hello {adminFirstName} !</h5>
                     <Col xs={12} md={6} style={{ width: 500 }}>
                         <FormGroup>
                             <p style={{ color: '#1F8A9E', fontWeight: 'bold' }}>CRÉER UN NOUVEAU PRODUIT</p>
@@ -127,10 +149,15 @@ function HomeAdminScreen() {
                     {/*  */}
 
                     <Col xs={12} md={6} style={{ width: 500 }}>
+                        <Row style={{paddingLeft:50, paddingRight:30}}>
+                            <p style={{ color: '#1F8A9E', fontWeight: 'bold' }}>FRESH NEWS</p>
+                            <Row style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', padding: 5, marginTop: 20 }}>
+                                <p style={{ margin: 0 }}> - Pour souhaiter la bienvenue à Louise, notre nouvelle Social Manageuse, rdv à l'accueil pour un petite déj le 10 Septembre 2021.</p>
+                                <p style={{ margin: 0 }}> - Pour les vacances de la Toussaint, l'application MULMUG prend des allures d'Halloween!</p>
+                            </Row>
 
-                        <Row style={{ display: 'flex', justifyContent: 'center', marginTop: 40, marginBottom: 40 }}>
-                            <Button style={{ width: 300, backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }} >VALIDER</Button>
                         </Row>
+
                     </Col>
                 </Row>
 
@@ -162,19 +189,15 @@ var styleInputClasse = {
     color: 'grey'
 }
 
-function mapDispatchToProps(dispatch) {
-    return {
-        addToken: function (token) {
-            dispatch({ type: 'addToken', token: token })
-        }
-    }
+
+function mapStateToProps(state) {
+    return { token: state.token }
 }
 
-
 export default connect(
-    null,
-    mapDispatchToProps
-)(HomeAdminScreen)
+    mapStateToProps,
+    null
+)(HomeAdminScreen);
 
 
 

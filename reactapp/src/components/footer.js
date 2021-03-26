@@ -22,9 +22,9 @@ function Footer() {
                     <Link to='/QuiSommesNous' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Qui sommes nous?</p></Link>
                     <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Matières</p></Link>
                     <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Points Mulmug</p></Link>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Abondement en points</p></Link>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Abonnement premium</p></Link>
-                    <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Cahiers de vacances</p></Link>
+                    <Link to='/Mulmugplusabond' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Abondement en points</p></Link>
+                    <Link to='/MulmugPlusForfaitSansPub' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Forfait sans pub</p></Link>
+                    <Link to='/Mulmugpluscahiers' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Cahiers de vacances</p></Link>
                     <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Nos partenaires</p></Link>
                 </Col>
                 <Col xs={12} md={3} style={{ display: 'flex', flexDirection: 'column', marginBottom: 10 }}>
