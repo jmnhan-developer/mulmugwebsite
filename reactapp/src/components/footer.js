@@ -78,7 +78,6 @@ function Footer() {
     )
 }
 
-
 var styleTextFooter = {
     marginBottom: 1,
     fontSize: 13,

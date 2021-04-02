@@ -30,7 +30,6 @@ function PlusForfaitSansPub(props) {
                 setUserLastName(body.userLastName)
                 setUserEmail(body.userEmail)
                 setStudentFirstName(body.student[(0)].studentFirstName)
-                console.log("******Dans Abondement******", body.student[(0)].studentFirstName)
             }
         }
         findUser()
@@ -60,7 +59,7 @@ function PlusForfaitSansPub(props) {
             </Row>
             <Row style={styleAbonnSecondRow}>
                 <Col xs={12} style={{display:'flex', flexDirection:'column', justifyContent:'center'}}>
-                    <p style={{ textAlign: 'center', color: '#1F8A9E', marginBottom: 0 }}>{e.priceTTC}€ / mois </p>
+                    <p style={{ textAlign: 'center', color: '#1F8A9E', marginBottom: 0 }}>{e.priceTTC}€ / mois</p>
                     <p style={{ textAlign: 'center', color: '#1F8A9E', marginBottom: 0 }}>{e.commitment}</p>
                 </Col>
                 <Button onClick={() => { setGoToBasket(true); props.onSubmitproduct(e) }} style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50, }}>HOP ! DANS MON PANIER !</Button>

@@ -16,14 +16,11 @@ function Header(props) {
 
 
     if (goToPage === true) {
-        console.log("inside gotopage")
+
         if (props.token) {
-            console.log("gohomepage")
             return <Redirect to='/homepageconnectedparent' />
         } else {
-            console.log("gosignin")
             return <Redirect to='/signinscreen' />
-
         };
     };
 

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Row, Button, Col } from 'reactstrap';
 import { Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux'
@@ -8,28 +8,35 @@ import Footer from './footer.js'
 
 function MulmugPlusForfaitSansPub(props) {
 
+    const [productList, setProductList] = useState([])
+
+    useEffect(() => {
+        const findProducts = async () => {
+            const data = await fetch('/loadingforfaitdata')
+            const body = await data.json()
+            setProductList(body.products)
+        }
+        findProducts()
+    }, [])
 
     /* TABLEAU D'OBJETS POUR LA MAP */
 
-    var forfaitSansPubData = [
-        { desc: "Forfait sans pub mensuel sans engagement", name: "Abonnnement mensuel", formule: "FORFAIT", pub: "SANS PUB", enga: "sans engagement", price: "9,99€ / mois sans engagement" },
-        { desc: "Forfait sans pub avec un engaement sur 12 mois", name: "Abonnement annuel", formule: "FORFAIT", pub: "SANS PUB", enga: "avec engagement", price: "7,99€ / mois avec un engagement sur 12 mois" },
-    ];
-
     /* LA MAP */
 
-    var forfaitSansPubCard = forfaitSansPubData.map(function (abonn, i) {
+    var forfaitSansPubCard = productList.map((e, i) => {
         return <Col key={i} xs={12} md={3} style={styleAbonn}>
             <Row style={styleAbonnFirstRow}>
                 <Col xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 5 }}>
-                    <h5 style={{ display: 'flex', textAlign: 'center', color: '#FFFFFF', marginBottom: 0, }}>{abonn.formule}</h5>
-                    <h3 style={{ display: 'flex', textAlign: 'center', color: '#FFFFFF', marginBottom: 0 }}>{abonn.pub}</h3>
-                    <p style={{ display: 'flex', textAlign: 'center', color: '#343a40', marginBottom: 0 }}>{abonn.enga}</p>
+                <p hidden style={{ display: 'flex', textAlign: 'center', color: '#343a40', marginBottom: 0 }}>{e.commercialName}</p>
+                <h5 style={{ display: 'flex', textAlign: 'center', color: '#FFFFFF', marginBottom: 0, }}>FORFAIT</h5>
+                <h3 style={{ display: 'flex', textAlign: 'center', color: '#FFFFFF', marginBottom: 0 }}>SANS PUB</h3>
+                <p style={{ display: 'flex', textAlign: 'center', color: '#FFFFFF', marginBottom: 0 }}>{e.commitment}</p>
                 </Col>
             </Row>
             <Row style={styleAbonnSecondRow}>
                 <Col xs={12}>
-                    <p style={{ textAlign: 'center', color: '#1F8A9E', marginBottom: 0 }}>{abonn.price}</p>
+                    <p style={{ textAlign: 'center', color: '#1F8A9E', marginBottom: 0 }}>{e.priceTTC}€ / mois</p>
+                    <p style={{ textAlign: 'center', color: '#1F8A9E', marginBottom: 0 }}>{e.commitment}</p>
                 </Col>
             </Row>
         </Col>

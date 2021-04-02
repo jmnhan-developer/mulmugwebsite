@@ -19,7 +19,6 @@ function SignInscreen({onSubmitToken}) {
 
     var handleSubmitSignIn = async () => {
 
-        console.log('TEST FETCH')
         const data = await fetch('/usersignin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -31,7 +30,6 @@ function SignInscreen({onSubmitToken}) {
 
         if (body.result === true) {
             onSubmitToken(body.token)
-            console.log("Token from SignIn", body.token)
             setUserExists(true)
         } else {
             setErrorsSignin(body.error)

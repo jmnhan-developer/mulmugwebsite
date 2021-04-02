@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Row, Button, Col } from 'reactstrap';
 import { Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux'
@@ -9,38 +9,38 @@ import Footer from './footer.js'
 
 function MulmugPlusCahiers(props) {
 
+    const [productList, setProductList] = useState([])
 
-    /* TABLEAU D'OBJETS POUR LA MAP */
-
-    var cahierVacData = [
-        { name: "Cahier de Vacances - Toussaint", url: "./cahierAutomne.png", holiday: "TOUSSAINTS", matiere: "Mathématiques", price: "4.99€" },
-        { name: "Cahier de Vacances - Noël", url: "./cahierNoel.png", holiday: "NOËL", matiere: "Mathématiques", price: "5.99€" },
-        { name: "Cahier de Vacances - Hiver", url: "./cahierHiver.png", holiday: "HIVER", matiere: "Mathématiques", price: "6.99€" },
-        { name: "Cahier de Vacances - Pâques", url: "./cahierPrintemps.png", holiday: "PÂQUES", matiere: "Mathématiques", price: "7.99€" },
-        { name: "Cahier de Vacances - Été", url: "./cahierEte.png", holiday: "ÉTÉ", matiere: "Mathématiques", price: "8.99€" },
-    ];
+    useEffect(() => {
+        const findProducts = async () => {
+            const data = await fetch('/loadingcahierdata')
+            const body = await data.json()
+            setProductList(body.products)
+        }
+        findProducts()
+    }, [])
 
     /* LA MAP */
 
-    var cahierVacCard = cahierVacData.map(function (cahier, i) {
+    var cahierVacCard = productList.map((e, i) => {
         return <Col key={i} xs={10} md={3} style={styleCahier}>
             <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', borderTopLeftRadius: 19, borderTopRightRadius: 19, background: "linear-gradient( #8DAADC, #665EFF)", marginBottom: 20 }}>
                 <Col xs={4} style={{ display: 'flex' }}>
-                    <img alt="" width='100%' src={cahier.url} />
+                    <img alt="" width='100%' src="./cahierEte.png" />
                 </Col>
                 <Col xs={8}>
-                    <p style={{ display: 'flex', textAlign: 'center', color: '#FFFFFF', marginBottom: 0 }}>CAHIER DE VACANCES</p>
+                    <h5 style={{ display: 'flex', alignItems:'center', textAlign: 'center', color: '#FFFFFF', marginBottom: 0 }}>CAHIER DE VACANCES</h5>
                 </Col>
             </Row>
             <Row style={{ display: 'flex', flexDirection: 'row', borderBottomLeftRadius: 10, borderBottomRightRadius: 10 }}>
                 <Col xs={12}>
-                    <h6 style={{ textAlign: 'center', color: '#1F8A9E', }}>{cahier.holiday}</h6>
+                    <h5 style={{ textAlign: 'center', color: '#1F8A9E', }}>{e.period}</h5>
                 </Col>
                 <Col xs={12}>
-                    <p style={{ textAlign: 'center', color: '#1F8A9E', }}>{cahier.matiere}</p>
+                    <p style={{ textAlign: 'center', color: '#1F8A9E', }}>{e.discipline}</p>
                 </Col>
                 <Col xs={12}>
-                    <p style={{ textAlign: 'center', color: '#1F8A9E', }}>{cahier.price}</p>
+                    <p style={{ textAlign: 'center', color: '#1F8A9E', }}>{e.priceTTC}€</p>
                 </Col>
             </Row>
         </Col>

@@ -29,7 +29,6 @@ function PlusAbondement(props) {
                 setUserLastName(body.userLastName)
                 setUserEmail(body.userEmail)
                 setStudentFirstName(body.student[(0)].studentFirstName)
-                console.log("******Dans Abondement******", body.student[(0)].studentFirstName)
             }
         }
         findUser()

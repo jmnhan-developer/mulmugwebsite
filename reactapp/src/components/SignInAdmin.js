@@ -23,7 +23,6 @@ function SignInAdmin(props) {
     // SIGN IN ADMIN
     var handleSubmitAdminSignIn = async () => {
 
-        console.log('TEST FETCH')
         const data = await fetch('/adminsignin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -31,7 +30,6 @@ function SignInAdmin(props) {
         })
 
         const body = await data.json()
-        console.log(body)
 
         if (body.result === true) {
             props.addToken(body.token)
@@ -53,7 +51,6 @@ function SignInAdmin(props) {
     // SIGN IN SUPER ADMIN
     var handleSubmitSuperAdminSignIn = async () => {
 
-        console.log('TEST FETCH')
         const data = await fetch('/superadminsignin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -77,8 +74,6 @@ function SignInAdmin(props) {
     var tabErrorsSignin = listErrorsSignin.map((error, i) => {
         return (<p style={{ color: 'red' }}>{error}</p>)
     })
-
-
 
 
     return (

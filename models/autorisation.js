@@ -1,6 +1,6 @@
 const mongoose = require ('mongoose')
 
-const autorisationSchema = mongooseSchema ({
+const autorisationSchema = mongoose.Schema ({
     userId: String,
     culturDep: Boolean,
     sportEquipment: Boolean,

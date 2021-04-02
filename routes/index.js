@@ -8,6 +8,8 @@ const userModel = require('../models/user');
 const productModel = require('../models/product')
 const adminModel = require('../models/admin')
 const superAdminModel = require('../models/superadmin')
+const autorisationModel = require('../models/autorisation')
+const autorisationCardModel = require ('../models/autorisationCardCreation')
 
 
 /* GET home page. */
@@ -18,11 +20,8 @@ router.get('/', function (req, res, next) {
 module.exports = router;
 
 
-
 /* ROUTE USER SIGN UP */
 router.post('/usersignup', async function (req, res, next) {
-
-  console.log('PASSING', req.body);
 
   var error = []
   var result = false
@@ -54,8 +53,6 @@ router.post('/usersignup', async function (req, res, next) {
 
   if (error.length === 0) {
 
-    console.log('NO ERROR');
-
     var salt = uid2(32)
     var user = new userModel({
       userGender: req.body.userGenderFromFront,
@@ -76,9 +73,7 @@ router.post('/usersignup', async function (req, res, next) {
       studentEmail: req.body.studentEmailFromFront,
     })
 
-
     saveUser = await user.save()
-
 
     if (saveUser) {
       result = true
@@ -108,8 +103,6 @@ router.post('/usersignin', async function (req, res, next) {
       userEmail: req.body.userEmailFromFront,
     })
 
-    console.log("log-user", user)
-
     if (user != null) {
       const passwordEncrypt = SHA256(req.body.userPasswordFromFront + user.salt).toString(encBase64)
 
@@ -126,8 +119,6 @@ router.post('/usersignin', async function (req, res, next) {
     }
   }
 
-  console.log("back", user, result)
-
   res.json({ result, user, error, token })
 
 
@@ -137,8 +128,6 @@ router.post('/usersignin', async function (req, res, next) {
 
 /* ROUTE POUR LA CRÉATION D'ADMIN */
 router.post('/admincreation', async function (req, res, next) {
-
-  console.log('PASSING', req.body);
 
   var error = []
   var result = false
@@ -165,8 +154,6 @@ router.post('/admincreation', async function (req, res, next) {
 
   if (error.length === 0) {
 
-    console.log('NO ERROR');
-
     var salt = uid2(32)
     var admin = new adminModel({
       adminFirstName: req.body.adminFirstNameFromFront,
@@ -180,9 +167,7 @@ router.post('/admincreation', async function (req, res, next) {
 
     })
 
-
     saveAdmin = await admin.save()
-
 
     if (saveAdmin) {
       result = true
@@ -212,8 +197,6 @@ router.post('/adminsignin', async function (req, res, next) {
       adminEmail: req.body.adminEmailFromFront,
     })
 
-    console.log("log-admin", admin)
-
     if (admin != null) {
       const passwordEncrypt = SHA256(req.body.adminPasswordFromFront + admin.salt).toString(encBase64)
 
@@ -229,9 +212,6 @@ router.post('/adminsignin', async function (req, res, next) {
       error.push('Incorrect Email')
     }
   }
-  console.log("****Token from Sign in admin****", token)
-
-  console.log("back", admin, result)
 
   res.json({ result, admin, error, token })
 
@@ -241,8 +221,6 @@ router.post('/adminsignin', async function (req, res, next) {
 
 /* ROUTE POUR LA CRÉATION DE SUPER ADMIN */
 router.post('/superadmincreation', async function (req, res, next) {
-
-  console.log('PASSING', req.body);
 
   var error = []
   var result = false
@@ -269,8 +247,6 @@ router.post('/superadmincreation', async function (req, res, next) {
 
   if (error.length === 0) {
 
-    console.log('NO ERROR');
-
     var salt = uid2(32)
     var superAdmin = new superAdminModel({
       superAdminFirstName: req.body.superAdminFirstNameFromFront,
@@ -284,9 +260,7 @@ router.post('/superadmincreation', async function (req, res, next) {
 
     })
 
-
     saveSuperAdmin = await superAdmin.save()
-
 
     if (saveSuperAdmin) {
       result = true
@@ -316,8 +290,6 @@ router.post('/superadminsignin', async function (req, res, next) {
       superAdminEmail: req.body.superAdminEmailFromFront,
     })
 
-    console.log("log-admin", superAdmin)
-
     if (superAdmin != null) {
       const passwordEncrypt = SHA256(req.body.superAdminPasswordFromFront + superAdmin.salt).toString(encBase64)
 
@@ -334,10 +306,6 @@ router.post('/superadminsignin', async function (req, res, next) {
     }
   }
 
-  console.log("****Token from Sign in super admin****", token)
-
-  console.log("back", superAdmin, result)
-
   res.json({ result, superAdmin, error, token })
 
 })
@@ -347,12 +315,9 @@ router.post('/superadminsignin', async function (req, res, next) {
 /* ROUTE POUR LA CRÉATION D'UN PRODUIT OU UNE OFFRE */
 router.post('/productcreation', async function (req, res, next) {
 
-  console.log('PASSING', req.body);
-
   var error = []
   var result = false
   var saveProduct = null
-
 
   if (req.body.categoryFromFront == ''
     || req.body.commercialNameFromFront == ''
@@ -365,8 +330,6 @@ router.post('/productcreation', async function (req, res, next) {
   }
 
   if (error.length === 0) {
-
-    console.log('NO ERROR');
 
     var product = new productModel({
 
@@ -397,46 +360,83 @@ router.post('/productcreation', async function (req, res, next) {
 
 
 
+/* ROUTE POUR LA CRÉATION D'UNE CARTE PARTENAIRE ET D'AUTORISATION */
+router.post('/autocardcreation', async function (req, res, next) {
+
+  var error = []
+  var result = false
+  var saveCard = null
+
+  if (req.body.categoryFromFront == ''
+    || req.body.brandPartner1FromFront == ''
+    || req.body.brandPartner2FromFront == ''
+    || req.body.brandPartner3FromFront == ''
+
+  ) {
+    error.push('Un ou des champs obligatoires sont vides. Veuillez svp les renseigner.')
+  }
+
+  if (error.length === 0) {
+
+    var autorisationCard = new autorisationCardModel({
+
+      category: req.body.categoryFromFront,
+      brandPartner1: req.body.brandPartner1FromFront,
+      brandPartner2: req.body.brandPartner2FromFront,
+      brandPartner3: req.body.brandPartner3FromFront,
+      brandPartner4: req.body.brandPartner4FromFront,
+      brandPartner5: req.body.brandPartner5FromFront,
+      brandPartner6: req.body.brandPartner6FromFront,
+      brandPartner7: req.body.brandPartner7FromFront,
+      brandPartner8: req.body.brandPartner8FromFront,
+      brandPartner9: req.body.brandPartner9FromFront,
+      brandPartner10: req.body.brandPartner10FromFront,
+      brandPartner11: req.body.brandPartner11FromFront,
+      brandPartner12: req.body.brandPartner12FromFront,
+    })
+
+    saveCard = await autorisationCard.save()
+
+    if (saveCard) {
+      result = true
+    }
+  }
+  res.json({ result, saveCard, error })
+})
+
+
+
 /* RECUPERER LES DONNEES DE PRODUITS ABONDEMENT */
 router.get('/loadingabonddata', async function (req, res, next) {
-  console.log('je suis sur la bonne route')
 
-  let products = await productModel.find({category:'Abondement en points'})
-    res.json({ products });
-  
+  let products = await productModel.find({ category: 'Abondement en points' })
+  res.json({ products });
 });
 
 
 
 /* RECUPERER LES DONNEES DE PRODUITS FORFAIT SANS PUB */
 router.get('/loadingforfaitdata', async function (req, res, next) {
-  console.log('je suis sur la bonne route')
 
-  let products = await productModel.find({category:'Forfait sans Pub'})
-    res.json({ products });
-  
+  let products = await productModel.find({ category: 'Forfait sans Pub' })
+  res.json({ products });
 });
 
 
 
 /* RECUPERER LES DONNEES DE PRODUITS CAHIERS DE VACANCES */
 router.get('/loadingcahierdata', async function (req, res, next) {
-  console.log('je suis sur la bonne route')
 
-  let products = await productModel.find({category:'Cahier de Vacances'})
-    res.json({ products });
-  
+  let products = await productModel.find({ category: 'Cahier de Vacances' })
+  res.json({ products });
 });
 
 
 
 /* RECUPERER LES DONNEES DE L'UTILISATEUR */
-router.get('/loadinguserinfo', async function(req, res, next) {
-  console.log('-------------test req.query',req.query);
-  let data = await userModel.findOne({token:req.query.token})
+router.get('/loadinguserinfo', async function (req, res, next) {
 
-  console.log("--------On a quoi dans data?", data)
-
+  let data = await userModel.findOne({ token: req.query.token })
   res.json(data);
 
 });
@@ -444,12 +444,8 @@ router.get('/loadinguserinfo', async function(req, res, next) {
 
 
 /* RECUPERER LES DONNEES DE L'ADMIN */
-router.get('/loadingadmininfo', async function(req, res, next) {
-  console.log('-------------test req.query',req.query);
-  let data = await adminModel.findOne({token:req.query.token})
+router.get('/loadingadmininfo', async function (req, res, next) {
 
-  console.log("--------On a quoi dans data?", data)
-
+  let data = await adminModel.findOne({ token: req.query.token })
   res.json(data);
-
 });

@@ -44,7 +44,6 @@ function PlusBonsdAchatAutorises(props) {
                 setUserLastName(body.userLastName)
                 setUserEmail(body.userEmail)
                 setStudentFirstName(body.student[(0)].studentFirstName)
-                console.log("******Dans Abondement******", body.student[(0)].studentFirstName)
             }
         }
         findUser()
@@ -123,7 +122,7 @@ function PlusBonsdAchatAutorises(props) {
 
     return (
 
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'column', paddingLeft: 15, paddingRight: 15, alignItems: 'center' }}>
 
             <Row style={{ display: 'flex', flexDirection: 'column', alignContent: 'center', marginTop: 20, marginBottom: 20, paddingLeft: 15, paddingRight: 15 }}>
                 <h5 style={{ display: 'flex', justifyContent: 'center', color: '#1F8A9E' }}>CATEGORIES AUTORISÉES</h5>

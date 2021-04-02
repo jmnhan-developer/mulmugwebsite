@@ -1,35 +1,36 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Row, Col, Button } from 'reactstrap';
-import { Link, Redirect} from 'react-router-dom';
-import {connect} from 'react-redux'
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
 import Header from './header.js'
 import Footer from './footer.js'
 
 
-
 function MulmugPlusAbond(props) {
 
+    const [productList, setProductList] = useState([])
 
-    /* TABLEAU D'OBJETS POUR LA MAP */
+    useEffect(() => {
+        const findProducts = async () => {
+            const data = await fetch('/loadingabonddata')
+            const body = await data.json()
+            setProductList(body.products)
+        }
+        findProducts()
+    }, [])
 
-    var abondementData = [
-        { desc: "Abondement de 10 000 points", nbpoints: "10 000", point: "POINTS", price: "12.00€" },
-        { desc: "Abondement de 20 000 points", nbpoints: "20 000", point: "POINTS", price: "23.50€" },
-        { desc: "Abondement de 30 000 points", nbpoints: "30 000", point: "POINTS", price: "34.50€" },
-        { desc: "Abondement de 40 000 points", nbpoints: "40 000", point: "POINTS", price: "45.00€" },
-        { desc: "Abondement de 50 000 points", nbpoints: "50 000", point: "POINTS", price: "55.00€" },
-    ];
 
     /* LA MAP */
 
-    var abondementCard = abondementData.map(function (abond, i) {
+    var abondementCard = productList.map((e, i) => {
         return <Col key={i} xs={10} md={3} style={styleAbond}>
             <Row style={{ display: 'flex', flexDirection: 'column', marginBottom: 30, backgroundImage: 'url(./yellowstar1.png', width: 160, height: 160, alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
-                <p style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: 30, marginBottom: 1 }}>{abond.nbpoints}</p>
-                <p style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: 30, marginBottom: 1 }}>{abond.point}</p>
+                <p hidden style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: 30, marginBottom: 1 }}>{e.commercialName}</p>
+                <p style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: 30, marginBottom: 1 }}>{e.nbrPoints}</p>
+                <p style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: 30, marginBottom: 1 }}>POINTS</p>
             </Row>
             <Row style={{ display: 'flex', flexDirection: 'column', marginBottom: 10, alignItems: 'center', justifyContent: 'center' }}>
-                <p style={{ color: '#1F8A9E' }}>{abond.price}</p>
+                <p style={{ color: '#1F8A9E' }}>{e.priceTTC}€</p>
             </Row>
         </Col>
     });
@@ -38,14 +39,10 @@ function MulmugPlusAbond(props) {
     const [goToPage, setGoToPage] = useState(false)
 
     if (goToPage === true) {
-        console.log("inside gotopage")
         if (props.token) {
-            console.log("gohomepage")
             return <Redirect to='/homepageconnectedparent' />
         } else {
-            console.log("gosignin")
             return <Redirect to='/signinscreen' />
-
         };
     };
 
@@ -75,7 +72,7 @@ function MulmugPlusAbond(props) {
                     </Col>
                 </Row>
                 <Row style={{ display: 'flex', flexDirection: 'column', paddingLeft: 15, paddingRight: 15, marginTop: 30 }}>
-                    <h5 style={{ color: '#1F8A9E', textAlign: 'center', marginTop: 30, marginBottom: 30 }}>Vous voulez l'encourager et le récompensez pour sont travail et ses efforts avec vos propres points? Sélectionnez et souscrivez à l'un des Abondements, Mulmug lui attribuera vos points à chaque exercice correctement fait et à chaque passage de niveau.</h5>
+                    <h5 style={{ color: '#1F8A9E', textAlign: 'center', marginTop: 30, marginBottom: 30 }}>Vous voulez l'encourager et le récompenser pour son travail et ses efforts avec vos propres points? Sélectionnez et souscrivez à l'un des Abondements, Mulmug lui attribuera vos points à chaque exercice correctement fait et à chaque passage de niveau.</h5>
                     <p style={{ color: '#1F8A9E', textAlign: 'center' }}>Sélectionnez l’abondement que vous souhaitez:</p>
                 </Row>
 
@@ -86,7 +83,7 @@ function MulmugPlusAbond(props) {
                 </Row>
 
                 <Row style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button onClick={() => { setGoToPage(true) }} style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }}>JE VEUX ABONDER</Button>
+                    <Button onClick={() => { setGoToPage(true) }} style={{ backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }}>OUI ! JE VEUX L'ENCOURAGER !</Button>
                 </Row>
             </div>
 

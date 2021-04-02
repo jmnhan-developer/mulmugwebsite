@@ -27,7 +27,6 @@ function PlusCahiersVacances(props) {
                 setUserLastName(body.userLastName)
                 setUserEmail(body.userEmail)
                 setStudentFirstName(body.student[(0)].studentFirstName)
-                console.log("******Dans Abondement******", body.student[(0)].studentFirstName)
             }
         }
         findUser()
@@ -51,12 +50,12 @@ function PlusCahiersVacances(props) {
                     <img alt="" width='100%' src="./cahierEte.png" />
                 </Col>
                 <Col xs={8}>
-                    <p style={{ display: 'flex', textAlign: 'center', color: '#FFFFFF', marginBottom: 0 }}>CAHIER DE VACANCES</p>
+                    <h5 style={{ display: 'flex', alignItems:'center', textAlign: 'center', color: '#FFFFFF', marginBottom: 0 }}>CAHIER DE VACANCES</h5>
                 </Col>
             </Row>
             <Row style={{ display: 'flex', flexDirection: 'row', borderBottomLeftRadius: 10, borderBottomRightRadius: 10, justifyContent:'center', paddingBottom:10 }}>
                 <Col xs={12}>
-                    <h6 style={{ textAlign: 'center', color: '#1F8A9E', }}>{e.period}</h6>
+                    <h5 style={{ textAlign: 'center', color: '#1F8A9E', }}>{e.period}</h5>
                 </Col>
                 <Col xs={12}>
                     <p style={{ textAlign: 'center', color: '#1F8A9E', }}>{e.discipline}</p>

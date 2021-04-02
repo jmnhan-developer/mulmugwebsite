@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Row, Col } from 'reactstrap';
+import { Row, Col, Button } from 'reactstrap';
 import Header from './header.js'
 import Footer from './footer.js'
 import { connect } from 'react-redux'
@@ -10,11 +10,7 @@ import PlusCahiersVacances from './PlusCahiersVacances.js'
 
 
 
-
-function HomePageConnectedParent(props) {
-
-    console.log("Token from HomePage?", props.token)
-
+function HomePageConnectedParentCopy(props) {
 
     const [userInfo, setUserInfo] = useState([])
     const [userFirstName, setUserFirstName] = useState('')
@@ -27,7 +23,6 @@ function HomePageConnectedParent(props) {
         const findUser = async () => {
             const data = await fetch(`/loadinguserinfo?token=${props.token}`)
             const body = await data.json()
-            console.log("body dans le front", body)
 
             if (body) {
                 setUserInfo(body)
@@ -39,6 +34,141 @@ function HomePageConnectedParent(props) {
         }
         findUser()
     }, []);
+
+    const [componentAutorisation, setComponentAutorisation] = useState(true)
+    const [componentAbondement, setComponentAbondement] = useState(false)
+    const [componentForfait, setComponentForfait] = useState(false)
+    const [componentCahier, setComponentCahier] = useState(false)
+
+
+    // ONGLET AUTORISATION
+    var styleOngletAutorisation = { 
+        backgroundColor: '#F2F3F4',
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        border: '1px solid #FFFFFF',
+        cursor:'pointer'
+    };
+
+    var handleClickAutorisation = () => {
+        setComponentAutorisation(true);
+        setComponentAbondement(false)
+        setComponentForfait(false)
+        setComponentCahier(false)
+    }
+    if (componentAutorisation === true) {
+        var styleOngletAutorisation = {
+            backgroundColor: '#FFFFFF',
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            cursor: 'pointer'
+        }
+    } 
+
+    // ONGLET ABONDEMENT
+    var styleOngletAbondement = { 
+        backgroundColor: '#F2F3F4',
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        border: '1px solid #FFFFFF',
+        cursor:'pointer'
+    };
+    
+    var handleClickAbondement = () => {
+        setComponentAutorisation(false);
+        setComponentAbondement(true)
+        setComponentForfait(false)
+        setComponentCahier(false)
+    }
+    if (componentAbondement === true) {
+        var styleOngletAbondement = {
+            backgroundColor: '#FFFFFF',
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            cursor: 'pointer'
+        }
+    } 
+
+    // ONGLET FORFAIT
+    var styleOngletForfait = { 
+        backgroundColor: '#F2F3F4',
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        border: '1px solid #FFFFFF',
+        cursor:'pointer'
+    };
+
+    var handleClickForfait = () => {
+        setComponentAutorisation(false);
+        setComponentAbondement(false)
+        setComponentForfait(true)
+        setComponentCahier(false)
+    }
+
+    if (componentForfait === true) {
+        var styleOngletForfait = {
+            backgroundColor: '#FFFFFF',
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            cursor: 'pointer'
+        }
+    }
+
+    //ONGLET CAHIER
+    var styleOngletCahier = { 
+        backgroundColor: '#F2F3F4',
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        border: '1px solid #FFFFFF',
+        cursor:'pointer'
+    };
+    var handleClickCahier = () => {
+        setComponentAutorisation(false);
+        setComponentAbondement(false)
+        setComponentForfait(false)
+        setComponentCahier(true)
+    }
+    if (componentCahier === true) {
+        var styleOngletCahier = {
+            backgroundColor: '#FFFFFF',
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            cursor: 'pointer'
+        }
+    }
+
 
 
     return (
@@ -56,25 +186,46 @@ function HomePageConnectedParent(props) {
                 </Row> */}
 
                 {/* LES ONGLETS */}
-                {/* <Row style={{ height: 50, paddingLeft: 15, paddingRight: 15, marginBottom: 20 }} >
-                    <Col xs={3} style={styleOngletSelected}>
-                        <Link to="/Mulmugplusabond" style={styleTextOngletSelected}>Bons d'achat autorisés</Link>
+                <Row style={{ height: 50, paddingLeft: 15, paddingRight: 15, marginBottom: 20 }} >
+                    <Col xs={3} onClick={() => handleClickAutorisation()} style={styleOngletAutorisation}>
+                        <p style={styleTextOngletSelected} >Bons d'achat autorisés</p>
                     </Col>
-                    <Col xs={3} style={styleOnglet}>
-                        <Link to="/Mulmugplusabonn" style={styleTextOnglet}>Abondement</Link>
+                    <Col xs={3} onClick={() => handleClickAbondement()} style={styleOngletAbondement}>
+                        <p style={styleTextOnglet}>Abondement</p>
                     </Col>
-                    <Col xs={3} style={styleOnglet}>
-                        <Link to="/Mulmugpluscahiers" style={styleTextOnglet}>Forfaits sans pub</Link>
+                    <Col xs={3} onClick={() => handleClickForfait()} style={styleOngletForfait}>
+                        <p style={styleTextOnglet}>Forfait sans pub</p>
                     </Col>
-                    <Col xs={3} style={styleOnglet}>
-                        <Link to="/Mulmugpluscahiers" style={styleTextOnglet}>Cahiers de vacances</Link>
+                    <Col xs={3} onClick={() => handleClickCahier()} style={styleOngletCahier}>
+                        <p style={styleTextOnglet}>Cahiers de vacances</p>
                     </Col>
-                </Row> */}
+                </Row>
 
-                <PlusBonsdAchatAutorises />
+                <div>
+                    {
+                        componentAutorisation ? <PlusBonsdAchatAutorises /> : null
+                    }
+                </div>
+                <div>
+                    {
+                        componentAbondement ? <PlusAbondement /> : null
+                    }
+                </div>
+                <div>
+                    {
+                        componentForfait ? <PlusPlusForfaitSansPub /> : null
+                    }
+                </div>
+                <div>
+                    {
+                        componentCahier ? <PlusCahiersVacances /> : null
+                    }
+                </div>
+
+                {/* <PlusBonsdAchatAutorises />
                 <PlusAbondement />
                 <PlusPlusForfaitSansPub />
-                <PlusCahiersVacances />
+                <PlusCahiersVacances /> */}
 
             </div>
 
@@ -85,40 +236,20 @@ function HomePageConnectedParent(props) {
     )
 };
 
-var styleOnglet = {
-    backgroundColor: '#F2F3F4',
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    border: '1px solid #FFFFFF'
-};
-
-var styleOngletSelected = {
-    backgroundColor: '#FFFFFF',
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-};
-
 var styleTextOngletSelected = {
     display: 'flex',
     color: '#1F8A9E',
     textAlign: 'center',
-    fontSize: 14
-
+    fontSize: 14,
+    cursor:'pointer'
 };
 
 var styleTextOnglet = {
     display: 'flex',
     color: '#1F8A9E',
     textAlign: 'center',
-    fontSize: 14
+    fontSize: 14,
+    cursor: 'pointer'
 };
 
 
@@ -129,4 +260,4 @@ function mapStateToProps(state) {
 export default connect(
     mapStateToProps,
     null
-)(HomePageConnectedParent);
+)(HomePageConnectedParentCopy);
