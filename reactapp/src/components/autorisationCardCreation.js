@@ -6,6 +6,7 @@ import { Row, Button, Col, FormGroup, Input, CustomInput } from 'reactstrap';
 function AutorisationCardCreation () {
 
     const [category, setCategory] = useState ('')
+    const [pictogramme, setPictogramme] = useState ('')
     const [brandPartner1, setBrandPartner1] = useState ('')
     const [brandPartner2, setBrandPartner2] = useState ('')
     const [brandPartner3, setBrandPartner3] = useState ('')
@@ -21,6 +22,9 @@ function AutorisationCardCreation () {
 
     const [autoCardExists, setAutoCardExists] = useState(false)
 
+    const [listErrorsAutoCardCreation, setErrorsAutoCardCreation] = useState([])
+    const [listSuccessAutoCardCreation, setSuccessAutoCardCreation] = useState([])
+
 
     var handleSubmitAutoCardCreation = async () => {
 
@@ -34,12 +38,35 @@ function AutorisationCardCreation () {
 
         if (body.result === true) {
             setAutoCardExists(true)
-        } 
+            setCategory ('')
+            setBrandPartner1 ('')
+            setBrandPartner2 ('')
+            setBrandPartner3 ('')
+            setBrandPartner5 ('')
+            setBrandPartner6 ('')
+            setBrandPartner7 ('')
+            setBrandPartner8 ('')
+            setBrandPartner9 ('')
+            setBrandPartner10 ('')
+            setBrandPartner11 ('')
+            setBrandPartner12 ('')
+            setSuccessAutoCardCreation (body.success)
+            setErrorsAutoCardCreation ([])
+        } else {
+            setErrorsAutoCardCreation (body.error)
+        }
     }
 
-    if (autoCardExists) {
-        return (<p style={{ fontSize: 20, color: '#FDC41F' }}>Une carte d'autorisation a été créée!</p>)
-    }
+    // if (autoCardExists) {
+    //     return (<p style={{ fontSize: 20, color: '#FDC41F' }}>Une carte d'autorisation a été créée!</p>)
+    // }
+
+    var tabSuccessAutoCardCreation = listSuccessAutoCardCreation.map((success, i) => {
+        return (<p style={{color:'red'}}>{success}</p> )
+    })
+    var tabErrorsAutoCardCreation = listErrorsAutoCardCreation.map((error, i) => {
+        return (<p style={{color:'green'}}>{error}</p> )
+    })
 
     return (
 
@@ -56,10 +83,10 @@ function AutorisationCardCreation () {
                     <Row form >
                         <FormGroup style={{width:'100%'}}>
                             <Input type="select" name="category" id="category" placeholder="Catégorie" style={styleInputClasse} value={category} onChange={(e) => setCategory(e.target.value)} >
-                            <option disable>Catégorie</option>
+                            <option >Catégorie</option>
                             <option>ENSEIGNES CULTURELLES</option>
                             <option>EQUIPEMENT SPORTIF</option>
-                            <option>JEUX & JOUET</option>
+                            <option>JEUX & JOUETS</option>
                             <option>CINÉMA</option>
                             <option>SPECTACLES</option>
                             <option>PRODUITS TECHNIQUES</option>
@@ -78,6 +105,9 @@ function AutorisationCardCreation () {
 
                     
                     <Row form style={{display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
+                        {/* <FormGroup>
+                            <Input type="text" name="pictogramme" id="pictogramme" placeholder="Pictogramme" style={styleInput} value={pictogramme} onChange={(e) => setPictogramme(e.target.value)} />
+                        </FormGroup> */}
                         <FormGroup>
                             <Input type="text" name="brandPartner1" id="brandPartner1" placeholder="Marque partenaire 1" style={styleInput} value={brandPartner1} onChange={(e) => setBrandPartner1(e.target.value)} />
                         </FormGroup>
@@ -115,6 +145,8 @@ function AutorisationCardCreation () {
                             <Input type="text" name="brandPartner12" id="brandPartner12" placeholder="Marque partenaire 12" style={styleInput} value={brandPartner12} onChange={(e) => setBrandPartner12(e.target.value)} />
                         </FormGroup>
                     </Row>
+                    {tabSuccessAutoCardCreation}
+                    {tabErrorsAutoCardCreation}
                     <Row style={{ display: 'flex', justifyContent: 'center', marginTop: 20, marginBottom: 40 }}>
                         <Button style={{ width: 200, backgroundColor: '#FDC41F', border: 'none', borderRadius: 50, margin:10 }} onClick={() => handleSubmitAutoCardCreation()}>VALIDER</Button>
                         <Button style={{ width: 200, backgroundColor: '#FDC41F', border: 'none', borderRadius: 50, margin:10 }}>VISUALISER</Button>

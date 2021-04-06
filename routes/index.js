@@ -9,7 +9,7 @@ const productModel = require('../models/product')
 const adminModel = require('../models/admin')
 const superAdminModel = require('../models/superadmin')
 const autorisationModel = require('../models/autorisation')
-const autorisationCardModel = require ('../models/autorisationCardCreation')
+const autorisationCardModel = require ('../models/autorisationCard')
 
 
 /* GET home page. */
@@ -316,6 +316,7 @@ router.post('/superadminsignin', async function (req, res, next) {
 router.post('/productcreation', async function (req, res, next) {
 
   var error = []
+  var success = []
   var result = false
   var saveProduct = null
 
@@ -324,9 +325,8 @@ router.post('/productcreation', async function (req, res, next) {
     || req.body.priceHTFromFront == ''
     || req.body.rateTVAFromFront == ''
     || req.body.priceTTCFromFront == ''
-
   ) {
-    error.push('Un ou des champs obligatoires sont vides. Veuillez svp les renseigner.')
+    error.push('La catégorie, le nom commercial, la prix HT, la TVA ainsi que le prix TTC sont des champs obligatoires. Veuillez svp les renseigner.')
   }
 
   if (error.length === 0) {
@@ -353,9 +353,10 @@ router.post('/productcreation', async function (req, res, next) {
 
     if (saveProduct) {
       result = true
+      success.push('Un nouveau produit a bien été créé !')
     }
   }
-  res.json({ result, saveProduct, error })
+  res.json({ result, saveProduct, error, success })
 })
 
 
@@ -364,6 +365,7 @@ router.post('/productcreation', async function (req, res, next) {
 router.post('/autocardcreation', async function (req, res, next) {
 
   var error = []
+  var success =[]
   var result = false
   var saveCard = null
 
@@ -373,7 +375,7 @@ router.post('/autocardcreation', async function (req, res, next) {
     || req.body.brandPartner3FromFront == ''
 
   ) {
-    error.push('Un ou des champs obligatoires sont vides. Veuillez svp les renseigner.')
+    error.push('La catégorie et les 3 premières marques partenaires sont des champs obligatoires. Veuillez svp les renseigner.')
   }
 
   if (error.length === 0) {
@@ -399,9 +401,10 @@ router.post('/autocardcreation', async function (req, res, next) {
 
     if (saveCard) {
       result = true
+      success.push("Une carte d'autorisation a bien été créée !")
     }
   }
-  res.json({ result, saveCard, error })
+  res.json({ result, saveCard, error, success })
 })
 
 
@@ -449,3 +452,13 @@ router.get('/loadingadmininfo', async function (req, res, next) {
   let data = await adminModel.findOne({ token: req.query.token })
   res.json(data);
 });
+
+
+
+/* RECUPERER LES DONNÉES DES AUTORISATION CARDS */
+router.get ('/loadingautorisationcards', async function (req, res, next) {
+
+  let data = await autorisationCardModel.find()
+  console.log("*** data from backend***", data)
+  res.json(data)
+}) 

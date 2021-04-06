@@ -2,7 +2,7 @@ const mongoose = require ('mongoose')
 
 const autorisationCardSchema = mongoose.Schema ({
 
-    departmentName: String,
+    category: String,
     brandPartner1:String,
     brandPartner2:String,
     brandPartner3:String,
@@ -17,3 +17,5 @@ const autorisationCardSchema = mongoose.Schema ({
 })
 
 const autorisationCardModel = mongoose.model('autorisationCard', autorisationCardSchema)
+
+module.exports = autorisationCardModel

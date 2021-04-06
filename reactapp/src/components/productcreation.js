@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Button, Col, FormGroup, Input } from 'reactstrap';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 
 
@@ -21,30 +22,8 @@ function ProductCreation(props) {
     const [endDate, setEndDate] = useState('')
 
     const [productExists, setProductExists] = useState(false)
-    const [listErrorsSignup, setErrorsSignup] = useState([])
-
-
-    const [adminInfo, setAdminInfo] = useState([])
-    const [adminFirstName, setAdminFirstName] = useState('')
-    const [adminLastName, setAdminLastName] = useState('')
-    const [adminEmail, setAdminEmail] = useState('')
-
-    // RÉCUPÉRATION DES DONNÉES ADMIN
-    useEffect(() => {
-
-        const findUser = async () => {
-            const data = await fetch(`/loadingadmininfo?token=${props.token}`)
-            const body = await data.json()
-
-            if (body) {
-                setAdminInfo(body)
-                setAdminFirstName(body.adminFirstName)
-                setAdminLastName(body.adminLastName)
-                setAdminEmail(body.adminEmail)
-            }
-        }
-        findUser()
-    }, []);
+    const [listErrorsProductCreation, setErrorsProductCreation] = useState([])
+    const [listSuccessProductCreation, setSuccessProductCreation] = useState([])
 
 
     // ENVOI DES DONNÉES PRODUITS EN CRÉATION DANS LE BACK
@@ -60,30 +39,49 @@ function ProductCreation(props) {
 
         if (body.result === true) {
             setProductExists(true)
+            setCategory ('')
+            setCommercialName ('')
+            setCommitment ('')
+            setNbrPoints ('')
+            setPeriod ('')
+            setDiscipline ('')
+            setGrade ('')
+            setPriceHT ('')
+            setRateTVA ('')
+            setPriceTTC ('')
+            setDurationDays ('')
+            setBeginingDate ('')
+            setEndDate ('')
+            setSuccessProductCreation (body.success)
+            setErrorsProductCreation ([])
         } else {
-            setErrorsSignup(body.error)
+            setErrorsProductCreation(body.error)
         }
     }
 
-    if (productExists) {
-        return (<p style={{ fontSize: 20, color: '#FDC41F' }}>Un produit a bien été créé!</p>)
-    }
+    // if (productExists) {
+    //     return <Redirect to='/homeadminscreen' />
+    // }
 
-    var tabErrorsSignup = listErrorsSignup.map((error, i) => {
+    var tabErrorsProductCreation = listErrorsProductCreation.map((error, i) => {
         return (<p style={{ color: 'red' }}>{error}</p>)
     })
+    var tabSuccessProductCreation = listSuccessProductCreation.map((success, i) => {
+        return (<p style={{ color: 'green' }}>{success}</p>)
+    })
+
 
     return (
-    
-        <div style={{marginTop:20}}>
 
-            <Row style={{display: 'flex', flexDirection: 'row', border: '1px solid #D5DBDB',borderRadius: 10, paddingRight: 15, paddingLeft: 15, paddingTop:30, paddingBottom:30 }}>
+        <div style={{ marginTop: 20 }}>
+
+            <Row style={{ display: 'flex', flexDirection: 'row', border: '1px solid #D5DBDB', borderRadius: 10, paddingRight: 15, paddingLeft: 15, paddingTop: 30, paddingBottom: 30 }}>
 
                 <Col xs={12} md={6}>
 
-                    {/* CREATION D'UN PRODUIT */}
+                    {/*CREATION D'UN PRODUIT */}
 
-                    <p style={{ color: '#1F8A9E', fontWeight: 'bold' }}>CRÉER UN NOUVEAU PRODUIT</p>
+                    <p style={{ color: '#1F8A9E', fontWeight: 'bold', textAlign: 'center' }}>CRÉER UN NOUVEAU PRODUIT</p>
 
                     <Row form style={{ display: 'flex', flexDirection: 'column' }}>
                         <FormGroup>
@@ -160,17 +158,23 @@ function ProductCreation(props) {
                         <FormGroup>
                             <Input type="text" name="endDate" id="endDate" placeholder="Date de fin" style={styleInput} value={endDate} onChange={(e) => setEndDate(e.target.value)} />
                         </FormGroup>
+                        {tabErrorsProductCreation}
+                        {tabSuccessProductCreation}
+
 
                         <Row style={{ display: 'flex', justifyContent: 'center', marginTop: 20, marginBottom: 40 }}>
-                            <Button style={{ width: 200, backgroundColor: '#FDC41F', border: 'none', borderRadius: 50, margin:10 }} onClick={() => handleSubmitProductCreation()}>VALIDER</Button>
-                            <Button style={{ width: 200, backgroundColor: '#FDC41F', border: 'none', borderRadius: 50, margin:10 }}>VISUALISER</Button>
+                            <Button style={{ width: 200, backgroundColor: '#FDC41F', border: 'none', borderRadius: 50, margin: 10 }} onClick={() => handleSubmitProductCreation()}>VALIDER</Button>
+                            <Button style={{ width: 200, backgroundColor: '#FDC41F', border: 'none', borderRadius: 50, margin: 10 }}>VISUALISER</Button>
                         </Row>
 
                     </Row>
+
                 </Col>
+
                 <Col xs={12} md={6} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
                     {/* VISUALISATION */}
+                    
                     <p style={{ color: '#1F8A9E', fontWeight: 'bold' }}>VISUALISATION DE LA CRÉATION PRODUIT</p>
 
                     <div >

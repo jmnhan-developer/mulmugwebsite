@@ -3,9 +3,6 @@ import { Row, Col, Button } from 'reactstrap';
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 
-
-
-
 function PlusAbondement(props) {
 
 
@@ -39,6 +36,7 @@ function PlusAbondement(props) {
             const data = await fetch('/loadingabonddata')
             const body = await data.json()
             setProductList(body.products)
+            console.log("*** C'est quoi ça?***", body)
         }
         findProducts()
     }, [])
