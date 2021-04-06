@@ -10,7 +10,7 @@ import PlusCahiersVacances from './PlusCahiersVacances.js'
 
 
 
-function HomePageConnectedParentCopy(props) {
+function HomePageConnectedParent(props) {
 
     const [userInfo, setUserInfo] = useState([])
     const [userFirstName, setUserFirstName] = useState('')
@@ -260,4 +260,4 @@ function mapStateToProps(state) {
 export default connect(
     mapStateToProps,
     null
-)(HomePageConnectedParentCopy);
+)(HomePageConnectedParent);

@@ -5,7 +5,6 @@ import Header from './header.js';
 import Footer from './footer.js'
 
 
-
 function HomeScreenParent() {
 
 
@@ -75,7 +74,7 @@ function HomeScreenParent() {
                     </Col>
                     <Col xs={12} md={6} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
                         <p style={{ color: '#1F8A9E', display: 'flex', justifyContent: 'center' }}>Chaque matière est divisée par chapitre, par notion d’acquisition et par niveau de difficulté de 1 à 5.</p>
-                        <p style={{ color: '#1F8A9E', display: 'flex', justifyContent: 'center' }}>chaque chapitre, l’élève commencera toujours par le niveau 1 avec des exercices simples pour prendre confiance en lui et mémoriser les règles. Une fois le niveau 1 complété, il passera sur le niveau 2 et une fois ce dernier complété, il passera au niveau 3, etc.</p>
+                        <p style={{ color: '#1F8A9E', display: 'flex', justifyContent: 'center' }}>A chaque chapitre, l’élève commencera toujours par le niveau 1 avec des exercices simples pour prendre confiance en lui et mémoriser les règles. Une fois le niveau 1 complété, il passera sur le niveau 2 et une fois ce dernier complété, il passera au niveau 3, etc...</p>
                         <p style={{ color: '#1F8A9E', display: 'flex', justifyContent: 'center' }}>Plus il en fera, plus il comprendra et mémorisera les règles. Plus il en fera, plus il réussira, plus il prendra confiance en lui et plus il aura le plaisir d’en faire.Plus il réussira, plus il gagnera de points. Plus il passera de niveaux, plus il gagnera de points Bonus !</p>
                     </Col>
                 </Row>
@@ -138,7 +137,7 @@ function HomeScreenParent() {
                 </Row>
                 <Row style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 20 }}>
                     <Col xs={12}>
-                        <p style={{ color: '#1F8A9E', display: 'flex', justifyContent: 'center' }}>Pour chaque cahier de vacances, Mulmug sélectionnera et lui proposera de manière aléatoire 3 exercices par jour dans les chapitres que ton enfant aura déjà commencé à étudier sur Mulmug. C’est un super moyen pour faire une révision complète des chapitres déjà étudiés.</p>
+                        <p style={{ color: '#1F8A9E', display: 'flex', justifyContent: 'center' }}>Pour chaque cahier de vacances, Mulmug sélectionnera et lui proposera de manière aléatoire 3 exercices par jour dans les chapitres que votre enfant aura déjà commencé à étudier sur Mulmug. C’est un super moyen pour faire une révision complète des chapitres déjà étudiés.</p>
                         <p style={{ color: '#1F8A9E', display: 'flex', justifyContent: 'center' }}>5 cahiers de vacances sont disponibles, un pour chaque vacances.</p>
                     </Col>
                 </Row>

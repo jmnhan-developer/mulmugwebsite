@@ -103,6 +103,7 @@ function PlusBonsdAchatAutorises(props) {
             <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom: 50, paddingLeft: 15, paddingRight: 15 }}>
                 {bonsdachatautorisesCard}
             </Row>
+            
 
         </div>
 
