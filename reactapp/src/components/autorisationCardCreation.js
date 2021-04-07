@@ -28,7 +28,7 @@ function AutorisationCardCreation () {
 
     var handleSubmitAutoCardCreation = async () => {
 
-        const data = await fetch('/autocardcreation', {
+        const data = await fetch('/autorisationcards/autocardcreation', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `categoryFromFront=${category}&brandPartner1FromFront=${brandPartner1}&brandPartner2FromFront=${brandPartner2}&brandPartner3FromFront=${brandPartner3}&brandPartner4FromFront=${brandPartner4}&brandPartner5FromFront=${brandPartner5}&brandPartner6FromFront=${brandPartner6}&brandPartner7FromFront=${brandPartner7}&brandPartner8FromFront=${brandPartner8}&brandPartner9FromFront=${brandPartner9}&brandPartner10FromFront=${brandPartner10}&brandPartner11FromFront=${brandPartner11}&brandPartner12FromFront=${brandPartner12}`

@@ -17,13 +17,14 @@ function SignInAdmin(props) {
     const [superAdminExists, setSuperAdminExists] = useState(false)
 
 
-    const [listErrorsSignin, setErrorsSignin] = useState([])
+    const [listErrorsAdminSignin, setErrorsAdminSignin] = useState([])
+    const [listErrorsSuperAdminSignin, setErrorsSuperAdminSignin] = useState([])
 
 
     // SIGN IN ADMIN
     var handleSubmitAdminSignIn = async () => {
 
-        const data = await fetch('/adminsignin', {
+        const data = await fetch('/administrators/adminsignin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `adminEmailFromFront=${adminEmail}&adminPasswordFromFront=${adminPassword}`
@@ -35,7 +36,7 @@ function SignInAdmin(props) {
             props.addToken(body.token)
             setAdminExists(true)
         } else {
-            setErrorsSignin(body.error)
+            setErrorsAdminSignin(body.error)
         }
     }
 
@@ -43,7 +44,7 @@ function SignInAdmin(props) {
         return <Redirect to='/HomeAdminScreen' />
     }
 
-    var tabErrorsSignin = listErrorsSignin.map((error, i) => {
+    var tabErrorsAdminSignin = listErrorsAdminSignin.map((error, i) => {
         return (<p style={{ color: 'red' }}>{error}</p>)
     })
 
@@ -51,7 +52,7 @@ function SignInAdmin(props) {
     // SIGN IN SUPER ADMIN
     var handleSubmitSuperAdminSignIn = async () => {
 
-        const data = await fetch('/superadminsignin', {
+        const data = await fetch('/administrators/superadminsignin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `superAdminEmailFromFront=${superAdminEmail}&superAdminPasswordFromFront=${superAdminPassword}`
@@ -63,7 +64,7 @@ function SignInAdmin(props) {
             props.addToken(body.token)
             setSuperAdminExists(true)
         } else {
-            setErrorsSignin(body.error)
+            setErrorsSuperAdminSignin(body.error)
         }
     }
 
@@ -71,7 +72,7 @@ function SignInAdmin(props) {
         return <Redirect to='/SuperAdminScreen' />
     }
 
-    var tabErrorsSignin = listErrorsSignin.map((error, i) => {
+    var tabErrorsSuperAdminSignin = listErrorsSuperAdminSignin.map((error, i) => {
         return (<p style={{ color: 'red' }}>{error}</p>)
     })
 
@@ -113,7 +114,7 @@ function SignInAdmin(props) {
                                     value={adminPassword}
                                     onChange={(e) => setAdminPassword(e.target.value)} />
                             </FormGroup>
-                            {tabErrorsSignin}
+                            {tabErrorsAdminSignin}
                         </Row>
                         <Row style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 40 }}>
                             <Button onClick={() => handleSubmitAdminSignIn()} style={{ width: 150, backgroundColor: '#FDC41F', border: 'none', borderRadius: 50, marginTop: 5, marginBottom: 5 }}>TE CONNECTER</Button>
@@ -147,7 +148,7 @@ function SignInAdmin(props) {
                                     value={superAdminPassword}
                                     onChange={(e) => setSuperAdminPassword(e.target.value)} />
                             </FormGroup>
-                            {tabErrorsSignin}
+                            {tabErrorsSuperAdminSignin}
                         </Row>
                         <Row style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 40 }}>
                             <Button onClick={() => handleSubmitSuperAdminSignIn()} style={{ width: 150, backgroundColor: '#FDC41F', border: 'none', borderRadius: 50, marginTop: 5, marginBottom: 5 }}>TE CONNECTER</Button>

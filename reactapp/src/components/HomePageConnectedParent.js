@@ -21,7 +21,7 @@ function HomePageConnectedParent(props) {
     useEffect(() => {
 
         const findUser = async () => {
-            const data = await fetch(`/loadinguserinfo?token=${props.token}`)
+            const data = await fetch(`/users/loadinguserinfo?token=${props.token}`)
             const body = await data.json()
 
             if (body) {

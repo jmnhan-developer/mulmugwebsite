@@ -12,7 +12,7 @@ function MulmugPlusForfaitSansPub(props) {
 
     useEffect(() => {
         const findProducts = async () => {
-            const data = await fetch('/loadingforfaitdata')
+            const data = await fetch('/products/loadingforfaitdata')
             const body = await data.json()
             setProductList(body.products)
         }

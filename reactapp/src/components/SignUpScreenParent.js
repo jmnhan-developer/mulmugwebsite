@@ -151,7 +151,7 @@ function SignUpScreenParent({onSubmitToken}) {
     var handleSubmitUserSignup = async () => {
 
 
-        const data = await fetch('/usersignup', {
+        const data = await fetch('/users/usersignup', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `userGenderFromFront=${userGender}&userFirstNameFromFront=${userFirstName}&userLastNameFromFront=${userLastName}&userEmailFromFront=${userEmail}&userPasswordFromFront=${userPassword}&studentGenderFromFront=${studentGender}&studentFirstNameFromFront=${studentFirstName}&studentLastNameFromFront=${studentLastName}&studentGradeFromFront=${studentGrade}&studentEmailFromFront=${studentEmail}&studentAddressFromFront=${studentAddress}&studentAdressCompFromFront=${studentAddressComp}&studentZipFromFront=${studentZip}&studentCityFromFront=${studentCity}&studentBirthdayFromFront=${studentBirthday}&studentSchoolFromFront=${studentSchool}`

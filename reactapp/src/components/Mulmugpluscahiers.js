@@ -13,7 +13,7 @@ function MulmugPlusCahiers(props) {
 
     useEffect(() => {
         const findProducts = async () => {
-            const data = await fetch('/loadingcahierdata')
+            const data = await fetch('/products/loadingcahierdata')
             const body = await data.json()
             setProductList(body.products)
         }

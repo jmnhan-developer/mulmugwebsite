@@ -14,7 +14,9 @@ function SuperAdminScreen() {
     const [adminRole, setAdminRole] = useState('')
 
     const [adminExists, setAdminExists] = useState(false)
-    const [listErrorsSignup, setErrorsSignup] = useState([])
+    const [listErrorsAdminCreation, setErrorsAdminCreation] = useState([])
+    const [listSuccessAdminCreation, setSuccessAdminCreation] = useState([])
+
 
     const [superAdminFirstName, setSuperAdminFirstName] = useState('')
     const [superAdminLastName, setSuperAdminLastName] = useState('')
@@ -24,13 +26,15 @@ function SuperAdminScreen() {
     const [superAdminRole, setSuperAdminRole] = useState('')
 
     const [superAdminExists, setSuperAdminExists] = useState(false)
+    const [listErrorsSuperAdminCreation, setErrorsSuperAdminCreation] = useState([])
+    const [listSuccessSuperAdminCreation, setSuccessSuperAdminCreation] = useState([])
 
 
     //ROUTE POUR LA CRÉATION D'UN COMPTE ADMIN
 
     var handleSubmitAdminCreation = async () => {
 
-        const data = await fetch('/admincreation', {
+        const data = await fetch('/administrators/admincreation', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `adminFirstNameFromFront=${adminFirstName}&adminLastNameFromFront=${adminLastName}&adminPositionFromFront=${adminPosition}&adminEmailFromFront=${adminEmail}&adminPasswordFromFront=${adminPassword}&adminRoleFromFront=${adminRole}`
@@ -40,25 +44,31 @@ function SuperAdminScreen() {
 
         if (body.result === true) {
             setAdminExists(true)
-            // props.addToken(body.token)
+            setAdminFirstName ('')
+            setAdminLastName ('')
+            setAdminPosition ('')
+            setAdminEmail ('')
+            setAdminPassword('')
+            setAdminRole('')
+            setErrorsAdminCreation ([])
+            setSuccessAdminCreation (body.success)
         } else {
-            setErrorsSignup(body.error)
+            setErrorsAdminCreation(body.error)
         }
     }
 
-    if (adminExists) {
-        return (<p style={{ fontSize: 20, color: '#FDC41F' }}>Un admin a bien été créé!</p>)
-    }
-
-    var tabErrorsSignup = listErrorsSignup.map((error, i) => {
+    var tabErrorsAdminCreation = listErrorsAdminCreation.map((error, i) => {
         return (<p style={{ color: 'red' }}>{error}</p>)
+    })
+    var tabSuccessAdminCreation = listSuccessAdminCreation.map((success, i) => {
+        return (<p style={{ color: 'green' }}>{success}</p>)
     })
 
     // ROUTE POUR LA CRÉATION D'UN COMPTE SUPER ADMIN
 
     var handleSubmitSuperAdminCreation = async () => {
 
-        const data = await fetch('/superadmincreation', {
+        const data = await fetch('/administrators/superadmincreation', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `superAdminFirstNameFromFront=${superAdminFirstName}&superAdminLastNameFromFront=${superAdminLastName}&superAdminPositionFromFront=${superAdminPosition}&superAdminEmailFromFront=${superAdminEmail}&superAdminPasswordFromFront=${superAdminPassword}&superAdminRoleFromFront=${superAdminRole}`
@@ -67,19 +77,28 @@ function SuperAdminScreen() {
         const body = await data.json()
 
         if (body.result === true) {
-            // props.addToken(body.token)
             setSuperAdminExists(true)
+            setSuperAdminExists(true)
+            setSuperAdminFirstName ('')
+            setSuperAdminLastName ('')
+            setSuperAdminPosition ('')
+            setSuperAdminEmail ('')
+            setSuperAdminPassword('')
+            setSuperAdminRole('')
+            setErrorsSuperAdminCreation ([])
+            setSuccessSuperAdminCreation (body.success)
         } else {
-            setErrorsSignup(body.error)
+            setErrorsSuperAdminCreation(body.error)
         }
 
     }
 
-    if (superAdminExists) {
-        return (<p style={{ fontSize: 20, color: '#FDC41F' }}>Un admin a bien été créé!</p>)
-    }
 
-    var tabErrorsSignup = listErrorsSignup.map((error, i) => {
+
+    var tabErrorsSuperAdminCreation = listErrorsSuperAdminCreation.map((error, i) => {
+        return (<p style={{ color: 'red' }}>{error}</p>)
+    })
+    var tabSuccessSuperAdminCreation = listSuccessSuperAdminCreation.map((error, i) => {
         return (<p style={{ color: 'red' }}>{error}</p>)
     })
 
@@ -119,7 +138,8 @@ function SuperAdminScreen() {
                                 <option>Super Admin</option>
                             </Input>
                         </FormGroup>
-                        {tabErrorsSignup}
+                        {tabErrorsAdminCreation}
+                        {tabSuccessAdminCreation}
                         <Row style={{ display: 'flex', justifyContent: 'center', marginTop: 40, marginBottom: 40 }}>
                             <Button style={{ width: 300, backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }} onClick={() => handleSubmitAdminCreation()}>VALIDER</Button>
                         </Row>
@@ -154,7 +174,8 @@ function SuperAdminScreen() {
                                 <option>Super Admin</option>
                             </Input>
                         </FormGroup>
-                        {tabErrorsSignup}
+                        {tabErrorsSuperAdminCreation}
+                        {tabSuccessSuperAdminCreation}
                         <Row style={{ display: 'flex', justifyContent: 'center', marginTop: 40, marginBottom: 40 }}>
                             <Button style={{ width: 300, backgroundColor: '#FDC41F', border: 'none', borderRadius: 50 }} onClick={() => handleSubmitSuperAdminCreation()}>VALIDER</Button>
                         </Row>

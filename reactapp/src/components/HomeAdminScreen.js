@@ -20,7 +20,7 @@ function HomeAdminScreen(props) {
     useEffect(() => {
 
         const findUser = async () => {
-            const data = await fetch(`/loadingadmininfo?token=${props.token}`)
+            const data = await fetch(`/administrators/loadingadmininfo?token=${props.token}`)
             const body = await data.json()
 
             if (body) {

@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Row, Button, Col, FormGroup, Input } from 'reactstrap';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 
 
@@ -29,7 +28,7 @@ function ProductCreation(props) {
     // ENVOI DES DONNÉES PRODUITS EN CRÉATION DANS LE BACK
     var handleSubmitProductCreation = async () => {
 
-        const data = await fetch('/productcreation', {
+        const data = await fetch('/products/productcreation', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `categoryFromFront=${category}&commercialNameFromFront=${commercialName}&commitmentFromFront=${commitment}&nbrPointsFromFront=${nbrPoints}&periodFromFront=${period}&disciplineFromFront=${discipline}&gradeFromFront=${grade}&priceHTFromFront=${priceHT}&rateTVAFromFront=${rateTVA}&priceTTCFromFront=${priceTTC}&durationDaysFromFront=${durationDays}&beginingDateFromFront=${beginingDate}&endDateFromFront=${endDate}`

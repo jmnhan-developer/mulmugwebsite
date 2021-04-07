@@ -19,7 +19,7 @@ function PlusCahiersVacances(props) {
 
     useEffect(() => {
         const findUser = async () => {
-            const data = await fetch(`/loadinguserinfo?token=${props.token}`)
+            const data = await fetch(`/users/loadinguserinfo?token=${props.token}`)
             const body = await data.json()
             if (body) {
                 setUserInfo(body)
@@ -34,7 +34,7 @@ function PlusCahiersVacances(props) {
 
     useEffect(() => {
         const findProducts = async () => {
-            const data = await fetch('/loadingcahierdata')
+            const data = await fetch('/products/loadingcahierdata')
             const body = await data.json()
             setProductList(body.products)
         }

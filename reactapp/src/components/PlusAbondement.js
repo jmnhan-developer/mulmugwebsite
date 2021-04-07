@@ -18,7 +18,7 @@ function PlusAbondement(props) {
 
     useEffect(() => {
         const findUser = async () => {
-            const data = await fetch(`/loadinguserinfo?token=${props.token}`)
+            const data = await fetch(`/users/loadinguserinfo?token=${props.token}`)
             const body = await data.json()
             if (body) {
                 setUserInfo(body)
@@ -33,10 +33,9 @@ function PlusAbondement(props) {
 
     useEffect(() => {
         const findProducts = async () => {
-            const data = await fetch('/loadingabonddata')
+            const data = await fetch('/products/loadingabonddata')
             const body = await data.json()
             setProductList(body.products)
-            console.log("*** C'est quoi ça?***", body)
         }
         findProducts()
     }, [])

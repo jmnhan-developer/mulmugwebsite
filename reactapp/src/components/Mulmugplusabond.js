@@ -12,7 +12,7 @@ function MulmugPlusAbond(props) {
 
     useEffect(() => {
         const findProducts = async () => {
-            const data = await fetch('/loadingabonddata')
+            const data = await fetch('/products/loadingabonddata')
             const body = await data.json()
             setProductList(body.products)
         }

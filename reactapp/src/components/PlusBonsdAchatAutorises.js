@@ -17,7 +17,7 @@ function PlusBonsdAchatAutorises(props) {
     // RECUPERER LES DONNÉES DU USER
     useEffect(() => {
         const findUser = async () => {
-            const data = await fetch(`/loadinguserinfo?token=${props.token}`)
+            const data = await fetch(`/users/loadinguserinfo?token=${props.token}`)
             const body = await data.json()
             if (body) {
                 setUserInfo(body)
@@ -33,10 +33,8 @@ function PlusBonsdAchatAutorises(props) {
     // RECUPERER LES DONNÉES DES AUTORISATION-CARDS
     useEffect (() => {
         const findAutorisationCard = async () => {
-            const data = await fetch ('/loadingautorisationcards')
+            const data = await fetch ('/autorisationcards/loadingautorisationcards')
             const body = await data.json ()
-            console.log("body from front", body)
-
             setAutorisationCardList(body)
         }
         findAutorisationCard()

@@ -19,7 +19,7 @@ function SignInscreen({onSubmitToken}) {
 
     var handleSubmitSignIn = async () => {
 
-        const data = await fetch('/usersignin', {
+        const data = await fetch('/users/usersignin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `userEmailFromFront=${userEmail}&userPasswordFromFront=${userPassword}`
