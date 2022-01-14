@@ -62,6 +62,7 @@ function SignUpScreenParent({onSubmitToken}) {
 
     var handleClickMadame = () => {
         setSelectedMadame(!selectedMadame)
+        setSelectedMonsieur(selectedMadame)
         setUserGender("Madame")
     };
     if (selectedMadame === true) {
@@ -78,6 +79,7 @@ function SignUpScreenParent({onSubmitToken}) {
 
     var handleClickMonsieur = () => {
         setSelectedMonsieur(!selectedMonsieur)
+        setSelectedMadame(selectedMonsieur)
         setUserGender("Monsieur")
     }
     if (selectedMonsieur === true) {
@@ -116,6 +118,7 @@ function SignUpScreenParent({onSubmitToken}) {
 
     var handleClickGirl = () => {
         setSelectedGirl(!selectedGirl)
+        setSelectedBoy(selectedGirl)
         setStudentGender("Fille")
     }
     if (selectedGirl === true) {
@@ -132,6 +135,7 @@ function SignUpScreenParent({onSubmitToken}) {
 
     var handleClickBoy = () => {
         setSelectedBoy(!selectedBoy)
+        setSelectedGirl(selectedBoy)
         setStudentGender("Garçon")
     }   
     if (selectedBoy === true) {

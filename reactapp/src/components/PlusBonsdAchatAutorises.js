@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import { Row, Col, FormGroup, CustomInput } from 'reactstrap'
+import React, { useState, useEffect } from 'react'
+import { Row, Col, CustomInput } from 'reactstrap'
 import { connect } from 'react-redux'
 
 
@@ -12,7 +12,7 @@ function PlusBonsdAchatAutorises(props) {
     const [userEmail, setUserEmail] = useState('')
     const [studentFirstName, setStudentFirstName] = useState('')
 
-    const [autorisationCardList, setAutorisationCardList] = useState ([])
+    const [autorisationCardList, setAutorisationCardList] = useState([])
 
     // RECUPERER LES DONNÉES DU USER
     useEffect(() => {
@@ -31,14 +31,21 @@ function PlusBonsdAchatAutorises(props) {
     }, [])
 
     // RECUPERER LES DONNÉES DES AUTORISATION-CARDS
-    useEffect (() => {
+    useEffect(() => {
         const findAutorisationCard = async () => {
-            const data = await fetch ('/autorisationcards/loadingautorisationcards')
-            const body = await data.json ()
+            const data = await fetch('/autorisationcards/loadingautorisationcards')
+            const body = await data.json()
             setAutorisationCardList(body)
         }
         findAutorisationCard()
     }, [])
+
+    const [autorized, setAutorized] = useState (true)
+
+
+    // var handleClick = () => {
+    //    autorized? setAutorized (false): setAutorized (true)
+    // }
 
 
     /* TABLEAU D'OBJETS POUR LA MAP */
@@ -60,27 +67,23 @@ function PlusBonsdAchatAutorises(props) {
     //     { category: "BEAUTÉ", stores: "Sephora, Kiko, NYX, Body Shop...", url: "./icon_parfum.png" },
     //     { category: "DONS", stores: "WWF, Surfrider, SPA ...", url: "./icon_don.png" }
     // ];
-   
+
 
     /* LA MAP */
 
     var bonsdachatautorisesCard = autorisationCardList.map((e, i) => {
         return <Col key={i} xs={12} md={3} style={styleCard}>
             <div style={{ display: 'flex', flexDirection: 'row', paddingTop: 20, paddingBottom: 10 }}>
-                <Col xs={2} >
+                <Col xs={1} >
                     <img alt="" width='200%' src={''} />
                 </Col>
-                <Col xs={10} style={{ display: 'flex', justifyItems: 'center' }}>
+                <Col xs={11} style={{ display: 'flex', justifyItems: 'center' }}>
                     <p style={{ color: '#1F8A9E', fontSize: 13, fontWeight: 'bold', marginBottom: 0 }}>{e.category}</p>
                 </Col>
             </div>
-            <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
                 <p style={{ color: '#1F8A9E', fontSize: 12, marginBottom: 10 }}>{e.brandPartner1}, {e.brandPartner2}, {e.brandPartner3}...</p>
-                <FormGroup>
-                    <div>
-                        <CustomInput type="switch" id="exampleCustomSwitch" name="customSwitch" label="" />
-                    </div>
-                </FormGroup>
+                <CustomInput type="switch" id="exampleCustomSwitch" name="customSwitch" label="" />
             </div>
         </Col>
     });
@@ -101,7 +104,7 @@ function PlusBonsdAchatAutorises(props) {
             <Row style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom: 50, paddingLeft: 15, paddingRight: 15 }}>
                 {bonsdachatautorisesCard}
             </Row>
-            
+
 
         </div>
 
@@ -118,11 +121,11 @@ var styleCard = {
     boxShadow: '4px 4px 4px #D5DBDB',
 };
 
-function mapStateToProps (state) {
-    return {token: state.token}
+function mapStateToProps(state) {
+    return { token: state.token }
 }
 
 export default connect(
     mapStateToProps,
     null
-) (PlusBonsdAchatAutorises);
+)(PlusBonsdAchatAutorises);

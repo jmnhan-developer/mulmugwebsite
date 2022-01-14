@@ -18,7 +18,7 @@ function Footer() {
 
             <Row style={{marginLeft:10, marginRight:10}}>
                 <Col xs={12} md={3} style={{ display: 'flex', flexDirection: 'column', marginBottom: 10 }}>
-                    <h7 style={{ marginBottom: 10 }}>A PROPOS DE MULMUG</h7>
+                    <p style={{ marginBottom: 10 }}>A PROPOS DE MULMUG</p>
                     <Link to='/QuiSommesNous' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Qui sommes nous?</p></Link>
                     <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Matières</p></Link>
                     <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Points Mulmug</p></Link>
@@ -28,7 +28,7 @@ function Footer() {
                     <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Nos partenaires</p></Link>
                 </Col>
                 <Col xs={12} md={3} style={{ display: 'flex', flexDirection: 'column', marginBottom: 10 }}>
-                    <h7 style={{ marginBottom: 10 }}>CONDITIONS</h7>
+                    <p style={{ marginBottom: 10 }}>CONDITIONS</p>
                     <Link to='/MentionsLegales' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Mentions légales</p></Link>
                     <Link to='/ReglesDeConfidentialite' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Règle de confidentialité</p></Link>
                     {/* <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Sécurité</p></Link> */}
@@ -36,7 +36,7 @@ function Footer() {
                     {/* <Link to='/' style={{ textDecorationLine: 'none' }}><p style={styleTextFooter}>Plan du site</p></Link> */}
                 </Col>
                 <Col xs={12} md={3} style={{ display: 'flex', flexDirection: 'column', marginBottom: 10 }}>
-                    <h7 style={{ marginBottom: 10 }}>RESTONS EN CONTACT</h7>
+                    <p style={{ marginBottom: 10 }}>RESTONS EN CONTACT</p>
                     <p style={{ marginBottom: 1, fontSize: 13 }}>Newsletter</p>
                     <Row style={{ display: 'flex', flexDirection: 'row', margin: 'none', paddingRight: 15, paddingLeft: 15 }}>
                         <Input style={{ width: '80%', marginBottom: 1, fontSize: 13, border: 'none', borderRadius: 50, backgroundColor: '#f8f9fa' }} type="email" name="email" id="exampleEmail" placeholder="adresse e-mail" />
@@ -56,7 +56,7 @@ function Footer() {
                     </Row>
                 </Col>
                 <Col xs={12} md={3} style={{ display: 'flex', flexDirection: 'column', marginBottom: 10 }}>
-                    <h7 style={{ marginBottom: 10 }}>CONTACTER MULMUG</h7>
+                    <p style={{ marginBottom: 10 }}>CONTACTER MULMUG</p>
                     <p style={{ marginBottom: 1, fontSize: 13 }}>Par courrier:</p>
                     <p style={{ marginBottom: 1, fontSize: 13 }}>MULMUG SAS</p>
                     <p style={{ marginBottom: 1, fontSize: 13 }}>14 rue de Solférino</p>

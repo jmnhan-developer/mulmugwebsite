@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 
 const purchaseSchema = mongoose.Schema({
-    userId:String,
     category: String,
     commercialName: String,
     commitment: String,

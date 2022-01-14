@@ -6,13 +6,13 @@ import Header from './header.js'
 import Footer from './footer.js'
 
 
-function SignInscreen({onSubmitToken}) {
+function SignInscreen({ onSubmitToken }) {
 
     const [userEmail, setUserEmail] = useState('')
     const [userPassword, setUserPassword] = useState('')
     const [userExists, setUserExists] = useState(false)
     const [listErrorsSignin, setErrorsSignin] = useState([])
-    
+
     // CREATION DE LA MODAL
     const [modal, setModal] = useState(false);
     const toggle = () => setModal(!modal);

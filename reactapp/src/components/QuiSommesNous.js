@@ -77,7 +77,7 @@ function QuiSommesNous() {
                                 <CardImg top src="./MemojiJMN.png" alt="Card image cap" style={{ width: '50%' }} />
                                 <CardBody>
                                     <CardTitle tag="h6" style={{ color: '#1F8A9E' }}>Jean-Marc</CardTitle>
-                                    <CardSubtitle tag="h7" className="mb-2 text-muted">Fondateur</CardSubtitle>
+                                    <CardSubtitle tag="h6" className="mb-2 text-muted">Fondateur</CardSubtitle>
                                 </CardBody>
                             </Card>
                         </Col>
@@ -96,7 +96,7 @@ function QuiSommesNous() {
                                 <CardImg top src="./MemojiGeraldine.png" alt="Card image cap" style={{ width: '50%' }} />
                                 <CardBody>
                                     <CardTitle tag="h6" style={{ color: '#1F8A9E' }}>Céline</CardTitle>
-                                    <CardSubtitle tag="h7" className="mb-2 text-muted">Prof de Math.</CardSubtitle>
+                                    <CardSubtitle tag="h6" className="mb-2 text-muted">Prof de Math.</CardSubtitle>
                                 </CardBody>
                             </Card>
                         </Col>
@@ -106,7 +106,7 @@ function QuiSommesNous() {
                             <img alt="" width='80%' src="./MemojiJMN.png" />
                         </Col>
                         <Col xs={12} md={10} >
-                            <p style={styleText}>"Je suis Jean-Marc, fondateur de Mulmug. J’ai eu l’idée de créer Mulmug après avoir entendu une amie dire à son fils Eliott en vacances chez les grands parents « Si tu finis ton cahier de vacances avant la fin des vacances alors on participe à l’achat de ton iPhone » Eliott a appelé ses parents tous les 2 ou 3 jours pour dire qu’il a fait 3 pages, puis 5 pages de cahier de vacances…. Elliot a fini son cahier de vacances fin Août… Ainsi j’ai compris que, pour se motiver, un élève a besoin de se fixer des objecttifs, ses propres objectifs, personnels, concrets, motivants à ses yeux  et atteignables à court terme. Ces objectifs peuvent être un livre, une nouvelle paire de baskets ou tout simplement pouvoir aller faire du skateboard au skate parc…
+                            <p style={styleText}>"Je suis Jean-Marc, fondateur de Mulmug. J’ai eu l’idée de créer Mulmug après avoir entendu une amie dire à son fils Eliott en vacances chez les grands parents « Si tu finis ton cahier de vacances avant la fin des vacances alors on participe à l’achat de ton iPhone ». Eliott a appelé ses parents tous les 2 ou 3 jours pour dire qu’il a fait 3 pages, puis 5 pages de cahier de vacances…. Elliot a fini son cahier de vacances fin Août… Ainsi j’ai compris que, pour se motiver, un élève a besoin de se fixer des objectifs, ses propres objectifs, personnels, concrets, motivants à ses yeux et atteignables à court terme. Ces objectifs peuvent être un livre, une nouvelle paire de baskets ou tout simplement pouvoir aller faire du skateboard au skate parc…
                         Le nom Mulmug, presque l’acronyme « the More You Learn, the More You Get », littéralement « Plus tu apprends, plus tu gagnes », traduit tout le concept de l’application."</p>
                         </Col>
                     </Row>

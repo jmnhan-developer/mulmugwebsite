@@ -9,6 +9,7 @@ const productModel = require('../models/product')
 const adminModel = require('../models/admin')
 const superAdminModel = require('../models/superadmin')
 const autorisationModel = require('../models/autorisation')
+const purchaseModel = require('../models/purchase')
 const autorisationCardModel = require('../models/autorisationCard')
 
 
@@ -78,6 +79,8 @@ router.post('/usersignup', async function (req, res, next) {
       token = saveUser.token
     }
   }
+  console.log('quelles données contient saveUser', saveUser)
+  
   res.json({ result, saveUser, error, token })
 })
 
@@ -118,7 +121,6 @@ router.post('/usersignin', async function (req, res, next) {
   }
 
   res.json({ result, user, error, token })
-
 
 });
 

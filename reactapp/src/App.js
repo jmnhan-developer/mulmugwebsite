@@ -9,7 +9,7 @@ import MulmugPlusForfaitSansPub from './components/MulmugPlusForfaitSansPub.js'
 import Mulmugpluscahiers from './components/Mulmugpluscahiers.js'
 import QuiSommesNous from './components/QuiSommesNous.js'
 import SignInScreen from './components/SignInScreen.js'
-import SignUpScreenStudent from './components/SignUpScreenStudent.js'
+
 import SignUpScreenParent from './components/SignUpScreenParent.js'
 import MentionsLegales from './components/MentionsLegales.js'
 import ReglesDeConfidentialite from './components/ReglesDeConfidentialite.js'
@@ -39,7 +39,7 @@ function App() {
           <Route component={Mulmugpluscahiers} path="/mulmugpluscahiers" exact />
           <Route component={QuiSommesNous} path="/quisommesnous" exact />
           <Route component={SignInScreen} path="/signinscreen" exact />
-          <Route component={SignUpScreenStudent} path="/signupscreenstudent" exact />
+          
           <Route component={SignUpScreenParent} path="/signupscreenparent" exact />
           <Route component={MentionsLegales} path="/mentionslegales" exact />
           <Route component={CgvCgu} path="/cgvcgu" exact />
